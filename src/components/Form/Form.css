@@ -1,0 +1,175 @@
+.form{
+    margin: 0 auto ;
+}
+
+.form li .uppercase{
+    text-transform: uppercase;
+}
+
+.form-control{
+    width:60%!important;
+    margin: 0 auto !important;
+}
+
+
+.display-keyboard-letters ul{
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.display-keyboard-letters li{
+    position:relative;
+    display:inline-block;
+    width: 2.5rem;
+    border:1px solid #fff;
+    color:#fff;
+    font-size:1.5em;
+    background-color: #555;
+    border-radius: 0.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-keyboard-letters li.isActive{
+    background-color: #222;
+}
+.display-keyboard-letters li.isGoodPlaced{
+    background-color: #e7002a;
+}
+.display-keyboard-letters li.isBadPlaced{
+    background-color: #ffbd00;
+}
+
+.display-keyboard-letters li.isBadPlaced.isGoodPlaced{
+    background-image: linear-gradient(45deg, rgba(253,29,29,1)  50%, rgba(255,189,0,1) 50%);
+}
+
+.wordle .display-keyboard-letters li.isGoodPlaced{
+    background-color: #3eaa42;
+}
+.wordle .display-keyboard-letters li.isBadPlaced{
+    background-color: #d3952a;
+}
+
+.wordle .display-keyboard-letters li.isBadPlaced.isGoodPlaced{
+    background-image: linear-gradient(45deg, rgba(62,170,66,1)  50%, rgba(211,149,42,1) 50%);
+}
+
+.display-keyboard-letters li a{
+    text-decoration: none;
+    color:#fff;
+    display: block;
+    width:100%
+}
+
+.display-keyboard-letters li.maj{
+    width: 6rem;
+    font-size:1.5em;
+}
+
+.display-keyboard-letters li.backspace{
+    width: 6rem;
+}
+
+.display-keyboard-letters li.exclude{
+    width: 50%;
+    font-size:1.1em;
+    background-color: #0077c7;
+    line-height:1.3rem;
+    height: 60px;
+}
+.display-keyboard-letters li.validate{
+    width: 50%;
+    font-size:1.1em;
+    background-color: #fff;
+    line-height: 40px;
+    height: 40px;
+    border:2px solid #e7002a;
+    margin: 1rem 0 0.5rem;
+}
+
+.display-keyboard-letters li.validate a{
+    color:#e7002a
+}
+
+.display-keyboard-letters li.validate:active{
+    background-color: #e7002a;
+    border:2px solid #fff
+}
+
+.display-keyboard-letters li.validate:active a{
+    color:#fff
+}
+.wordle .display-keyboard-letters li.validate{
+    background-color: #fff;
+    border:2px solid #3eaa42
+}
+.wordle .display-keyboard-letters li.validate a{
+    color:#3eaa42
+}
+.wordle .display-keyboard-letters li.validate:active{
+    background-color: #3eaa42;
+    border:2px solid #fff
+}
+.wordle .display-keyboard-letters li.validate:active a{
+    color:#fff
+}
+.display-keyboard-letters li.excludeActive{
+    background-color: #0077c7;
+    opacity:1;
+}
+.wordle .display-keyboard-letters li.excludeActive{
+    background-color: #3a3a3c;
+}
+.display-keyboard-letters li.notinword, .wordle .display-keyboard-letters li.notinword{
+    opacity:0.7
+}
+
+.display-keyboard-letters li.notinword a:before{
+    content: "X";
+    color: red;
+    font-size:2rem;
+    position: absolute;
+    left: 8px;
+    top: -4px;
+    opacity:0.6
+}
+.display-keyboard-letters li.reset{
+    width: 50%; 
+    font-size:1.1em; 
+    line-height: 1.3rem;
+    height: 60px;
+}
+
+.display-control-letter{
+    display:none;
+    position:absolute;
+    top:-4rem;
+    left:0.5rem;
+    width: 2.5rem;
+    border:1px solid #fff;
+    color:#555;
+    font-size:1.5em;
+    background-color: #fff;
+    border:1px solid #555;
+    border-radius: 0.3rem;
+    z-index:1
+}
+.isActive .display-control-letter{
+    display:block
+}
+
+
+/**/
+.display-keyboard-letters li.notplaces{
+    background-color: #e7002a;
+    background-color: #555;
+}
+.display-keyboard-letters li.goodplaces{
+    background-color: #ffbd00;
+}
+

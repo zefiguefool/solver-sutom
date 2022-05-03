@@ -1,0 +1,11 @@
+.input-letters ul{
+    padding:0
+}
+
+.input-letters li{
+    display:inline-block;
+    width: 2.3rem;
+    border:1px solid #fff;
+    color:#fff;
+    font-size:1.5em;
+}
