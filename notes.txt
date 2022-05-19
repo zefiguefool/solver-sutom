@@ -1,0 +1,42 @@
+remarques faites par Antoine Doyen référent Vue chez Omnilog lors de la revue de code du vendredi 13/05
+
+1/ bien utiliser
+- props pour descendant
+- emit pour ascendant
+au lieu de emits partout. Faisable pour un petit projet mais gênant en terme de consommation des ressources, de comprehension des échanges entre composants et pas très conforme à la bonne utilisation de vue.
+
+2/
+ds les computed faire le filtrage des données des tableaux ou objets qu'on veut afficher plûtôt que if et des for ds le template
+
+3/
+Before destroy : nettoyer les écouteurs d'evenements avec off
+
+4/
+syntaxe des fonctions ds la propriété method : function est inutile à l'écriture car ce sont de toutes façon des fonctions qu'on va écrire
+
+[13:20] Antoine DOYEN
+soundAction:function(){}
+
+[13:20] Antoine DOYEN
+soundAction () {}
+
+5/ 
+si le nom du composant ne change pas
+'display-input-letters': DisplayInputLetters
+peut être remplacé par DisplayInputLetters
+
+6/ le bus 
+inutile car on peut faire this.emit ds un composant
+gourmant en ressources
+
+7/ pour la CSS/ Passer en Sass. Voir si il est possible de faire du style en globale de la locale et partager des fragments de css mis ds un chier fragment css. exemple donné avec button.css par exemple si on a des boutons partout.
+
+8/
+voir si l'utilisation d'un mixin n'est pas nécessaire en cernant les fonctions communes à plusieurs composants
+
+9/
+retouver la documentation consultée concernant les Bug de Vue.js sur les evts liés aux input (evt blur pour la mise à jour du modèle)
+
+
+
+
