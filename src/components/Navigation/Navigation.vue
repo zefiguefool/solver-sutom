@@ -25,7 +25,7 @@
             }
         },
         methods:{
-            getActiveLink:function($event){
+            getActiveLink($event){
                 this.isActive = !this.isActive;
                 let rootPath = $event.target.parentNode.getAttribute("href");
                 bus.$emit('getActiveLink',rootPath);
