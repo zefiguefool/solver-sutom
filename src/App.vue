@@ -23,10 +23,10 @@ export default {
     }
   },
   components: {
-        'navigation': Navigation,
+        Navigation,
         'form-to-submit': Form,
-        'display-input-letters': DisplayInputLetters,
-        'display-possible-words': DisplayPossibleWords
+        DisplayInputLetters,
+        DisplayPossibleWords
     },
     methods: {
       emitScroll(){
