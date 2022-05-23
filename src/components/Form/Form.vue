@@ -68,11 +68,11 @@
             }
         },
         methods: {
-            toggleKeyboardExcludeInclude:function(){
+            toggleKeyboardExcludeInclude(){
                 this.isExcludeActive = !this.isExcludeActive;
                 this.isExcludeActive == true ? this.textKeyboardExcludeInclude = 'Mode lettres à inclure' : this.textKeyboardExcludeInclude = 'Mode lettres à exclure'
             },
-            activeLetter:function($event){
+            activeLetter($event){
                 let alphabet = "abcdefghijklmnopqrstuvwxyz";
                 let pressedLetter = $event.target.innerText;
                 let pos = 0;
@@ -96,14 +96,14 @@
                     }
                 }
             },
-            desactiveLetter:function(){
+            desactiveLetter(){
                 for (let i = 0; i< this.toggleKeyPressed.length ; i++) {
                     if (this.toggleKeyPressed[i] == true){
                         this.toggleKeyPressed[i] = false;
                     }
                 }
             },
-            suppressLetter:function(){
+            suppressLetter(){
                 let alphabet = "abcdefghijklmnopqrstuvwxyz-";
                 if(this.inputLetters.length != 0){
                     let pos = alphabet.indexOf(this.inputLetters[this.inputLetters.length-1].toLowerCase());
@@ -115,7 +115,7 @@
                     bus.$emit('suppress');
                 }
             },
-            inputLetter: function($event){
+            inputLetter($event){
                 this.firstLetterLowerCase = false;
                 this.letterIsIncluded = false;
                 this.letterIsExcluded = false;

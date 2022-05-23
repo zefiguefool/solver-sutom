@@ -23,7 +23,7 @@
             }
         },
         methods: {
-            soundAction:function(){
+            soundAction(){
                 this.soundActive = !this.soundActive;
                 bus.$emit('soundAction',this.soundActive); 
             }

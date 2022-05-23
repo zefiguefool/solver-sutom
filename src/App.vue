@@ -29,7 +29,7 @@ export default {
         'display-possible-words': DisplayPossibleWords
     },
     methods: {
-      emitScroll:function(){
+      emitScroll(){
         this.heightToScrollOnce = document.getElementsByClassName('intro').item(0).clientHeight;
         window.scrollBy({
           top: this.heightToScrollOnce,
