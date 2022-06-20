@@ -11,7 +11,7 @@ ds les computed faire le filtrage des données des tableaux ou objets qu'on veut
 3/
 Before destroy : nettoyer les écouteurs d'evenements avec off
 
-4/
+4/ done
 syntaxe des fonctions ds la propriété method : function est inutile à l'écriture car ce sont de toutes façon des fonctions qu'on va écrire
 
 [13:20] Antoine DOYEN
@@ -20,8 +20,8 @@ soundAction:function(){}
 [13:20] Antoine DOYEN
 soundAction () {}
 
-5/ 
-si le nom du composant ne change pas
+5/ done
+si le nom du composant ne change pas 
 'display-input-letters': DisplayInputLetters
 peut être remplacé par DisplayInputLetters
 

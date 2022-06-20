@@ -13,7 +13,7 @@
     </div>
 </template>
 <script>
-    import {bus} from '../../main'
+    //import {bus} from '../../main'
     export default{
         name: 'Header',
         data(){
@@ -25,7 +25,7 @@
         methods: {
             soundAction(){
                 this.soundActive = !this.soundActive;
-                bus.$emit('soundAction',this.soundActive); 
+                this.$emit('soundAction',this.soundActive); 
             }
         }
     }

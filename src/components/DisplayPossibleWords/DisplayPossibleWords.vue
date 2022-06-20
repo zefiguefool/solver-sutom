@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-    import {bus} from '../../main'
+    //import {bus} from '../../main'
     export default{
         name: 'DisplayPossibleWords',
         data(){
@@ -51,12 +51,12 @@
             xhr.overrideMimeType("text/plain; charset=UTF-8");
             xhr.send();
 
-            bus.$on('suppress',() => {
+            this.$on('suppress',() => {
                     this.doesExist = true;
                 }
             );
             
-            bus.$on('getPossibleWords',({regExWord,wordlength}) => {
+            this.$on('getPossibleWords',({regExWord,wordlength}) => {
                     this.doesExist = true
                     let isPossibleWord = false;
                     let possibleWordsLength = 0;
@@ -110,7 +110,7 @@
             this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48;
         },
         updated(){
-            bus.$on('reset',() => {
+            this.$on('reset',() => {
                 this.counterWordsFound = 336528;
                 this.objPossibleWords = [];
                 this.doesExist = true;
