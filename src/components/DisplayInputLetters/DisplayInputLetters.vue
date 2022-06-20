@@ -8,7 +8,7 @@
     </div>
 </template>
 <script>
-    import {bus} from '../../main'
+    //import {bus} from '../../main'
     export default{
         name: 'DisplayInputLetters',
         data(){
@@ -25,10 +25,10 @@
             }
         },
         created(){
-            bus.$on('getActiveLink',(rootPath) => {
+            this.$on('getActiveLink',(rootPath) => {
                 rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ;  
             });
-            bus.$on('inputLetter',(data) => {
+            this.$on('inputLetter',(data) => {
                 this.list = [];
                 let tabInputLetters = data.split("");
                 let classAdd = "";
@@ -49,13 +49,13 @@
                     });
                 }
             });
-            bus.$on('suppress',() => {
+            this.$on('suppress',() => {
                     this.list.pop();
                 }
             );
         },
         updated(){
-                bus.$on('reset',() => {
+                this.$on('reset',() => {
                     this.list.length = 0;
                     this.list = [];
                     }
