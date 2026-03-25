@@ -6,7 +6,8 @@
             <img v-else src="../../assets/images/sound-off.jpg" />
         </a>
          <div class="intro col-md-5 mx-auto">
-            <p>Voici un Solver pour le jeu <a href="https://wordle.louan.me/" target="_blank">wordle</a> <img src="./../../assets/images/wordle-visuel.jpg" alt="visuel sotum" /></p>
+            <p>Voici un Solver pour le jeu <a href="https://wordle.louan.me/" target="_blank">Wordle</a></p>
+            <p><img src="./../../assets/images/wordle-visuel.jpg" alt="visuel sotum" /></p>
             <p>Entrez tel qu'affiché sur wordle une majuscule pour une <span class="color-good-place">lettre</span> bien placée, une minuscule pour une <span class="color-bad-place">lettre</span> mal placée et un tiret (-) pour une <span class="color-grid text-white">lettre</span> inconnue. Eliminez des lettres en activant "Mode lettres à exclure". Enfin lancer la recherche en cliquant sur "Chercher".
             </p>
         </div>
