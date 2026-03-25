@@ -6,10 +6,11 @@
             <img v-else src="../../assets/images/sound-off.jpg" />
         </a>
         <div class="intro col-md-5 mx-auto">
-        <p>Voici un Solver pour le jeu <a href="https://sutom.nocle.fr/" target="_blank">sutom</a> <img src="./../../assets/images/sutom-visuel.jpeg" alt="visuel sotum" /></p>
-        <p>Entrez tel qu'affiché sur sotum une <span class="text-uppercase">majuscule</span> pour une <span class="color-good-place">lettre</span> bien placée, une minuscule pour une <span class="bad-place">lettre</span> mal placée et un <span class="color-grid">tiret (-)</span> pour une lettre inconnue. Eliminez des lettres en activant "Mode lettres à exclure". Enfin lancer la recherche en cliquant sur "Chercher".
+        <p>Voici un Solver pour le jeu <a href="https://sutom.nocle.fr/" target="_blank">Sutom</a> et <a href="https://www.tusmo.xyz/" target="_blank">Tusmo</a></p>
+        <p><img src="./../../assets/images/sutom-visuel.jpeg" alt="visuel sotum" /></p>
+        <p>Entrez tel qu'affiché sur Sutom une <span class="text-uppercase">majuscule</span> pour une <span class="color-good-place">lettre</span> bien placée, une minuscule pour une <span class="bad-place">lettre</span> mal placée et un <span class="color-grid">tiret (-)</span> pour une lettre inconnue. Eliminez des lettres en activant "Mode lettres à exclure". Enfin lancer la recherche en cliquant sur "Chercher".
         </p>
-    </div>
+    </div> 
     </div>
 </template>
 <script>
