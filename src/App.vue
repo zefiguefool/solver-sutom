@@ -3,40 +3,96 @@
     <navigation></navigation>
     <router-view></router-view>
     <div id="to-scroll" @click.once="emitScroll" class="to-scroll">
-    <form-to-submit ></form-to-submit>
-    <display-input-letters></display-input-letters>
-    <display-possible-words></display-possible-words>
+       <div class="solver-container">
+        <solver-component></solver-component>
+       </div>
+       <!-- Conteneur principal -->
+        <!-- Sélecteur de jeu -->
+    <div class="game-selector">
+      <button
+        v-for="game in games"
+        :key="game.id"
+        @click="selectGame(game.id)"
+        :class="{ active: currentGame === game.id }"
+      >
+        {{ game.name }}
+      </button>
+    </div>
+       <div class="game-container">
+       <!-- Iframe pour le jeu -->
+        <div class="game-iframe-container">
+          <iframe
+            :src="currentGameUrl"
+            frameborder="0"
+            allowfullscreen
+            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+          ></iframe>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 <script>
 import Navigation from './components/Navigation/Navigation.vue'
-import Form from './components/Form/Form.vue'
-import DisplayInputLetters from './components/DisplayInputLetters/DisplayInputLetters.vue'
-import DisplayPossibleWords from './components/DisplayPossibleWords/DisplayPossibleWords.vue'
+
+import SolverComponent from './components/SolverComponent/SolverComponent.vue'
 
 export default {
   name: 'App',
   data(){
     return{
+      // Données des jeux
+      games : [
+        { id: "sutom", name: "Sutom", url: "https://sutom.nocle.fr/" },
+        { id: "tuzmo", name: "Tuzmo", url: "https://www.tusmo.xyz/" }, // À remplacer
+        {
+          id: "wordle",
+          name: "Wordle",
+          url: "https://wordle.louan.me/",
+        },
+      ],
+      currentGame: "sutom", // Jeu sélectionné par défaut
+      attempts: '',
+      solverResults: '',
       heightToScrollOnce: 0
     }
   },
+  mounted() {
+    // Charger les tentatives sauvegardées au démarrage
+    this.attempts = localStorage.getItem(`attempts_${this.currentGame}`) || '';
+  },
   components: {
         Navigation,
-        'form-to-submit': Form,
-        DisplayInputLetters,
-        DisplayPossibleWords
+        SolverComponent
     },
-    methods: {
-      emitScroll(){
-        this.heightToScrollOnce = document.getElementsByClassName('intro').item(0).clientHeight;
-        window.scrollBy({
-          top: this.heightToScrollOnce,
-          behavior: 'smooth'
-        });
-      }
+  computed: {
+    currentGameUrl() {
+      const game = this.games.find(g => g.id === this.currentGame);
+      return game ? game.url : '';
     }
+  },
+  methods: {
+    emitScroll(){
+      this.heightToScrollOnce = document.getElementsByClassName('intro').item(0).clientHeight;
+      window.scrollBy({
+        top: this.heightToScrollOnce,
+        behavior: 'smooth'
+      });
+    },
+     selectGame(gameId) {
+      // Sauvegarder les tentatives avant de changer de jeu
+      localStorage.setItem(`attempts_${this.currentGame}`, this.attempts);
+      this.currentGame = gameId;
+      // Charger les tentatives sauvegardées pour le nouveau jeu
+      this.attempts = localStorage.getItem(`attempts_${gameId}`) || '';
+    },
+    handleSolve(attempts) {
+      this.attempts = attempts;
+      localStorage.setItem(`attempts_${this.currentGame}`, attempts);
+      // Ici, tu peux aussi appeler une API ou une fonction pour résoudre
+      this.solverResults = `Résultats pour : ${attempts}`;
+    },
+  }
 }
 </script>
 <style>
@@ -110,4 +166,79 @@ export default {
     color: #d3952a;
     border-radius: none;
   }
+
+/* Styles globaux */
+
+/* Sélecteur de jeu */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Sélecteur de jeu */
+.game-selector {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.game-selector button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.game-selector button:hover {
+  background-color: #45a049;
+}
+
+.game-selector button.active {
+  background-color: #2E7D32;
+  font-weight: bold;
+}
+
+/* Conteneur principal */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Iframe du jeu */
+.game-iframe-container {
+  width: 100%;
+  height: 60vh;
+  min-height: 500px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.game-iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .game-container {
+    flex-direction: row;
+  }
+
+  .game-iframe-container {
+    width: 60%;
+  }
+}
 </style>
