@@ -13,9 +13,9 @@
     </div>
 </template>
 <script>
-    //import {bus} from '../../main'
+    import {EventBus} from '../../event-bus.js'
     export default{
-        name: 'Header',
+        name: 'AppHeader',
         data(){
             return{
                 titreHTML: '<span class="color-good-place">S</span><span>o</span><span>l</span><span class="color-good-place">v</span><span>e</span><span>r</span><br><span class="color-bad-place">S</span><span>u</span><span class="color-bad-place">t</span><span>o</span><span>m</span>',
@@ -25,7 +25,7 @@
         methods: {
             soundAction(){
                 this.soundActive = !this.soundActive;
-                this.$emit('soundAction',this.soundActive); 
+                EventBus.$emit('soundAction',this.soundActive); 
             }
         }
     }

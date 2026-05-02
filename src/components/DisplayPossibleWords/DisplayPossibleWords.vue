@@ -4,11 +4,11 @@
             <div v-if="objPossibleWord.lengthWords == lengthWordToFind">
                 <div v-if="uniqueWords.length > 1">
                     <p>{{uniqueWords.length}} mots possibles de {{ objPossibleWord.lengthWords }} lettres</p>
-                     <span v-for="(item, $index) in uniqueWords" :key="$index" v-html="item">{{item}}</span>
+                    <span v-for="(item, $index) in uniqueWords" :key="$index" v-html="item"></span>
                 </div>
                 <div v-else-if="uniqueWords.length == 1">
                     <p>{{uniqueWords.length}} mot possible de {{ objPossibleWord.lengthWords }} lettre</p>
-                    <span v-for="(item, $index) in uniqueWords" :key="$index" v-html="item">{{item}}</span>
+                    <span v-for="(item, $index) in uniqueWords" :key="$index" v-html="item"></span>
                 </div>
             </div>
         </div>  
@@ -18,7 +18,7 @@
     </div>
 </template>
 <script>
-    //import {bus} from '../../main'
+import {EventBus} from '../../event-bus.js'
     export default{
         name: 'DisplayPossibleWords',
         data(){
@@ -51,12 +51,12 @@
             xhr.overrideMimeType("text/plain; charset=UTF-8");
             xhr.send();
 
-            this.$on('suppress',() => {
+            EventBus.$on('suppress',() => {
                     this.doesExist = true;
                 }
             );
             
-            this.$on('getPossibleWords',({regExWord,wordlength}) => {
+            EventBus.$on('getPossibleWords',({regExWord,wordlength}) => {
                     this.doesExist = true
                     let isPossibleWord = false;
                     let possibleWordsLength = 0;
@@ -77,6 +77,7 @@
                         }
                     }
                     //tri par longueur et alphabet
+                    console.log("possibleWords avant tri : ", possibleWords);
                     possibleWords.sort(function(a, b) {
                         return a.length - b.length || a.localeCompare(b);
                     });
@@ -110,7 +111,7 @@
             this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48;
         },
         updated(){
-            this.$on('reset',() => {
+            EventBus.$on('reset',() => {
                 this.counterWordsFound = 336528;
                 this.objPossibleWords = [];
                 this.doesExist = true;

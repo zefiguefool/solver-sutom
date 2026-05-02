@@ -38,9 +38,9 @@
     </div>
 </template>
 <script>
-    //import {bus} from '../../main'
+    import {EventBus} from '../../event-bus.js'
     export default{
-        name: 'Form',
+        name: 'SearchForm',
         data(){
             return{
                 active: false,
@@ -112,7 +112,7 @@
                     this.inputLetters = this.inputLetters.substring(0,this.inputLetters.length - 1);
                     this.tabInputLetters.pop();
 
-                    bus.$emit('suppress');
+                    EventBus.$emit('suppress');
                 }
             },
             inputLetter($event){
@@ -170,7 +170,8 @@
                             audioObj.play();
                         }
                     }
-                    bus.$emit('inputLetter',this.inputLetters); 
+                    console.log("inputLetters : ", this.inputLetters);
+                    EventBus.$emit('inputLetter',this.inputLetters); 
                 }
             },
             inputLetterExclude: function($event){
@@ -253,6 +254,8 @@
                     }
                 }
                 wordlength = this.inputLetters.length;
+                console.log("include : ", include);
+                console.log("search : ", search);
                 if (wordlength){
                     exclude = '(?!.*['+this.inputWrongLetters+'])';
                     regExWord = new RegExp(`${exclude}${include}${search}${unknown}`);
@@ -261,7 +264,7 @@
                 if(regExWord.length != 0)
                 {
                     this.nothingToSearch = false;
-                    bus.$emit('getPossibleWords',{regExWord,wordlength});
+                    EventBus.$emit('getPossibleWords',{regExWord,wordlength});
                 }else{
                     this.nothingToSearch = true;
                 }
@@ -285,7 +288,7 @@
                 this.letterIsExcluded = false;
                 this.textKeyboardExcludeInclude = "Mode lettres à exclure";
                 this.letterTwoStates = [];
-                bus.$emit('reset');
+                EventBus.$emit('reset');
             }
         },
         computed: {
@@ -306,14 +309,14 @@
             }
         },
         created(){
+            console.log("created and is wordle equal to : ", this.isWordle);
             let alphabet = "abcdefghijklmnopqrstuvwxyz";
             this.alphabeticallist = alphabet.split("");
-        
-            bus.$on('getActiveLink',(rootPath) => {
+            EventBus.$on('getActiveLink',(rootPath) => {
                 rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ; 
                 this.firstLetterLowerCase = "";
             });
-            bus.$on('soundAction',(soundActive) => {
+            EventBus.$on('soundAction',(soundActive) => {
                 this.soundActive = soundActive;
             });
 

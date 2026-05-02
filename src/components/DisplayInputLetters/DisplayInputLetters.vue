@@ -8,7 +8,7 @@
     </div>
 </template>
 <script>
-    //import {bus} from '../../main'
+import {EventBus} from '../../event-bus.js'
     export default{
         name: 'DisplayInputLetters',
         data(){
@@ -25,12 +25,15 @@
             }
         },
         created(){
-            this.$on('getActiveLink',(rootPath) => {
+            EventBus.$on('getActiveLink',(rootPath) => {
                 rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ;  
             });
-            this.$on('inputLetter',(data) => {
+            console.log("isWordle : ", this.isWordle);
+            EventBus.$on('inputLetter',(data) => {
+                console.log("data : ", data);
                 this.list = [];
                 let tabInputLetters = data.split("");
+                console.log("tabInputLetters : ", tabInputLetters);
                 let classAdd = "";
                 for (let i = 0; i < tabInputLetters.length ; i ++){
                     if(tabInputLetters[i] === "-"){
@@ -49,13 +52,13 @@
                     });
                 }
             });
-            this.$on('suppress',() => {
+            EventBus.$on('suppress',() => {
                     this.list.pop();
                 }
             );
         },
         updated(){
-                this.$on('reset',() => {
+                EventBus.$emit('reset',() => {
                     this.list.length = 0;
                     this.list = [];
                     }

@@ -13,9 +13,9 @@
     </div>
 </template>
 <script>
-    //import {bus} from '../../main'
+    import {EventBus} from '../../event-bus.js'
     export default{
-        name: 'Header',
+        name: 'HeaderWordle',
         data(){
             return{
                 isWordle: false,
@@ -26,7 +26,7 @@
         methods: {
             soundAction(){
                 this.soundActive = !this.soundActive;
-                bus.$emit('soundAction',this.soundActive); 
+                EventBus.$emit('soundAction',this.soundActive); 
             }
         }
     }

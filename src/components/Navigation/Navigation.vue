@@ -14,9 +14,9 @@
   </div>
 </template>
 <script>
-    //import {bus} from '../../main'
+    import {EventBus} from '../../event-bus.js'
     export default {
-        name: 'Navigation',
+        name: 'NavigationMenu',
         components: {
         },
         data(){
@@ -28,7 +28,7 @@
             getActiveLink($event){
                 this.isActive = !this.isActive;
                 let rootPath = $event.target.parentNode.getAttribute("href");
-                bus.$emit('getActiveLink',rootPath);
+                EventBus.$emit('getActiveLink',rootPath);
             }
         },
         computed: {
