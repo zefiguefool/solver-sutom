@@ -4,7 +4,7 @@
         <p class="alert alert-warning" v-if="firstLetterLowerCase">À Sutom la première lettre est connue. Tapez une majuscule en 1<sup>ère</sup> lettre</p>
         <p class="alert alert-warning" v-if="letterIsIncluded">Vous avez indiqué la lettre comme présente dans le mot.</p>
         <p class="alert alert-warning" v-if="letterIsExcluded">Vous avez indiqué la lettre comme absente du mot.</p>
-        <div id="display-keyboard-letters" class="display-keyboard-letters mx-auto col-md-4 px-2 text-center">
+        <div id="display-keyboard-letters" class="display-keyboard-letters mx-auto  px-2 text-center">
             <ul>
                 <li v-for="(item, $index) in alphabeticallist" :class="[{isActive : toggleKeyPressed[$index]}, {isGoodPlaced : toggleGoodPlaced[$index]}, {isBadPlaced : toggleBadPlaced[$index]}, keyboardExclude, {notinword : toggleIsNotInWord[$index]} ]"  :key="$index">
                     <a @click.prevent="" @mousedown.prevent="activeLetter($event);inputLetter($event);inputLetterExclude($event)"  :class="keyboardCase" href="#">{{ item }}</a>
@@ -271,6 +271,7 @@
                 
             },
             reset:function(){
+                console.log("reset form");
                 this.firstLetterLowerCase = "",
                 this.nothingToSearch = "";
                 this.active = false;

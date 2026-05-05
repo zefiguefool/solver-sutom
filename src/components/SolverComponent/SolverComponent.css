@@ -1,0 +1,16 @@
+.fieldset-container-component {
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 1rem;
+  position: relative;
+}
+.legend {
+  position: absolute;
+  width: auto;
+  left: 1rem;
+  top: -20px;
+  background-color: white;
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

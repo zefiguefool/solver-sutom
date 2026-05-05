@@ -2,7 +2,7 @@
   <div id="app">
     <navigation></navigation>
     <router-view></router-view>
-    <div id="to-scroll" @click.once="emitScroll" class="to-scroll">
+    <div id="to-scroll" @click.once="emitScroll" class="to-scroll col-md-6 mx-auto">
        <div class="solver-container">
         <solver-component></solver-component>
        </div>
@@ -34,7 +34,6 @@
 </template>
 <script>
 import Navigation from './components/Navigation/Navigation.vue'
-
 import SolverComponent from './components/SolverComponent/SolverComponent.vue'
 
 export default {
@@ -44,7 +43,7 @@ export default {
       // Données des jeux
       games : [
         { id: "sutom", name: "Sutom", url: "https://sutom.nocle.fr/" },
-        { id: "tuzmo", name: "Tuzmo", url: "https://www.tusmo.xyz/" }, // À remplacer
+        { id: "tusmo", name: "tusmo", url: "https://www.tusmo.xyz/" }, // À remplacer
         {
           id: "wordle",
           name: "Wordle",
@@ -106,15 +105,19 @@ export default {
   }
   .color-grid{
      background-color: #0077c7;
+     border-radius: 4px;
   }
   .color-good-place{
     background-color: #e7002a;
+    border-radius: 4px;
   }
   .color-bad-place{
     background-color: #0077c7;
+    border-radius: 4px;
   }
   .bad-place{
     background-color: #ffbd00;
+    border-radius: 4px;
   }
   .color-bad-place span{
     background-color: #ffbd00;
@@ -124,6 +127,24 @@ export default {
   }
   .color-border{
     background-color: #fff;
+  }
+/* tusmo */
+  .tusmo .input-letters li{
+      border-radius: 0.5rem;
+  }
+  .tusmo .color-grid{
+     background-color: #3a3a3c;
+  }
+  .tusmo .color-good-place{
+    background-color: #e7002a;
+  }
+  .tusmo .color-bad-place{
+    background-color: #ffbd00;
+    
+  }
+   .tusmo .color-bad-place span{
+    background-color: #ffbd00;
+    border-radius:0;
   }
 /*wordle*/
   .wordle .input-letters li{
@@ -144,19 +165,19 @@ export default {
     border-radius:0;
   }
 /**/
-  .color-letter-nok{
+  .sutom .color-letter-nok{
      color: #0077c7;
   }
-  .color-letter-good-place{
+  .sutom .color-letter-good-place{
     color: #e7002a;
   }
-  .color-letter-bad-place{
+  .sutom.color-letter-bad-place{
     color: #ffbd00;
     border-radius: 2rem;
   }
 
 /*wordle*/
-  .color-letter-nok{
+  .wordle .color-letter-nok{
      color: #3a3a3c;
   }
   .wordle .color-letter-good-place{
@@ -209,8 +230,7 @@ header {
   flex-direction: column;
   align-content: center;
   justify-content: center;
-  gap: 20px;
-  max-width: 1200px;
+
   margin: 0 auto;
 }
 
@@ -235,10 +255,6 @@ header {
 @media (min-width: 768px) {
   .game-container {
     flex-direction: row;
-  }
-
-  .game-iframe-container {
-    width: 60%;
   }
 }
 </style>

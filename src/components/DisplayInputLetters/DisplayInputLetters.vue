@@ -54,13 +54,15 @@ import {EventBus} from '../../event-bus.js'
             });
             EventBus.$on('suppress',() => {
                     this.list.pop();
+                    console.log("pop list : ", this.list);
                 }
             );
         },
         updated(){
-                EventBus.$emit('reset',() => {
+                EventBus.$on('reset',() => {
                     this.list.length = 0;
                     this.list = [];
+                    console.log("reset list : ", this.list);
                     }
                 );
         }

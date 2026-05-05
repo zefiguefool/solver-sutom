@@ -1,9 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" class="container-solver-component">
     <div id="to-scroll" @click.once="emitScroll" class="to-scroll">
-    <form-to-submit ></form-to-submit>
-    <display-input-letters></display-input-letters>
-    <display-possible-words></display-possible-words>
+      <fieldset class="fieldset-container-component">
+        <legend class="legend">Solver</legend>
+        <form-to-submit ></form-to-submit>
+        <display-input-letters></display-input-letters>
+        <display-possible-words></display-possible-words>
+      </fieldset>
     </div>
   </div>
 </template>

@@ -1,62 +1,112 @@
-
-.header-top{
-    z-index: 0;
-    top:0;
-    background:#fff;
-    width: 100%;
-    position: static;
+.header-top {
+  z-index: 0;
+  top: 0;
+  background: #fff;
+  width: 100%;
+  position: static;
 }
 
-h1, .h1{
-    text-align: center;
-    text-transform: uppercase;
-    margin: 0;
-    background-color: #f8f8f8;
-    border: 1px solid #ccc;
-    -moz-box-shadow: 0 2px 5px #ddd;
-    -webkit-box-shadow: 0 2px 5px #ddd;
-    box-shadow: 0 2px 5px #ddd;
-    text-shadow: 0px 2px 4px #000;
-    color:#fff;
-    font-size:1.5rem!important;
-    font-family: 'Arista 2.0';
-    width:100%;
-
+h1,
+.h1 {
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  -moz-box-shadow: 0 2px 5px #ddd;
+  -webkit-box-shadow: 0 2px 5px #ddd;
+  box-shadow: 0 2px 5px #ddd;
+  text-shadow: 0px 2px 4px #000;
+  color: #fff;
+  font-size: 1.5rem !important;
+  font-family: "Arista 2.0";
+  width: 100%;
 }
 
-h1 > span{
-    display:inline-block;
-    width: 2rem;
-    border:1px solid #fff;
-    background-color: #0077c7;
+h1 > span {
+  display: inline-block;
+  width: 2rem;
+  border: 1px solid #fff;
+  background-color: #0077c7;
 }
-.sound-element{
-    position: fixed;
-    top: 26px;
-    right: 3%;
-    z-index: 2;
-    display: block; 
+.sound-element {
+  position: fixed;
+  top: 26px;
+  right: 3%;
+  z-index: 2;
+  display: block;
 }
-.sound-element img{
-    width:36px
+.sound-element img {
+  width: 36px;
 }
-.intro{
-    margin-top:5.5rem; 
- }
-
- .intro p{
-    text-align:center;
-    padding: 0 0.5rem;
-    margin:0;
- }
- .intro a{
-    color:#e7002a
- }
-.intro img{
-    width:20%;
-    display:inline-block;
+.intro {
+  margin-top: 6.5rem;
 }
 
-.intro span{
-    padding:0.3rem
+.intro p {
+  text-align: center;
+  padding: 0 0.8rem;
+  margin: 0;
+  white-space: inherit;
+  &.intro-first-line {
+  }
+}
+
+.intro a {
+  display: inline-block;
+  padding: 0rem 0.5rem;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 0.1rem;
+  &.anchor {
+    color: inherit;
+    font-weight: normal;
+    padding: inherit;
+    margin-top: inherit;
+    color: black;
+    font-weight: bold;
+    padding: 0;
+    margin-top: 0;
+  }
+}
+
+.intro a.sutom-color {
+  color: white;
+  background-color: #0077c7;
+}
+.intro a.tuzmo-color {
+  color: white;
+  background-color: #0a5566;
+}
+.intro a.wordle-color {
+  color: white;
+  background-color: #277d32;
+}
+
+.intro span.tile {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 0.1rem;
+}
+
+span.search-button {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  color: crimson;
+  padding: 0.5rem 1rem;
+  border: 1px solid crimson;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.font-smaller {
+  font-size: 0.9rem;
 }

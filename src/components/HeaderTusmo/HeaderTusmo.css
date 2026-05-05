@@ -30,7 +30,7 @@ h1 > span {
   display: inline-block;
   width: 2rem;
   border: 1px solid #fff;
-  background-color: #0077c7;
+  background-color: #0a5566;
 }
 .sound-element {
   position: fixed;
@@ -45,12 +45,13 @@ h1 > span {
 .intro {
   margin-top: 5.5rem;
 }
-.wordle .intro a {
-  color: #3eaa42;
+
+.tusmo .intro a {
+  color: #0a5566;
 }
 
 .intro img {
-  width: 20%;
+  width: 30%;
   display: inline-block;
 }
 
