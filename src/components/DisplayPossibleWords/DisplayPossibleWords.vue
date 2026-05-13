@@ -28,104 +28,45 @@ import {EventBus} from '../../event-bus.js'
                 objPossibleWords:[],
                 lengthWordToFind: 0,
                 doesExist: true,
-                uniqueWords: []
-            }
+                uniqueWords: [],
+                words : []            }
         },
-        /*created(){
-            let fileUrl = 'fr.txt';
-            let xhr = new XMLHttpRequest();
-            let textWords = '';
-            let words = [];
-            => eslint-disable no-mixed-spaces-and-tabs
-            xhr.open("GET",fileUrl, true);
-            xhr.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    textWords = this.responseText;
-                }
-                let lines = textWords.split(/\r\n/);
-                for(var line = 0; line < lines.length; line++){
-                    // creation du tableau de mots du dictionnaire
-                    words.push((lines[line]).toLowerCase());
-                }
-            };
-            xhr.overrideMimeType("text/plain; charset=UTF-8");
-            xhr.send();
-
-            EventBus.$on('suppress',() => {
-                    this.doesExist = true;
-                }
-            );
-            
-            EventBus.$on('getPossibleWords',({regExWord,wordlength}) => {
-                    this.doesExist = true
-                    let isPossibleWord = false;
-                    let possibleWordsLength = 0;
-                    let possibleWords = [];
-                    this.counterWordsFound = 0;
-                    this.objPossibleWords = [];
-                    this.lengthWordToFind = wordlength;
-                    var indexLength = 0;
-                    //comparaison du tableau de mots du dictionnaire avec le'expression regulière provenant des champs de saisie
-                    for(let index = 0; index < words.length-1; index++){
-                        words[index] = words[index].normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-                        if(words[index].length == wordlength){
-                            isPossibleWord = regExWord.test(words[index]);
-                            if(isPossibleWord == true){
-                                this.counterWordsFound++;
-                                possibleWords.push(words[index]);
-                            }
-                        }
-                    }
-                    //tri par longueur et alphabet
-                    console.log("possibleWords avant tri : ", possibleWords);
-                    possibleWords.sort(function(a, b) {
-                        return a.length - b.length || a.localeCompare(b);
-                    });
-                    //affichage
-                    for (let i=0, len = possibleWords.length ; i<len ; i++) {
-                        let ilength = possibleWords[i].length;
-                        if(ilength > possibleWordsLength){
-                            possibleWordsLength = ilength;
-                            let wordObj = {
-                                lengthWords: 0,
-                                wordsWithThisLength: []
-                            }
-                            this.objPossibleWords.splice(indexLength,0,wordObj);
-                            this.objPossibleWords[indexLength].lengthWords = possibleWordsLength;
-                            indexLength++; 
-                                                    
-                        }
-                        this.objPossibleWords[indexLength-1].wordsWithThisLength.push(possibleWords[i]);
-                    }
-                    if(possibleWords.length != 0){
-                        this.doesExist = true;
-                        this.uniqueWords = [...new Set(this.objPossibleWords[0].wordsWithThisLength)];
-                    }else{
-                         this.doesExist = false;
-                    }
-                }
-            );
-            => eslint-disable no-mixed-spaces-and-tabs
-        }*/
        // Refactored to use fetch and improved performance by normalizing words during loading and simplifying the sorting logic by using localeCompare directly on the filtered list.
         created() {
             // 1. Define the correct absolute path to your dictionary
-            let fileUrl = 'fr.txt' || '/sutom/fr.txt'; 
-            let words = [];
+            //let fileUrl = 'fr.txt' || '/sutom/fr.txt'; // Adjust this path as needed
+            let fileUrl = 'fr-classique.dic' || '/sutom/fr-classique.dic'; // Adjust this path as needed
 
+    
             // 2. Fetch the dictionary asynchronously
             fetch(fileUrl)
                 .then(response => {
-                    if (!response.ok) throw new Error("Could not find fr.txt at " + fileUrl);
+                    if (!response.ok) throw new Error("Could not find fr-classique.dic at " + fileUrl);
                     return response.text();
                 })
                 .then(textWords => {
                     // Split by line breaks and normalize immediately to improve performance during search
-                    const lines = textWords.split(/\r?\n/);
-                    words = lines.map(line => 
-                        line.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-                    );
-                    console.log("Dictionary loaded successfully. Word count:", words.length);
+                    //const lines = textWords.split(/\r?\n/); // Handle both Unix and Windows line endings
+                    console.log("Raw dictionary loaded. Sample lines:", textWords.split(/\r?\n/).slice(0, 5));
+                    this.words = [...new Set(
+                    textWords
+                        .split(/\r?\n/)
+                        .filter(line => line.trim() !== "")
+                        .map(line => line.split("/")[0])
+                        .map(line =>
+                            line
+                                .replace(/ᵉ/g, "e")
+                                .replace(/ˢ/g, "s")
+                                .replace(/ʳ/g, "r")
+                                .replace(/ʰ/g, "h")
+                                .replace(/ʲ/g, "j")
+                                .replace(/ʷ/g, "w")
+                                .toLowerCase()
+                            )
+                    )].sort((a, b) => a.localeCompare(b, "fr"));
+
+                    console.log(this.words);
+                    console.log("Dictionary loaded successfully. Word count:", this.words.length);
                 })
                 .catch(err => {
                     console.error("Error loading dictionary:", err);
@@ -137,7 +78,9 @@ import {EventBus} from '../../event-bus.js'
 
             EventBus.$on('getPossibleWords', ({ regExWord, wordlength }) => {
                 // Safety check: if dictionary isn't loaded yet, stop
-                if (words.length === 0) {
+                console.log("Received getPossibleWords event with regExWord:", regExWord, "and wordlength:", wordlength);
+                console.log("Current dictionary state (first 5 words):", this.words.slice(0, 5));
+                if (this.words.length === 0) {
                     console.warn("Dictionary is still loading or failed to load.");
                     return;
                 }
@@ -149,8 +92,8 @@ import {EventBus} from '../../event-bus.js'
                 this.lengthWordToFind = wordlength;
 
                 // 3. Filter the dictionary
-                for (let index = 0; index < words.length; index++) {
-                    const currentWord = words[index];
+                for (let index = 0; index < this.words.length; index++) {
+                    const currentWord = this.words[index];
                     if (currentWord.length === wordlength) {
                         if (regExWord.test(currentWord)) {
                             this.counterWordsFound++;
@@ -187,7 +130,7 @@ import {EventBus} from '../../event-bus.js'
         },
         updated(){
             EventBus.$on('reset',() => {
-                this.counterWordsFound = 336528;
+                this.counterWordsFound = 77952;
                 this.objPossibleWords = [];
                 this.doesExist = true;
                 }
