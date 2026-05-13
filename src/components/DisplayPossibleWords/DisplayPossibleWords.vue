@@ -62,6 +62,8 @@ import {EventBus} from '../../event-bus.js'
                                 .replace(/ʲ/g, "j")
                                 .replace(/ʷ/g, "w")
                                 .toLowerCase()
+                                .normalize("NFD")
+                                .replace(/[\u0300-\u036f]/g, "")
                             )
                     )].sort((a, b) => a.localeCompare(b, "fr"));
 

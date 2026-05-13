@@ -17,6 +17,7 @@ Before destroy : nettoyer les écouteurs d'évènements avec off
 4/ DONE
 syntaxe des fonctions dans la propriété method : function est inutile à l'écriture car ce sont de toutes façon des fonctions qu'on va écrire
 
+exemple
 [13:20] Antoine DOYEN
 soundAction:function(){}
 
