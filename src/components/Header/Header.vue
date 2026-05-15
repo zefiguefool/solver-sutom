@@ -23,7 +23,7 @@
                 <li><span class="search-button">Chercher</span> = lancer la recherche</li>
                 <li><span class="select-game active">Sutom</span> - <span class="select-game">Tusmo</span> - <span class="select-game">Wordle</span> = Selectionner son jeu</li>
             </ul>
-            <details open name="details-infos" class="details-infos">
+            <details name="details-infos" class="details-infos">
                 <summary class="relative"><span>Plus d'informations sur le <a href="#anchor" class="anchor" aria-label="Go to Solver">solver</a></span></summary>
                 <div class="more-infos text-left">
                     <p class="text-left pb-2">Fonctionne pour les jeux <a href="https://sutom.nocle.fr/" target="_blank" title="Aller sur le site de Sutom"
