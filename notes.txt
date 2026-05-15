@@ -1,10 +1,10 @@
 remarques faites par Antoine Doyen référent Vue chez Omnilog lors de la revue de code du vendredi 13/05
 
 1/ bien utiliser
-TODO
+TODO POUR MIGRATION VUE 3
 - props pour descendant
 - emit pour ascendant
-au lieu de emits partout. Faisable pour un petit projet mais gênant en terme de consommation des ressources, de compréhension des échanges entre composants et pas très conforme à la bonne utilisation de vue.
+ au lieu de emits partout. Faisable pour un petit projet mais gênant en terme de consommation des ressources, de compréhension des échanges entre composants et pas très conforme à la bonne utilisation de vue.
 
 2/
 TODO
@@ -55,10 +55,12 @@ MULTILIGUE : créer une branche à part pour le faire
 - Traduction des textes
 
 IDEES UI :
+- raccourcir les explications de l'usage du solveur
 - un dark mode en CSS
-- animations 
+- animations  
 - inclure les possibilité de la CSS récente (affichage liste ou grille par ex, à voir)
 - proposer des ordres d'affichages de mots obtenus : A-Z, Z-A, FREQ 
+- proposer le choix du dictionnaire => créer des fonctions pour chaque dictionnaire/ Pour l'instant 1 dictionnaire est utilisé
 
 IDEES fonctionnelles
 - un onglet amenant à une page où la demande de mot se ferait via un prompt. Ex : " je cherche un mot de 8 lettres qui commence par X et finit par Y et qui contient en 2e lettre Z1 et en lettre Z3. Il ne contient pas les lettres suivantes : 

@@ -49,6 +49,19 @@ h1 > span {
   color: #3eaa42;
 }
 
+.intro a.sutom-color {
+  color: white;
+  background-color: #0077c7;
+}
+.intro a.tuzmo-color {
+  color: white;
+  background-color: #0a5566;
+}
+.intro a.wordle-color {
+  color: white;
+  background-color: #277d32;
+}
+
 .intro img {
   width: 20%;
   display: inline-block;

@@ -39,17 +39,29 @@ h1 > span {
 .sound-element img {
   width: 36px;
 }
+
 .intro {
   margin-top: 6.5rem;
 }
 
 .intro p {
-  text-align: center;
   padding: 0 0.8rem;
   margin: 0;
   white-space: inherit;
-  &.intro-first-line {
-  }
+}
+
+.intro ul {
+  list-style-type: none;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-self: center;
+}
+
+.intro ul li {
+  margin-bottom: 0.3rem;
+  justify-content: space-around;
 }
 
 .intro a {
@@ -57,7 +69,7 @@ h1 > span {
   padding: 0rem 0.5rem;
   color: white;
   border-radius: 4px;
-  text-decoration: none;
+
   font-weight: bold;
   margin-top: 0.1rem;
   &.anchor {
@@ -107,6 +119,51 @@ span.search-button {
   margin-top: 1rem;
 }
 
+span.select-game {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  background-color: #4caf50;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: 1px solid #4caf50;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: normal;
+  margin-top: 1rem;
+  &.active {
+    background-color: #2e7d32;
+    color: white;
+    font-weight: bold;
+  }
+}
+
 .font-smaller {
   font-size: 0.9rem;
+}
+
+details.details-infos {
+  /* The marker */
+  padding-left: 3rem;
+  summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  summary::marker {
+    content: "\23F5";
+    font-size: 1rem;
+  }
+
+  /* The marker when <details> is open */
+  &[open] summary::marker {
+    content: "\25B2";
+  }
+
+  /* Because ::marker doesn’t support many properties */
+  summary span {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
 }
