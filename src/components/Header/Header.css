@@ -51,7 +51,6 @@ h1 > span {
 }
 
 .intro ul {
-  list-style-type: none;
   margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -63,10 +62,32 @@ h1 > span {
   margin-bottom: 0.3rem;
   justify-content: space-around;
 }
+:is(.change-color, .with-color-transition) {
+  list-style-type: circle;
+}
+
+.change-color li.first::marker {
+  color: rgb(255, 0, 0);
+}
+.change-color li.second::marker {
+  color: rgb(210, 188, 62);
+}
+.change-color li.third::marker {
+  color: #0077c7;
+}
+.change-color li.fourth::marker {
+  color: #0077c7;
+}
+.change-color li.fifth::marker {
+  color: rgb(255, 0, 0);
+}
+.change-color li.sixth::marker {
+  color: #277d32;
+}
 
 .intro a {
   display: inline-block;
-  padding: 0rem 0.5rem;
+  padding: 0;
   color: white;
   border-radius: 4px;
 
@@ -116,7 +137,6 @@ span.search-button {
   border-radius: 4px;
   text-decoration: none;
   font-weight: bold;
-  margin-top: 1rem;
 }
 
 span.select-game {
@@ -129,7 +149,6 @@ span.select-game {
   border-radius: 4px;
   text-decoration: none;
   font-weight: normal;
-  margin-top: 1rem;
   &.active {
     background-color: #2e7d32;
     color: white;
@@ -156,14 +175,13 @@ details.details-infos {
 
   /* The marker when <details> is open */
   &[open] summary::marker {
-    content: "\25B2";
+    content: "\23F6";
   }
 
   /* Because ::marker doesn’t support many properties */
   summary span {
     display: inline-block;
-    margin-left: 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
+    border-radius: 25px 25px 25px 0;
+    font-size: 0.9rem;
   }
 }

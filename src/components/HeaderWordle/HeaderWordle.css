@@ -66,9 +66,3 @@ h1 > span {
   width: 20%;
   display: inline-block;
 }
-
-.intro span {
-  display: inline-block;
-  padding: 0.1rem 0.5rem;
-  margin-top: 0.1rem;
-}

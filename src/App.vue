@@ -2,16 +2,18 @@
   <div id="app">
     <navigation></navigation>
     <router-view></router-view>
-    <div id="to-scroll" @click.once="emitScroll" class="to-scroll col-md-6 mx-auto">
+    <div id="to-scroll" class="to-scroll mx-auto">
        <div class="solver-container">
         <solver-component></solver-component>
        </div>
        <!-- Conteneur principal -->
-        <!-- Sélecteur de jeu -->
+       <!-- Sélecteur de jeu -->
+
     <div class="game-selector">
       <button
         v-for="game in games"
         :key="game.id"
+        :id="game.id"
         @click="selectGame(game.id)"
         :class="{ active: currentGame === game.id }"
       >
@@ -72,9 +74,11 @@ export default {
   },
   methods: {
     emitScroll(){
+      console.log("scroll");
       this.heightToScrollOnce = document.getElementsByClassName('intro').item(0).clientHeight;
+      console.log("this.heightToScrollOnce",this.heightToScrollOnce);
       window.scrollBy({
-        top: this.heightToScrollOnce,
+        top: this.heightToScrollOnce + 75,
         behavior: 'smooth'
       });
     },
