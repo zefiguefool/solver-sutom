@@ -1,11 +1,11 @@
 <template>
     <div id="header-top" class="header-top">
-        <h1 v-html="titreHTML" class="p-2"></h1>
+        <h1 v-html="titreHTML" class="py-2 ps-0 pe-4"></h1>
         <a class="sound-element" @click="soundAction()" href="#">
             <img v-if="soundActive" src="../../assets/images/sound-on.jpg" />
             <img v-else src="../../assets/images/sound-off.jpg" />
         </a>
-        <div class="intro col-md-7 mx-auto">
+        <div class="intro col-md-7 mx-auto small">
             <p class="text-center">Comment utiliser le Solver ? 
                 <span class="text-dark fs-6 font-weight-bold underline">
                     <a href="#" title="Aller au Solver" @click="emitScroll" class="anchor link-dark" aria-label="Go to Solver">
@@ -31,6 +31,7 @@
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
                             <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
                         </svg>
+                        
                         Plus d'informations sur le Solver
                     </span>
                 </summary>
@@ -38,8 +39,8 @@
                     <li class="first text-left pb-2">
                         <i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i>
                         Fonctionne pour les jeux <a href="https://sutom.nocle.fr/" target="_blank" title="Aller sur le site de Sutom"
-                        class="sutom-color underline">Sutom<i class="fi fi-sc-up-right-from-square"></i></a>, <a
-                        href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Tusmo" class="tuzmo-color underline">Tusmo<i class="fi fi-sc-up-right-from-square"></i></a> et <a href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Wordle" class="wordle-color underline">Wordle<i class="fi fi-sc-up-right-from-square"></i></a>
+                        class="sutom-color underline p-1">Sutom<i class="fi fi-sc-up-right-from-square"></i></a>, <a
+                        href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Tusmo" class="tuzmo-color underline p-1">Tusmo<i class="fi fi-sc-up-right-from-square"></i></a> et <a href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Wordle" class="wordle-color underline p-1">Wordle<i class="fi fi-sc-up-right-from-square"></i></a>
                     </li>
                     <li class="second"><strong><i class="em em-abacus" aria-role="presentation" aria-label="ABACUS"></i> Le solveur</strong> est affiché en premier. Les jeux Sutom, Tuzmo et Wordle sont affichés
                         en dessous afin de vous permettre de jouer tout en vous aidant du solveur pour résoudre les

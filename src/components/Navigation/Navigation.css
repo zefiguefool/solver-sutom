@@ -76,5 +76,6 @@
 }
 
 .to-scroll {
-  margin-top: 1.5rem;
+  margin: 1.5rem auto;
+  width: 95%;
 }

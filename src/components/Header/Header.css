@@ -1,9 +1,7 @@
 .header-top {
-  z-index: 0;
-  top: 0;
   background: #fff;
-  width: 100%;
   position: static;
+  margin: 0 auto;
 }
 
 h1,
@@ -42,6 +40,7 @@ h1 > span {
 
 .intro {
   margin-top: 6.5rem;
+  width: 90%;
 }
 
 .intro p {
@@ -52,6 +51,7 @@ h1 > span {
 
 .intro ul {
   margin-top: 0.5rem;
+  padding: 0;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -86,19 +86,18 @@ h1 > span {
 }
 
 .intro a {
-  display: inline-block;
   padding: 0;
   color: white;
   border-radius: 4px;
-
   font-weight: bold;
   margin-top: 0.1rem;
+  margin-bottom: 0;
   &.anchor {
     color: inherit;
     font-weight: normal;
     padding: inherit;
     margin-top: inherit;
-    color: black;
+    color: burlywood;
     font-weight: bold;
     padding: 0;
     margin-top: 0;
@@ -162,7 +161,8 @@ span.select-game {
 
 details.details-infos {
   /* The marker */
-  padding-left: 3rem;
+  margin: 0 auto;
+  max-width: 744px;
   summary {
     cursor: pointer;
     list-style: none;
@@ -171,11 +171,14 @@ details.details-infos {
   summary::marker {
     content: "\23F5";
     font-size: 1rem;
+    color: burlywood;
   }
 
   /* The marker when <details> is open */
   &[open] summary::marker {
-    content: "\23F6";
+    /* content: "\23F6"; */
+    content: "\23F7";
+    color: burlywood;
   }
 
   /* Because ::marker doesn’t support many properties */
@@ -183,5 +186,17 @@ details.details-infos {
     display: inline-block;
     border-radius: 25px 25px 25px 0;
     font-size: 0.9rem;
+  }
+}
+
+.more-infos li {
+  &.first::marker {
+    color: #4caf50;
+  }
+  &.second::marker {
+    color: red;
+  }
+  &.third::marker {
+    color: #0077c7;
   }
 }
