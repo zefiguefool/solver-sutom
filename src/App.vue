@@ -241,6 +241,7 @@ header {
 /* Iframe du jeu */
 .game-iframe-container {
   width: 100%;
+  max-width: 744px;
   height: 60vh;
   min-height: 500px;
   background-color: white;
