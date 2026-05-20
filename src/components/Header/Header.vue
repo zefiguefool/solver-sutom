@@ -71,18 +71,18 @@ export default {
             EventBus.$emit('soundAction', this.soundActive);
         },
         emitScroll(){
-            console.log("emitScroll header");
+            //console.log("emitScroll header");
             this.heightToScrollOnce =  document.getElementsByClassName('intro').item(0).clientHeight;
-            console.log("this.heightToScrollOnce",this.heightToScrollOnce);
+            //console.log("this.heightToScrollOnce",this.heightToScrollOnce);
             window.scrollBy({
                 top: this.heightToScrollOnce,
                 behavior: 'smooth'
             });
         },
         emitScrollButton(){
-            console.log("emitScroll header button");
+            //console.log("emitScroll header button");
             this.heightToScrollOnce =  document.getElementsByClassName('intro').item(0).clientHeight + document.getElementsByClassName('fieldset-container-component').item(0).clientHeight;
-            console.log("this.heightToScrollOnce",this.heightToScrollOnce);
+            //console.log("this.heightToScrollOnce",this.heightToScrollOnce);
             window.scrollBy({
                 top: this.heightToScrollOnce,
                 behavior: 'smooth'

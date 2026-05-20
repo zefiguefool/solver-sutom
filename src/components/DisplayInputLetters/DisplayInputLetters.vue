@@ -28,12 +28,12 @@ import {EventBus} from '../../event-bus.js'
             EventBus.$on('getActiveLink',(rootPath) => {
                 rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ;  
             });
-            console.log("isWordle : ", this.isWordle);
+            //console.log("isWordle : ", this.isWordle);
             EventBus.$on('inputLetter',(data) => {
-                console.log("data : ", data);
+                //console.log("data : ", data);
                 this.list = [];
                 let tabInputLetters = data.split("");
-                console.log("tabInputLetters : ", tabInputLetters);
+                //console.log("tabInputLetters : ", tabInputLetters);
                 let classAdd = "";
                 for (let i = 0; i < tabInputLetters.length ; i ++){
                     if(tabInputLetters[i] === "-"){
@@ -54,7 +54,7 @@ import {EventBus} from '../../event-bus.js'
             });
             EventBus.$on('suppress',() => {
                     this.list.pop();
-                    console.log("pop list : ", this.list);
+                    //console.log("pop list : ", this.list);
                 }
             );
         },
@@ -62,7 +62,7 @@ import {EventBus} from '../../event-bus.js'
                 EventBus.$on('reset',() => {
                     this.list.length = 0;
                     this.list = [];
-                    console.log("reset list : ", this.list);
+                    //console.log("reset list : ", this.list);
                     }
                 );
         }

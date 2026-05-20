@@ -170,7 +170,7 @@
                             audioObj.play();
                         }
                     }
-                    console.log("inputLetters : ", this.inputLetters);
+                    //console.log("inputLetters : ", this.inputLetters);
                     EventBus.$emit('inputLetter',this.inputLetters); 
                 }
             },
@@ -254,13 +254,13 @@
                     }
                 }
                 wordlength = this.inputLetters.length;
-                console.log("include : ", include);
-                console.log("search : ", search);
+                //console.log("include : ", include);
+                //console.log("search : ", search);
                 if (wordlength){
                     exclude = '(?!.*['+this.inputWrongLetters+'])';
                     regExWord = new RegExp(`${exclude}${include}${search}${unknown}`);
                 }
-                console.log("regExWord : ",regExWord)
+                //console.log("regExWord : ",regExWord)
                 if(regExWord.length != 0)
                 {
                     this.nothingToSearch = false;
@@ -271,7 +271,7 @@
                 
             },
             reset:function(){
-                console.log("reset form");
+                //console.log("reset form");
                 this.firstLetterLowerCase = "",
                 this.nothingToSearch = "";
                 this.active = false;
@@ -310,7 +310,7 @@
             }
         },
         created(){
-            console.log("created and is wordle equal to : ", this.isWordle);
+            //console.log("created and is wordle equal to : ", this.isWordle);
             let alphabet = "abcdefghijklmnopqrstuvwxyz";
             this.alphabeticallist = alphabet.split("");
             EventBus.$on('getActiveLink',(rootPath) => {

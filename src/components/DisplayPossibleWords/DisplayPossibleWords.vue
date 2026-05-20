@@ -47,7 +47,7 @@ import {EventBus} from '../../event-bus.js'
                 .then(textWords => {
                     // Split by line breaks and normalize immediately to improve performance during search
                     //const lines = textWords.split(/\r?\n/); // Handle both Unix and Windows line endings
-                    console.log("Raw dictionary loaded. Sample lines:", textWords.split(/\r?\n/).slice(0, 5));
+                    //console.log("Raw dictionary loaded. Sample lines:", textWords.split(/\r?\n/).slice(0, 5));
                     this.words = [...new Set(
                     textWords
                         .split(/\r?\n/)
@@ -64,11 +64,12 @@ import {EventBus} from '../../event-bus.js'
                                 .toLowerCase()
                                 .normalize("NFD")
                                 .replace(/[\u0300-\u036f]/g, "")
+                                .replace(/[^a-z]/g, "")
                             )
                     )].sort((a, b) => a.localeCompare(b, "fr"));
-
-                    console.log(this.words);
-                    console.log("Dictionary loaded successfully. Word count:", this.words.length);
+                    //console.log('Unique and normalized dictionary loaded. Sample words:', this.words.slice(0, 5));
+                    //console.log("Dictionary loaded successfully. Word count:", this.words.length);
+                    //console.log("All words in the dictionary:", this.words);
                 })
                 .catch(err => {
                     console.error("Error loading dictionary:", err);
@@ -80,8 +81,8 @@ import {EventBus} from '../../event-bus.js'
 
             EventBus.$on('getPossibleWords', ({ regExWord, wordlength }) => {
                 // Safety check: if dictionary isn't loaded yet, stop
-                console.log("Received getPossibleWords event with regExWord:", regExWord, "and wordlength:", wordlength);
-                console.log("Current dictionary state (first 5 words):", this.words.slice(0, 5));
+                //console.log("Received getPossibleWords event with regExWord:", regExWord, "and wordlength:", wordlength);
+                //console.log("Current dictionary state (first 5 words):", this.words.slice(0, 5));
                 if (this.words.length === 0) {
                     console.warn("Dictionary is still loading or failed to load.");
                     return;
@@ -107,7 +108,7 @@ import {EventBus} from '../../event-bus.js'
                 // 4. Sort alphabetically
                 possibleWords.sort((a, b) => a.localeCompare(b));
 
-                console.log("possibleWords après tri : ", possibleWords);
+                //console.log("possibleWords après tri : ", possibleWords);
 
                 // 5. Structure the results for the template
                 if (possibleWords.length > 0) {

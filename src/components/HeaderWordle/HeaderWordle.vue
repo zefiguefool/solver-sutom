@@ -73,7 +73,7 @@
             },
             emitScroll(){
                 this.heightToScrollOnce =  document.getElementsByClassName('intro').item(0).clientHeight;
-                console.log("this.heightToScrollOnce",this.heightToScrollOnce);
+                //console.log("this.heightToScrollOnce",this.heightToScrollOnce);
                 window.scrollBy({
                     top: this.heightToScrollOnce,
                     behavior: 'smooth'
