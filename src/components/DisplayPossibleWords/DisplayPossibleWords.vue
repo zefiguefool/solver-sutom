@@ -33,8 +33,7 @@ import {EventBus} from '../../event-bus.js'
         },
        // Refactored to use fetch and improved performance by normalizing words during loading and simplifying the sorting logic by using localeCompare directly on the filtered list.
         created() {
-            // 1. Define the correct absolute path to your dictionary
-            //let fileUrl = 'final-dictionary.txt' || '/sutom/final-dictionary.txt'; // Adjust this path as needed
+            // 1. Define the correct absolute path to your dictionary file. This should point to the location where final-dictionary.txt is served from your web server.
             let fileUrl = './final-dictionary.txt' || '/sutom/final-dictionary.txt'; // Adjust this path as needed
 
     
@@ -43,6 +42,9 @@ import {EventBus} from '../../event-bus.js'
                 .then(response => {
                     if (!response.ok) throw new Error("Could not find final-dictionary.txt at " + fileUrl);
                     return response.text();
+                })
+                .then(text => {
+                    this.words = text.split('\n').filter(word => word.trim() !== '');
                 })
                 .catch(err => {
                     console.error("Error loading dictionary:", err);
@@ -55,8 +57,8 @@ import {EventBus} from '../../event-bus.js'
             EventBus.$on('getPossibleWords', ({ regExWord, wordlength }) => {
                 // Safety check: if dictionary isn't loaded yet, stop
                 //console.log("Received getPossibleWords event with regExWord:", regExWord, "and wordlength:", wordlength);
-                //console.log("Current dictionary state (first 5 words):", this.words.slice(0, 5));
-                //console.log("Current dictionary length:", wordlength);
+                console.log("Current dictionary state (first 5 words):", this.words.slice(0, 5));
+                console.log("Current word length:", wordlength);
                 if (wordlength === 0) {
                     console.warn("Dictionary is still loading or failed to load.");
                     return;
