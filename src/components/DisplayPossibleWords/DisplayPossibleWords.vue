@@ -34,7 +34,7 @@ import {EventBus} from '../../event-bus.js'
        // Refactored to use fetch and improved performance by normalizing words during loading and simplifying the sorting logic by using localeCompare directly on the filtered list.
         created() {
             // 1. Define the correct absolute path to your dictionary file. This should point to the location where final-dictionary.txt is served from your web server.
-            let fileUrl = './final-dictionary.txt' || '/sutom/final-dictionary.txt'; // Adjust this path as needed
+            let fileUrl = './total-dictionary.txt' || '/sutom/total-dictionary.txt'; // Adjust this path as needed
 
     
             // 2. Fetch the dictionary asynchronously
