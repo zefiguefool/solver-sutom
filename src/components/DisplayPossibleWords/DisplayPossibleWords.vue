@@ -24,7 +24,7 @@ import {EventBus} from '../../event-bus.js'
         data(){
             return{
                 heightToScroll: 0,
-                counterWordsFound: 228526,
+                counterWordsFound: 121272,
                 objPossibleWords:[],
                 lengthWordToFind: 0,
                 doesExist: true,
@@ -34,42 +34,15 @@ import {EventBus} from '../../event-bus.js'
        // Refactored to use fetch and improved performance by normalizing words during loading and simplifying the sorting logic by using localeCompare directly on the filtered list.
         created() {
             // 1. Define the correct absolute path to your dictionary
-            //let fileUrl = 'fr.txt' || '/sutom/fr.txt'; // Adjust this path as needed
-            let fileUrl = 'fr-classique.dic' || '/sutom/fr-classique.dic'; // Adjust this path as needed
+            //let fileUrl = 'final-dictionary.txt' || '/sutom/final-dictionary.txt'; // Adjust this path as needed
+            let fileUrl = './final-dictionary.txt' || '/sutom/final-dictionary.txt'; // Adjust this path as needed
 
     
             // 2. Fetch the dictionary asynchronously
             fetch(fileUrl)
                 .then(response => {
-                    if (!response.ok) throw new Error("Could not find fr-classique.dic at " + fileUrl);
+                    if (!response.ok) throw new Error("Could not find final-dictionary.txt at " + fileUrl);
                     return response.text();
-                })
-                .then(textWords => {
-                    // Split by line breaks and normalize immediately to improve performance during search
-                    //const lines = textWords.split(/\r?\n/); // Handle both Unix and Windows line endings
-                    //console.log("Raw dictionary loaded. Sample lines:", textWords.split(/\r?\n/).slice(0, 5));
-                    this.words = [...new Set(
-                    textWords
-                        .split(/\r?\n/)
-                        .filter(line => line.trim() !== "")
-                        .map(line => line.split("/")[0])
-                        .map(line =>
-                            line
-                                .replace(/ᵉ/g, "e")
-                                .replace(/ˢ/g, "s")
-                                .replace(/ʳ/g, "r")
-                                .replace(/ʰ/g, "h")
-                                .replace(/ʲ/g, "j")
-                                .replace(/ʷ/g, "w")
-                                .toLowerCase()
-                                .normalize("NFD")
-                                .replace(/[\u0300-\u036f]/g, "")
-                                .replace(/[^a-z]/g, "")
-                            )
-                    )].sort((a, b) => a.localeCompare(b, "fr"));
-                    //console.log('Unique and normalized dictionary loaded. Sample words:', this.words.slice(0, 5));
-                    //console.log("Dictionary loaded successfully. Word count:", this.words.length);
-                    //console.log("All words in the dictionary:", this.words);
                 })
                 .catch(err => {
                     console.error("Error loading dictionary:", err);
@@ -83,7 +56,8 @@ import {EventBus} from '../../event-bus.js'
                 // Safety check: if dictionary isn't loaded yet, stop
                 //console.log("Received getPossibleWords event with regExWord:", regExWord, "and wordlength:", wordlength);
                 //console.log("Current dictionary state (first 5 words):", this.words.slice(0, 5));
-                if (this.words.length === 0) {
+                //console.log("Current dictionary length:", wordlength);
+                if (wordlength === 0) {
                     console.warn("Dictionary is still loading or failed to load.");
                     return;
                 }
@@ -133,7 +107,7 @@ import {EventBus} from '../../event-bus.js'
         },
         updated(){
             EventBus.$on('reset',() => {
-                this.counterWordsFound = 77952;
+                this.counterWordsFound = 121272;
                 this.objPossibleWords = [];
                 this.doesExist = true;
                 }
