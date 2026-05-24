@@ -44,15 +44,18 @@ voir si l'utilisation d'un mixin n'est pas nécessaire en cernant les fonctions 
 retrouver la documentation consultée concernant les Bug de Vue.js sur les evts liés aux input (evt blur pour la mise à jour du modèle)
 
 DICTIONNAIRE
-- intégrer les dicos en opendata
-- utiliser l'indice de fréquence dans la langue française ou ordonner la liste 
+- intégrer les dicos en opendata : DONE
+- utiliser l'indice de fréquence dans la langue française ou ordonner la liste par ordre alphabétique et longueur de mots. Voir pour présentation
 
 Poser la question de la migration Vue2 à Vue3. Qu'apporte la migration en terme fonctionnelle ? En aisance de développement ?
+Voir pour passage en React native ou flutter. Migration en React prélable nécessaire ?
 
 MULTILIGUE : créer une branche à part pour le faire
 - voir pour l'irrigation (se renseigner sur la gestion multilangue en Vue 2 et Vue 3 avant)
 - création EN / FR / ES / PORT (bouton)
 - Traduction des textes
+
+REORGANISATION ARBORESCENCE ?
 
 IDEES UI :
 - raccourcir les explications de l'usage du solveur

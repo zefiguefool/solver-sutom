@@ -311,7 +311,8 @@
         },
         created(){
             //console.log("created and is wordle equal to : ", this.isWordle);
-            let alphabet = "abcdefghijklmnopqrstuvwxyz";
+            //let alphabet = "abcdefghijklmnopqrstuvwxyz";
+            let alphabet = "azertyuiopqsdfghjklmwxcvbn";
             this.alphabeticallist = alphabet.split("");
             EventBus.$on('getActiveLink',(rootPath) => {
                 rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ; 
