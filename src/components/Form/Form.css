@@ -12,24 +12,36 @@
 }
 
 .display-keyboard-letters {
+  display: grid;
+
   margin: 0 auto;
-  padding: 0;
   width: 100%;
-  max-width: 470px;
+  max-width: 500px;
 }
 
 .display-keyboard-letters ul {
-  margin: 0 auto;
-  padding: 0;
+  padding-left: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
+  gap: 4px;
+  &.alphabeticallist {
+    margin-bottom: 0.5rem;
+  }
+  &.special-keys {
+    margin-top: 0.5rem;
+    justify-content: center;
+    display: flex;
+  }
 }
 
 .display-keyboard-letters li {
   position: relative;
   display: inline-block;
   width: 2.5rem;
+  width: 45px;
+  height: 45px;
   border: 1px solid #fff;
   color: #fff;
   font-size: 1.5em;
@@ -38,6 +50,32 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 491px) {
+    width: 39px;
+    height: 39px;
+    font-size: 1.2em;
+  }
+  @media (max-width: 430px) {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2em;
+  }
+  @media (max-width: 422px) {
+    width: 35px;
+    height: 35px;
+    font-size: 1.2em;
+  }
+  /*  @media (max-width: 376px) {
+    width: 33px;
+    height: 33px;
+    font-size: 1.2em;
+  } */
+  @media (max-width: 376px) {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2em;
+  }
 }
 
 .display-keyboard-letters li.isActive {
@@ -81,21 +119,36 @@
 }
 
 .display-keyboard-letters li.maj {
-  width: 6rem;
+  width: 5rem;
   font-size: 1.5em;
 }
 
 .display-keyboard-letters li.backspace {
-  width: 6rem;
+  width: 3rem;
 }
 
-.display-keyboard-letters li.exclude {
-  width: 50%;
+.display-keyboard-letters li.special-keys {
+  width: 6rem;
   font-size: 1.1em;
-  background-color: #0077c7;
   line-height: 1.3rem;
-  height: 60px;
+  font-size: 1rem;
+  @media (max-width: 500px) {
+    line-height: 1rem;
+    font-size: 0.9em;
+    padding: 1rem 0.5rem;
+    width: 7rem;
+  }
+  &.exclude {
+    background-color: #0077c7;
+  }
+  &.reset {
+    background-color: #ffeb86;
+    a {
+      color: #555;
+    }
+  }
 }
+
 .display-keyboard-letters li.validate {
   width: 50%;
   font-size: 1.1em;
@@ -152,12 +205,6 @@
   left: 8px;
   top: -4px;
   opacity: 0.6;
-}
-.display-keyboard-letters li.reset {
-  width: 50%;
-  font-size: 1.1em;
-  line-height: 1.3rem;
-  height: 60px;
 }
 
 .display-control-letter {

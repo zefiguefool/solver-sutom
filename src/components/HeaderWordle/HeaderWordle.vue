@@ -62,7 +62,7 @@
         data(){
             return{
                 isWordle: false,
-                titreHTML: '<span class="color-good-place">S</span><span>o</span><span>l</span><span class="color-good-place">v</span><span>e</span><span>r</span><br><span class="color-bad-place">W</span><span>o</span><span class="color-bad-place">r</span><span>d</span><span>l</span></span><span>e</span>',
+                titreHTML: '<span class="color-good-place">S</span><span class="wordle color-good-place">O</span><span class="color-good-place">L</span><br><span class="color-bad-place">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-good-place"">A</span><br><span class="wordle bad-place">M</span><span class="wordle color-good-place">I</span><span class="color-bad-place">&nbsp;</span>',
                 soundActive : false
             }
         },

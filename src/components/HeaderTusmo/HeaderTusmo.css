@@ -55,7 +55,8 @@ h1 > span {
   color: white;
   background-color: #0077c7;
 }
-.intro a.tuzmo-color {
+.intro a.tuzmo-color,
+.tuzmo-color {
   color: white;
   background-color: #0a5566;
 }

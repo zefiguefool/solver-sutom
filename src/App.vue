@@ -157,7 +157,7 @@ export default {
   .wordle .color-grid{
      background-color: #3a3a3c;
   }
-  .wordle .color-good-place{
+  .wordle .color-good-place, .wordle.color-good-place{
     background-color: #3eaa42;
   }
   .wordle .color-bad-place{
@@ -187,7 +187,10 @@ export default {
   .wordle .color-letter-good-place{
     color: #3eaa42;
   }
-  .wordle .color-letter-bad-place{
+  .wordle.color-letter-good-place{
+    color: #3eaa42;
+  }
+  .wordle .color-letter-bad-place, .wordle.color-letter-bad-place{
     color: #d3952a;
     border-radius: none;
   }

@@ -1,5 +1,5 @@
 <template>
-    <div id="possible-letters" class="possible-letters mx-auto px-2 text-center">
+    <div id="possible-letters" class="possible-letters mx-auto text-center">
         <div class="oneLengthWord" v-for="(objPossibleWord, $index) in objPossibleWords" :key="$index">   
             <div v-if="objPossibleWord.lengthWords == lengthWordToFind">
                 <div v-if="uniqueWords.length > 1">

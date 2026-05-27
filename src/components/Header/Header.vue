@@ -6,7 +6,7 @@
             <img v-else src="../../assets/images/sound-off.jpg" />
         </a>
         <div class="intro col-md-7 mx-auto small">
-            <p class="text-center">Comment utiliser le Solver ? 
+            <p class="text-center">Comment utiliser Solvami ? 
                 <span class="text-dark fs-6 font-weight-bold underline">
                     <a href="#" title="Aller au Solver" @click="emitScroll" class="anchor link-dark" aria-label="Go to Solver">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
@@ -61,7 +61,7 @@ export default {
     name: 'AppHeader',
     data() {
         return {
-            titreHTML: '<span class="color-good-place">S</span><span>o</span><span>l</span><span class="color-good-place">v</span><span>e</span><span>r</span><br><span class="color-bad-place">S</span><span>u</span><span class="color-bad-place">t</span><span>o</span><span>m</span>',
+            titreHTML: '<span class="color-good-place">S</span><span class="wordle color-good-place">O</span><span class="color-good-place">L</span><br><span class="color-bad-place">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-good-place"">A</span><br><span class="wordle bad-place">M</span><span class="wordle color-good-place">I</span><span class="color-bad-place">&nbsp;</span>',
             soundActive: false
         }
     },

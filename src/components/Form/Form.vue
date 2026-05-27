@@ -1,11 +1,11 @@
 <template>  
-    <div :class="universe" class="form px-2 text-center">
+    <div :class="universe" class="form text-center">
         <p class="alert alert-warning" v-if="nothingToSearch">Saisissez un critère de recherche</p>
         <p class="alert alert-warning" v-if="firstLetterLowerCase">À Sutom la première lettre est connue. Tapez une majuscule en 1<sup>ère</sup> lettre</p>
         <p class="alert alert-warning" v-if="letterIsIncluded">Vous avez indiqué la lettre comme présente dans le mot.</p>
         <p class="alert alert-warning" v-if="letterIsExcluded">Vous avez indiqué la lettre comme absente du mot.</p>
-        <div id="display-keyboard-letters" class="display-keyboard-letters mx-auto  px-2 text-center">
-            <ul>
+        <div id="display-keyboard-letters" class="display-keyboard-letters mx-auto text-center">
+            <ul class="alphabeticallist">
                 <li v-for="(item, $index) in alphabeticallist" :class="[{isActive : toggleKeyPressed[$index]}, {isGoodPlaced : toggleGoodPlaced[$index]}, {isBadPlaced : toggleBadPlaced[$index]}, keyboardExclude, {notinword : toggleIsNotInWord[$index]} ]"  :key="$index">
                     <a @click.prevent="" @mousedown.prevent="activeLetter($event);inputLetter($event);inputLetterExclude($event)"  :class="keyboardCase" href="#">{{ item }}</a>
                     <div class="display-control-letter">{{ item }}</div>
@@ -17,23 +17,27 @@
                 <li class="maj">
                     <a @click.prevent="isUppercase = !isUppercase" href="#" >⇧ Maj</a>
                 </li>
+                <li class="special-keys exclude">
+                    <a @click.prevent="toggleKeyboardExcludeInclude"  href="#">{{textKeyboardExcludeInclude}}</a>
+                </li>
+                <li v-on:click.prevent="reset" class="special-keys reset">
+                    <a href="#">Effacer tout</a>
+                </li>
                 <li class="backspace">
                     <a @click.prevent="suppressLetter" href="#">⌫</a>
                 </li>
             </ul>
-            <ul>
-                <li class="exclude">
-                    <a @click.prevent="toggleKeyboardExcludeInclude"  href="#">{{textKeyboardExcludeInclude}}</a>
-                </li>
-                <li v-on:click.prevent="reset" class="reset">
-                    <a href="#">Effacer tout</a>
-                </li>
-            </ul>
-            <ul>
+            <ul class="special-keys">
+
                 <li v-on:click.prevent="getPossibleWords" class="validate">
                     <a href="#">Chercher</a>
                 </li>
             </ul>
+          <!--   <ul>
+                <li v-on:click.prevent="getPossibleWords" class="validate">
+                    <a href="#">Chercher</a>
+                </li>
+            </ul> -->
         </div>
     </div>
 </template>
