@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper-nav">
       <ul :class="myClass" class="nav">
-          <li @click.stop.prevent="getActiveLink($event)" id="sutom" class="sutom btn btn-primary btn-nav"><router-link to="/sutom" exact><span class="color-letter-good-place">S</span><span >u</span><span class="color-letter-bad-place">t</span><span>o</span><span>m</span></router-link></li>
-          <li @click.stop.prevent="getActiveLink($event)" id="tusmo" class="tusmo btn btn-primary btn-nav"><router-link to="/tusmo" exact><span class="color-letter-good-place">T</span><span >u</span><span class="color-letter-bad-place">s</span><span>m</span><span>o</span></router-link></li>
-          <li @click.stop.prevent="getActiveLink($event)" id="wordle" class="wordle btn btn-primary btn-nav"><router-link to="/wordle"><span class="color-letter-bad-place">W</span><span>o</span><span class="color-letter-good-place">r</span><span>d</span><span>l</span><span>e</span></router-link></li>
+          <li @click.stop.prevent="getActiveLink($event)" id="sutom" class="sutom btn btn-primary btn-nav"><router-link to="/solvami/sutom" exact><span class="color-letter-good-place">S</span><span >u</span><span class="color-letter-bad-place">t</span><span>o</span><span>m</span></router-link></li>
+          <li @click.stop.prevent="getActiveLink($event)" id="tusmo" class="tusmo btn btn-primary btn-nav"><router-link to="/solvami/tusmo" exact><span class="color-letter-good-place">T</span><span >u</span><span class="color-letter-bad-place">s</span><span>m</span><span>o</span></router-link></li>
+          <li @click.stop.prevent="getActiveLink($event)" id="wordle" class="wordle btn btn-primary btn-nav"><router-link to="/solvami/wordle"><span class="color-letter-bad-place">W</span><span>o</span><span class="color-letter-good-place">r</span><span>d</span><span>l</span><span>e</span></router-link></li>
       </ul>
       <div class="box">
             <div @click="isActive = !isActive" :class="myClass" class="contLigne btn1">

@@ -3,8 +3,8 @@ import HeaderWordle from "./components/HeaderWordle/HeaderWordle";
 import HeaderTusmo from "./components/HeaderTusmo/HeaderTusmo.vue";
 
 export default [
-  { path: "/", component: Header },
-  { path: "/sutom", component: Header },
-  { path: "/tusmo", component: HeaderTusmo },
-  { path: "/wordle", component: HeaderWordle },
+  { path: "/solvami", component: Header },
+  { path: "/solvami/sutom", component: Header },
+  { path: "/solvami/tusmo", component: HeaderTusmo },
+  { path: "/solvami/wordle", component: HeaderWordle },
 ];
