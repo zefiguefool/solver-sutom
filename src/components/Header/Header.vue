@@ -2,8 +2,8 @@
     <div id="header-top" class="header-top">
         <h1 v-html="titreHTML" class="py-2 ps-0 pe-4"></h1>
         <a class="sound-element" @click="soundAction()" href="#">
-            <img v-if="soundActive" src="../../assets/images/sound-on.jpg" />
-            <img v-else src="../../assets/images/sound-off.jpg" />
+            <img width="36" height="30" v-if="soundActive" src="../../assets/images/sound-on.jpg" />
+            <img width="30" height="25" v-if="soundActive" src="../../assets/images/sound-on.jpg" />
         </a>
         <div class="intro col-md-7 mx-auto small">
             <p class="text-center">Comment utiliser Solvami ? 

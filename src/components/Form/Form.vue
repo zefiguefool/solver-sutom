@@ -77,7 +77,7 @@
                 this.isExcludeActive == true ? this.textKeyboardExcludeInclude = 'Mode lettres à inclure' : this.textKeyboardExcludeInclude = 'Mode lettres à exclure'
             },
             activeLetter($event){
-                let alphabet = "abcdefghijklmnopqrstuvwxyz";
+                let alphabet = "azertyuiopqsdfghjklmwxcvbn";
                 let pressedLetter = $event.target.innerText;
                 let pos = 0;
 
@@ -108,7 +108,7 @@
                 }
             },
             suppressLetter(){
-                let alphabet = "abcdefghijklmnopqrstuvwxyz-";
+                let alphabet = "azertyuiopqsdfghjklmwxcvbn";
                 if(this.inputLetters.length != 0){
                     let pos = alphabet.indexOf(this.inputLetters[this.inputLetters.length-1].toLowerCase());
                     this.toggleGoodPlaced.splice(pos,1,false);
@@ -125,7 +125,7 @@
                 this.letterIsExcluded = false;
                 if(!this.isExcludeActive){
                     let inputLetter = $event.target.innerText;
-                    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+                    let alphabet = "azertyuiopqsdfghjklmwxcvbn-";
                     let pos = 0;
                    
                     if(this.inputWrongLetters.includes(inputLetter) || this.inputWrongLetters.includes(inputLetter.toLowerCase()) ){
@@ -182,7 +182,7 @@
                 if(this.isExcludeActive){
                     this.isUppercase = false;
                     let pos = 0;
-                    let alphabet = "abcdefghijklmnopqrstuvwxyz";
+                    let alphabet = "azertyuiopqsdfghjklmwxcvbn";
                     this.alphabeticallist = alphabet.split("");
                     let inputWrongLetter = $event.target.innerText.toLowerCase();
                     
@@ -316,7 +316,7 @@
         created(){
             //console.log("created and is wordle equal to : ", this.isWordle);
             //let alphabet = "abcdefghijklmnopqrstuvwxyz";
-            let alphabet = "azertyuiopqsdfghjklmwxcvbn";
+            let alphabet = "azertyuiopqsdfghjklmwxcvbn-";
             this.alphabeticallist = alphabet.split("");
             EventBus.$on('getActiveLink',(rootPath) => {
                 rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ; 

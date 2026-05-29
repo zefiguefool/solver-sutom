@@ -29,7 +29,8 @@ import {EventBus} from '../../event-bus.js'
                 lengthWordToFind: 0,
                 doesExist: true,
                 uniqueWords: [],
-                words : []            }
+                dictionaryCache: {},            
+            }
         },
        // Refactored to use fetch and improved performance by normalizing words during loading and simplifying the sorting logic by using localeCompare directly on the filtered list.
         created() {
@@ -38,74 +39,85 @@ import {EventBus} from '../../event-bus.js'
 
     
             // 2. Fetch the dictionary asynchronously
-            fetch(fileUrl)
-                .then(response => {
-                    if (!response.ok) throw new Error("Could not find final-dictionary.txt at " + fileUrl);
-                    return response.text();
-                })
-                .then(text => {
-                    this.words = text.split('\n').filter(word => word.trim() !== '');
-                })
-                .catch(err => {
-                    console.error("Error loading dictionary:", err);
-                });
+           
 
             EventBus.$on('suppress', () => {
                 this.doesExist = true;
             });
-
-            EventBus.$on('getPossibleWords', ({ regExWord, wordlength }) => {
-                // Safety check: if dictionary isn't loaded yet, stop
-                //console.log("Received getPossibleWords event with regExWord:", regExWord, "and wordlength:", wordlength);
-                console.log("Current dictionary state (first 5 words):", this.words.slice(0, 5));
-                console.log("Current word length:", wordlength);
-                if (wordlength === 0) {
-                    console.warn("Dictionary is still loading or failed to load.");
-                    return;
-                }
+            EventBus.$on(
+            'getPossibleWords',
+            async ({ regExWord, wordlength }) => {
 
                 this.doesExist = true;
-                let possibleWords = [];
+
                 this.counterWordsFound = 0;
+
                 this.objPossibleWords = [];
+
                 this.lengthWordToFind = wordlength;
 
-                // 3. Filter the dictionary
-                for (let index = 0; index < this.words.length; index++) {
-                    const currentWord = this.words[index];
-                    if (currentWord.length === wordlength) {
-                        if (regExWord.test(currentWord)) {
-                            this.counterWordsFound++;
-                            possibleWords.push(currentWord);
-                        }
-                    }
+                // charge uniquement le bon dictionnaire
+                const words =
+                await this.loadDictionary(wordlength);
+
+                const possibleWords = [];
+
+                for (const word of words) {
+
+                if (regExWord.test(word)) {
+                    possibleWords.push(word);
+                }
                 }
 
-                // 4. Sort alphabetically
-                possibleWords.sort((a, b) => a.localeCompare(b));
+                possibleWords.sort((a, b) =>
+                a.localeCompare(b)
+                );
 
-                //console.log("possibleWords après tri : ", possibleWords);
-
-                // 5. Structure the results for the template
                 if (possibleWords.length > 0) {
-                    this.doesExist = true;
-                    
-                    // We group words by length (though here they all match wordlength)
-                    // to maintain compatibility with your <template> logic
-                    this.objPossibleWords = [{
-                        lengthWords: wordlength,
-                        wordsWithThisLength: [...new Set(possibleWords)] // Ensure uniqueness
-                    }];
-                    
-                    this.uniqueWords = this.objPossibleWords[0].wordsWithThisLength;
+
+                this.uniqueWords = [
+                    ...new Set(possibleWords)
+                ];
+
+                this.objPossibleWords = [{
+                    lengthWords: wordlength,
+                    wordsWithThisLength: this.uniqueWords
+                }];
+
                 } else {
-                    this.doesExist = false;
-                    this.uniqueWords = [];
+
+                this.doesExist = false;
+
+                this.uniqueWords = [];
                 }
             });
         },
         beforeUpdate(){
             this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48;
+        },
+        methods: {
+
+            async loadDictionary(length) {
+
+            // déjà chargé
+            if (this.dictionaryCache[length]) {
+            return this.dictionaryCache[length];
+            }
+            
+           const response = await fetch(
+            `${process.env.BASE_URL}dict/${length}.txt`
+            );
+
+            const text = await response.text();
+
+            const words = text
+            .split('\n')
+            .filter(Boolean);
+
+            this.dictionaryCache[length] = words;
+
+            return words;
+        }
         },
         updated(){
             EventBus.$on('reset',() => {
