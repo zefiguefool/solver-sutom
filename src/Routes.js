@@ -1,6 +1,8 @@
-import Header from "./components/Header/Header";
-import HeaderWordle from "./components/HeaderWordle/HeaderWordle";
-import HeaderTusmo from "./components/HeaderTusmo/HeaderTusmo.vue";
+const Header = () => import("./components/Header/Header.vue");
+
+const HeaderWordle = () => import("./components/HeaderWordle/HeaderWordle.vue");
+
+const HeaderTusmo = () => import("./components/HeaderTusmo/HeaderTusmo.vue");
 
 export default [
   { path: "/solvami", component: Header },

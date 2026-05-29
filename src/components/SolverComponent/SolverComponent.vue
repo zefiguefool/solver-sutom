@@ -11,9 +11,19 @@
   </div>
 </template>
 <script>
-import Form from '../Form/Form.vue';
-import DisplayInputLetters from '../DisplayInputLetters/DisplayInputLetters.vue';
-import DisplayPossibleWords from '../DisplayPossibleWords/DisplayPossibleWords.vue';
+
+const Form = () =>
+  import(
+    '../Form/Form.vue'
+);
+const DisplayInputLetters = () =>
+  import(
+    '../DisplayInputLetters/DisplayInputLetters.vue'
+);
+const DisplayPossibleWords = () =>
+  import(
+    '../DisplayPossibleWords/DisplayPossibleWords.vue'
+);
 
 export default {
   name: 'App',

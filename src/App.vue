@@ -24,6 +24,7 @@
        <!-- Iframe pour le jeu -->
         <div class="game-iframe-container">
           <iframe
+            loading="lazy"
             :src="currentGameUrl"
             frameborder="0"
             allowfullscreen
@@ -35,9 +36,14 @@
   </div>
 </template>
 <script>
-import Navigation from './components/Navigation/Navigation.vue'
-import SolverComponent from './components/SolverComponent/SolverComponent.vue'
-
+const Navigation = () =>
+  import(
+    './components/Navigation/Navigation.vue'
+);
+const SolverComponent = () =>
+  import(
+    './components/SolverComponent/SolverComponent.vue'
+);
 export default {
   name: 'App',
   data(){

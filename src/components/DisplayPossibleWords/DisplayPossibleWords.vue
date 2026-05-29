@@ -35,15 +35,12 @@ import {EventBus} from '../../event-bus.js'
        // Refactored to use fetch and improved performance by normalizing words during loading and simplifying the sorting logic by using localeCompare directly on the filtered list.
         created() {
             // 1. Define the correct absolute path to your dictionary file. This should point to the location where final-dictionary.txt is served from your web server.
-            let fileUrl = './total-dictionary.txt' || '/solvami/total-dictionary.txt'; // Adjust this path as needed
-
-    
-            // 2. Fetch the dictionary asynchronously
-           
+            //let fileUrl = './total-dictionary.txt' || '/solvami/total-dictionary.txt'; // Adjust this path as needed
 
             EventBus.$on('suppress', () => {
                 this.doesExist = true;
             });
+
             EventBus.$on(
             'getPossibleWords',
             async ({ regExWord, wordlength }) => {
@@ -55,23 +52,67 @@ import {EventBus} from '../../event-bus.js'
                 this.objPossibleWords = [];
 
                 this.lengthWordToFind = wordlength;
-
-                // charge uniquement le bon dictionnaire
+                 // 2. Fetch the dictionary asynchronously
+                // Charge uniquement le bon dictionnaire
                 const words =
                 await this.loadDictionary(wordlength);
 
                 const possibleWords = [];
 
+                // =================================================
+                // OPTIMISATION SIMPLE
+                // =================================================
+
+                // Première lettre connue ?
+                let firstLetter = null;
+
+                const regexSource = regExWord.source;
+
+                if (
+                regexSource &&
+                regexSource[0] &&
+                /[a-z]/i.test(regexSource[0])
+                ) {
+                firstLetter = regexSource[0];
+                }
+
+                // =================================================
+                // FILTRAGE
+                // =================================================
+
                 for (const word of words) {
+
+                // -------------------------------------------------
+                // Préfiltre ultra rapide
+                // -------------------------------------------------
+
+                if (
+                    firstLetter &&
+                    word[0] !== firstLetter
+                ) {
+                    continue;
+                }
+
+                // -------------------------------------------------
+                // Regex seulement si nécessaire
+                // -------------------------------------------------
 
                 if (regExWord.test(word)) {
                     possibleWords.push(word);
                 }
                 }
 
+                // =================================================
+                // TRI
+                // =================================================
+
                 possibleWords.sort((a, b) =>
                 a.localeCompare(b)
                 );
+
+                // =================================================
+                // RESULTATS
+                // =================================================
 
                 if (possibleWords.length > 0) {
 
@@ -92,6 +133,12 @@ import {EventBus} from '../../event-bus.js'
                 }
             });
         },
+        mounted() {
+            this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48;
+             // longueurs fréquentes
+                this.loadDictionary(6);
+                this.loadDictionary(7);
+        },
         beforeUpdate(){
             this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48;
         },
@@ -108,6 +155,12 @@ import {EventBus} from '../../event-bus.js'
             `${process.env.BASE_URL}dict/${length}.txt`
             );
 
+            if (!response.ok) {
+                throw new Error(
+                    `Impossible de charger ${length}.txt`
+                );
+            }
+
             const text = await response.text();
 
             const words = text
@@ -117,7 +170,7 @@ import {EventBus} from '../../event-bus.js'
             this.dictionaryCache[length] = words;
 
             return words;
-        }
+            }
         },
         updated(){
             EventBus.$on('reset',() => {
