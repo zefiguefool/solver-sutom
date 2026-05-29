@@ -136,6 +136,7 @@ import {EventBus} from '../../event-bus.js'
         mounted() {
             this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48;
              // longueurs fréquentes
+                this.loadDictionary(5);
                 this.loadDictionary(6);
                 this.loadDictionary(7);
         },
