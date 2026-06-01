@@ -106,9 +106,9 @@ import {EventBus} from '../../event-bus.js'
                 // TRI
                 // =================================================
 
-                possibleWords.sort((a, b) =>
+                /* possibleWords.sort((a, b) =>
                 a.localeCompare(b)
-                );
+                ); */
 
                 // =================================================
                 // RESULTATS
@@ -180,11 +180,12 @@ import {EventBus} from '../../event-bus.js'
                 this.doesExist = true;
                 }
             );
+            console.log("updated DisplayPossibleWords");
             window.scrollBy({
                 top: this.heightToScroll,
                 behavior: 'smooth'
             });
-        }
+        }   
     }
 </script>
 <style scoped>

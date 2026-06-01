@@ -24,6 +24,9 @@
        <!-- Iframe pour le jeu -->
         <div class="game-iframe-container">
           <iframe
+            aria-label="Game Iframe"
+            title="Games Iframe"
+            name="game-iframe"
             loading="lazy"
             :src="currentGameUrl"
             frameborder="0"
@@ -79,15 +82,6 @@ export default {
     }
   },
   methods: {
-    emitScroll(){
-      //console.log("scroll");
-      this.heightToScrollOnce = document.getElementsByClassName('intro').item(0).clientHeight;
-      //console.log("this.heightToScrollOnce",this.heightToScrollOnce);
-      window.scrollBy({
-        top: this.heightToScrollOnce + 75,
-        behavior: 'smooth'
-      });
-    },
      selectGame(gameId) {
       // Sauvegarder les tentatives avant de changer de jeu
       localStorage.setItem(`attempts_${this.currentGame}`, this.attempts);

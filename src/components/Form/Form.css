@@ -25,14 +25,15 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  gap: 4px;
+  gap: 2px;
+  @media (max-width: 376px) {
+    gap: 3px;
+  }
   &.alphabeticallist {
     margin-bottom: 0.5rem;
   }
   &.special-keys {
-    margin-top: 0.5rem;
-    justify-content: center;
-    display: flex;
+    margin: 0;
   }
 }
 
@@ -52,28 +53,28 @@
   align-items: center;
 
   @media (max-width: 491px) {
-    width: 39px;
-    height: 39px;
+    width: 41px;
+    height: 41px;
     font-size: 1.2em;
   }
   @media (max-width: 430px) {
-    width: 38px;
-    height: 38px;
+    width: 37px;
+    height: 387x;
     font-size: 1.2em;
   }
   @media (max-width: 422px) {
-    width: 35px;
-    height: 35px;
+    width: 38px;
+    height: 38 px;
     font-size: 1.2em;
   }
-  /*  @media (max-width: 376px) {
-    width: 33px;
-    height: 33px;
-    font-size: 1.2em;
-  } */
   @media (max-width: 376px) {
-    width: 30px;
-    height: 30px;
+    width: 32px;
+    height: 32px;
+    font-size: 1.2em;
+  }
+  @media (max-width: 344px) {
+    width: 31px;
+    height: 31px;
     font-size: 1.2em;
   }
 }
@@ -156,7 +157,7 @@
   line-height: 40px;
   height: 40px;
   border: 2px solid #e7002a;
-  margin: 1rem 0 0.5rem;
+  margin: 0.5rem auto;
 }
 
 .display-keyboard-letters li.validate a {

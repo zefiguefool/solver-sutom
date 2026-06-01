@@ -1,0 +1,31 @@
+.em,
+.em-svg {
+  height: 1.5em;
+  width: 1.5em;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+  vertical-align: middle;
+}
+.em-abc {
+  background-image: url("./1f524.png");
+}
+.em-abc.em-svg {
+  background: url("./1f524.png");
+  background-image: url("./1f524.svg"), none;
+}
+.em-abacus {
+  background-image: url("./1f9ee.png");
+}
+.em-abacus.em-svg {
+  background: url("./1f9ee.png");
+  background-image: url("./1f9ee.svg"), none;
+}
+.em-white_check_mark {
+  background-image: url("./2705.png");
+}
+.em-white_check_mark.em-svg {
+  background: url("./2705.png");
+  background-image: url("./2705.svg"), none;
+}

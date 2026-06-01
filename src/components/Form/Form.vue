@@ -7,7 +7,7 @@
         <div id="display-keyboard-letters" class="display-keyboard-letters mx-auto text-center">
             <ul class="alphabeticallist">
                 <li v-for="(item, $index) in alphabeticallist" :class="[{isActive : toggleKeyPressed[$index]}, {isGoodPlaced : toggleGoodPlaced[$index]}, {isBadPlaced : toggleBadPlaced[$index]}, keyboardExclude, {notinword : toggleIsNotInWord[$index]} ]"  :key="$index">
-                    <a @click.prevent="" @mousedown.prevent="activeLetter($event);inputLetter($event);inputLetterExclude($event)"  :class="keyboardCase" href="#">{{ item }}</a>
+                    <a href="#" @click.prevent="activeLetter($event);inputLetter($event);inputLetterExclude($event)"  :class="keyboardCase">{{ item }}</a>
                     <div class="display-control-letter">{{ item }}</div>
                 </li>
                 <li :class="{isActive: thisKeyPressed}">
@@ -316,7 +316,7 @@
         created(){
             //console.log("created and is wordle equal to : ", this.isWordle);
             //let alphabet = "abcdefghijklmnopqrstuvwxyz";
-            let alphabet = "azertyuiopqsdfghjklmwxcvbn-";
+            let alphabet = "azertyuiopqsdfghjklmwxcvbn";
             this.alphabeticallist = alphabet.split("");
             EventBus.$on('getActiveLink',(rootPath) => {
                 rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ; 

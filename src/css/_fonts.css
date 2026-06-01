@@ -3,3 +3,13 @@
   src: url(../assets/fonts/Arista2.0.ttf);
   font-display: swap;
 }
+@font-face {
+  font-family: "Fredoka Regular";
+  src: url(../assets/fonts/Fredoka-Regular.ttf);
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fredoka Bold";
+  src: url(../assets/fonts/Fredoka-Bold.ttf);
+  font-display: swap;
+}

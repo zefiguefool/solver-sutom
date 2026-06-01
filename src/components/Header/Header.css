@@ -1,11 +1,16 @@
 .header-top {
   background: #fff;
-  position: static;
   margin: 0 auto;
+  width: 100%;
+  /*  &.sutom {
+    margin-top: 7.5rem;
+  } */
 }
 
 h1,
 .h1 {
+  position: absolute;
+  top: 0;
   text-align: center;
   text-transform: uppercase;
   margin: 0;
@@ -17,7 +22,7 @@ h1,
   text-shadow: 0px 2px 4px #000;
   color: #fff;
   font-size: 1.5rem !important;
-  font-family: "Arista 2.0";
+  font-family: "Fredoka Bold", sans-serif;
   width: 100%;
 }
 
@@ -39,14 +44,24 @@ h1 > span {
 }
 
 .intro {
-  margin-top: 6.5rem;
   width: 90%;
 }
 
-.intro p {
+.sutom .intro {
+  margin-top: 1.5rem;
+  width: 90%;
+  display: grid;
+}
+
+.intro h2 {
   padding: 0 0.8rem;
   margin: 0;
   white-space: inherit;
+  color: maroon;
+}
+
+.title {
+  font-family: "Fredoka Regular", sans-serif;
 }
 
 .intro ul {
@@ -56,11 +71,11 @@ h1 > span {
   flex-direction: column;
   flex-wrap: nowrap;
   justify-self: center;
+  width: fit-content;
 }
 
 .intro ul li {
   margin-bottom: 0.3rem;
-  justify-content: space-around;
 }
 :is(.change-color, .with-color-transition) {
   list-style-type: circle;
@@ -97,7 +112,7 @@ h1 > span {
     font-weight: normal;
     padding: inherit;
     margin-top: inherit;
-    color: burlywood;
+    color: maroon;
     font-weight: bold;
     padding: 0;
     margin-top: 0;
@@ -141,10 +156,10 @@ span.search-button {
 span.select-game {
   display: inline-block;
   padding: 0.3rem 0.5rem;
-  background-color: #4caf50;
+  background-color: limegreen;
   color: #fff;
   padding: 0.5rem 1rem;
-  border: 1px solid #4caf50;
+  border: 1px solid limegreen;
   border-radius: 4px;
   text-decoration: none;
   font-weight: normal;
@@ -163,6 +178,7 @@ details.details-infos {
   /* The marker */
   margin: 0 auto;
   max-width: 744px;
+
   summary {
     cursor: pointer;
     list-style: none;
@@ -171,14 +187,14 @@ details.details-infos {
   summary::marker {
     content: "\23F5";
     font-size: 1rem;
-    color: burlywood;
+    color: maroon;
   }
 
   /* The marker when <details> is open */
   &[open] summary::marker {
     /* content: "\23F6"; */
     content: "\23F7";
-    color: burlywood;
+    color: maroon;
   }
 
   /* Because ::marker doesn’t support many properties */
@@ -186,12 +202,26 @@ details.details-infos {
     display: inline-block;
     border-radius: 25px 25px 25px 0;
     font-size: 0.9rem;
+    background-color: maroon;
+    color: white;
+    padding: 0.1rem 0.5rem;
   }
 }
 
+/* more-infos-container.expendable {
+  background: #fff;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  height: 0;
+}
+
+.expandable:target {
+  height: 200px; 
+  ]} */
+
 .more-infos li {
   &.first::marker {
-    color: #4caf50;
+    color: limegreen;
   }
   &.second::marker {
     color: red;

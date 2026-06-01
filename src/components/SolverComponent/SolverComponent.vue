@@ -40,10 +40,10 @@ export default {
     methods: {
       emitScroll(){
         this.heightToScrollOnce = document.getElementsByClassName('intro').item(0).clientHeight;
-        window.scrollBy({
+        /* window.scrollBy({
           top: this.heightToScrollOnce,
           behavior: 'smooth'
-        });
+        }); */
       }
     }
 }

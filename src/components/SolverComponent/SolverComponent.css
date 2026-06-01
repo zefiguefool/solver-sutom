@@ -1,8 +1,8 @@
 .fieldset-container-component {
-  border: 2px solid burlywood;
+  border: 2px solid maroon;
   max-width: 744px;
   margin: 1rem auto;
-  padding: 1rem 0;
+  padding: 1rem 0 0;
   border-radius: 4px;
   position: relative;
 }

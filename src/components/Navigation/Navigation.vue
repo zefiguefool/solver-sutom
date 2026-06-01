@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper-nav">
+  <div class="wrapper-nav ">
       <ul :class="myClass" class="nav">
           <li @click.stop.prevent="getActiveLink($event)" id="sutom" class="sutom btn btn-primary btn-nav"><router-link to="/solvami/sutom" exact><span class="color-letter-good-place">S</span><span >u</span><span class="color-letter-bad-place">t</span><span>o</span><span>m</span></router-link></li>
           <li @click.stop.prevent="getActiveLink($event)" id="tusmo" class="tusmo btn btn-primary btn-nav"><router-link to="/solvami/tusmo" exact><span class="color-letter-good-place">T</span><span >u</span><span class="color-letter-bad-place">s</span><span>m</span><span>o</span></router-link></li>
