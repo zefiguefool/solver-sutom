@@ -43,6 +43,9 @@
 </template>
 <script>
     import {EventBus} from '../../event-bus.js'
+    import {resetGame, setInputLetters} from '../../store/actions';
+    import {searchWords} from '../../store/actions';
+    import {gameState} from '../../store/gameState';
     export default{
         name: 'SearchForm',
         data(){
@@ -68,7 +71,8 @@
                 letterIsIncluded: false,
                 letterIsExcluded: false,
                 soundActive: false,
-                letterTwoStates: []
+                letterTwoStates: [],
+                gameState
             }
         },
         methods: {
@@ -175,7 +179,8 @@
                         }
                     }
                     //console.log("inputLetters : ", this.inputLetters);
-                    EventBus.$emit('inputLetter',this.inputLetters); 
+                    //EventBus.$emit('inputLetter',this.inputLetters);
+                    gameState.inputLetters = this.inputLetters;
                 }
             },
             inputLetterExclude: function($event){
@@ -268,7 +273,7 @@
                 if(regExWord.length != 0)
                 {
                     this.nothingToSearch = false;
-                    EventBus.$emit('getPossibleWords',{regExWord,wordlength});
+                    searchWords(regExWord,wordlength);
                 }else{
                     this.nothingToSearch = true;
                 }
@@ -294,6 +299,7 @@
                 this.textKeyboardExcludeInclude = "Mode lettres à exclure";
                 this.letterTwoStates = [];
                 EventBus.$emit('reset');
+                //resetGame();
             }
         },
         computed: {

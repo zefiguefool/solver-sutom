@@ -9,12 +9,15 @@
 </template>
 <script>
 import {EventBus} from '../../event-bus.js'
+import {resetGame, suppress} from '../../store/actions';
+import {gameState} from "../../store/gameState";
     export default{
         name: 'DisplayInputLetters',
         data(){
             return{
-                list: [],
-                isWordle: false
+                //list: [],
+                isWordle: false,
+                gameState
             }
         },
         computed:{
@@ -22,17 +25,38 @@ import {EventBus} from '../../event-bus.js'
                 return{
                     wordle: this.isWordle
                 }
-            }
+            },
+            inputLetters: function(){
+                return gameState.inputLetters;
+            },
+            list: function() {
+                const result = [];
+                const letters = this.inputLetters.split('');
+                for (let i = 0;i < letters.length;i++) {
+                    let state = '';
+                    const letter = letters[i];
+                    if (letter === '-') {
+                        state ='color-grid';
+                    } else if (letter === letter.toUpperCase()) {
+                        state = 'color-good-place';
+                    } else {
+                        state ='color-bad-place';
+                    }
+                    result.push({letter, state});
+                }
+                return result;
+            }  
         },
         created(){
             EventBus.$on('getActiveLink',(rootPath) => {
                 rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ;  
             });
             //console.log("isWordle : ", this.isWordle);
-            EventBus.$on('inputLetter',(data) => {
+            
                 //console.log("data : ", data);
-                this.list = [];
-                let tabInputLetters = data.split("");
+                const liste = []
+                //this.list = [];
+                let tabInputLetters = gameState.inputLetters.split("");
                 //console.log("tabInputLetters : ", tabInputLetters);
                 let classAdd = "";
                 for (let i = 0; i < tabInputLetters.length ; i ++){
@@ -45,18 +69,23 @@ import {EventBus} from '../../event-bus.js'
                     else if (tabInputLetters[i] === tabInputLetters[i].toLowerCase()){
                         classAdd = "color-bad-place";
                     }
-                    this.list.push(
+                    liste.push(
                     {
                         letter: tabInputLetters[i],
                         state : classAdd
                     });
+                    game.inputLetters = liste;  
+
+
                 }
-            });
+            
             EventBus.$on('suppress',() => {
-                    this.list.pop();
+                console.log("gameState.inputLetters : ", gameState.inputLetters);
+                    gameState.inputLetters = gameState.inputLetters.slice(0, -1);
                     //console.log("pop list : ", this.list);
-                }
-            );
+                })
+            
+            //suppress();
         },
         updated(){
                 EventBus.$on('reset',() => {
@@ -65,6 +94,7 @@ import {EventBus} from '../../event-bus.js'
                     //console.log("reset list : ", this.list);
                     }
                 );
+                //resetGame();
         }
     }
 </script>

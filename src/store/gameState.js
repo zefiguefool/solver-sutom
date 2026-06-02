@@ -1,27 +1,13 @@
 import Vue from "vue";
 
 export const gameState = Vue.observable({
-  // longueur du mot
+  regExWord: null,
 
-  wordLength: 0,
+  wordlength: 0,
 
-  // regex finale
+  searchVersion: 0,
 
-  regexWord: null,
-
-  // résultats
-
-  possibleWords: [],
-
-  // lettres interdites
-
-  forbiddenLetters: [],
-
-  // lettres présentes
-
-  requiredLetters: [],
-
-  // chargement
-
-  loading: false,
+  resetVersion: 0,
+  searchVersion: 0,
+  inputLetters: "",
 });
