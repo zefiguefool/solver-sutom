@@ -8,7 +8,7 @@
         <div role="presentation" class="intro col-md-7 mx-auto small">
             <h2 class="text-center font-weight-bold font-size-lg">Comment utiliser <span class="title">Solvami </span>? 
                 <span class="text-dark fs-6 font-weight-bold underline">
-                    <a href="#" title="Aller au Solver" @click="emitScroll" class="anchor link-dark" aria-label="Go to Solver">
+                    <a href="#" title="Aller au Solver" @click.prevent="emitScroll" class="anchor link-dark" aria-label="Go to Solver">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 </svg>
@@ -16,13 +16,13 @@
                 </span>
             </h2>
             <ul class="change-color">
-                <li class="first"><span class="color-good-place tile">A</span> = bien placée</li>
-                <li class="second"><span class="bad-place tile p-1">a</span> = présente mal placée</li>
-                <li class="third"><span class="color-grid tile">-</span> = inconnue</li>
+                <li class="first"><span class="color-good-place tile fs-6">A</span> = bien placée</li>
+                <li class="second"><span class="bad-place tile fs-6">a</span> = présente mal placée</li>
+                <li class="third"><span class="color-grid tile fs-6">-</span> = inconnue</li>
                 <li class="fourth"><span class="color-grid tile">"Mode lettres à exclure"</span> = éliminer des lettres</li>
-                <li class="fifth"><span class="search-button">Chercher</span> = lancer la recherche</li>
+                <li class="fifth"><span class="search-button fw-bold">Chercher</span> = lancer la recherche</li>
                 <li class="sixth">
-                    <a href="#" aria-label="Go to Sutom" id="to-scroll" @click="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game active">Sutom</span></a> - <a href="#"  aria-label="Go to tusmo"  @click="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game">Tusmo</span></a> - <a href="#" class="anchor" aria-label="Go to wordle"  @click="emitScrollButton"><span class="select-game">Wordle</span></a> = Selectionner son jeu</li>
+                    <a href="#" aria-label="Go to Sutom" id="to-scroll" @click.prevent="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game active">Sutom</span></a> - <a href="#"  aria-label="Go to tusmo"  @click.prevent="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game">Tusmo</span></a> - <a href="#" class="anchor" aria-label="Go to wordle"  @click.prevent="emitScrollButton"><span class="select-game">Wordle</span></a> = Selectionner son jeu</li>
             </ul>
             <details name="details-infos" class="details-infos">
                 <summary class="relative">
@@ -40,7 +40,7 @@
                             <i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i>
                             Fonctionne pour les jeux <a href="https://sutom.nocle.fr/" target="_blank" title="Aller sur le site de Sutom"
                             class="sutom-color underline p-1">Sutom<i class="fi fi-sc-up-right-from-square"></i></a>, <a
-                            href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Tusmo" class="tuzmo-color underline p-1">Tusmo<i class="fi fi-sc-up-right-from-square"></i></a> et <a href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Wordle" class="wordle-color underline p-1">Wordle<i class="fi fi-sc-up-right-from-square"></i></a>
+                            href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Tusmo" class="tusmo-color underline p-1">Tusmo<i class="fi fi-sc-up-right-from-square"></i></a> et <a href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Wordle" class="wordle-color underline p-1">Wordle<i class="fi fi-sc-up-right-from-square"></i></a>
                         </li>
                         <li class="second">
                             <strong><i class="em em-abacus" aria-role="presentation" aria-label="ABACUS"></i> Le solveur</strong> est affiché en premier. Les jeux Sutom, Tuzmo et Wordle sont affichés en dessous afin de vous permettre de jouer tout en vous aidant du solveur pour résoudre les grilles. Vous pouvez passer à la grille suivante à tout moment. Vous pouvez passer également d'un jeu à l'autre sans perdre votre progression.
@@ -57,43 +57,45 @@
     </div>
 </template>
 <script>
-import { EventBus } from '../../event-bus.js'
+import {setSoundEnabled} from '../../store/actions';
 export default {
     name: 'AppHeader',
     data() {
         return {
-            titreHTML: '<span class="color-good-place">S</span><span class="wordle color-good-place">O</span><span class="color-good-place">L</span><br><span class="color-bad-place">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-good-place"">A</span><br><span class="color-bad-place">M</span><span class="wordle color-good-place">I</span><span class="color-bad-place">&nbsp;</span>',
-            soundActive: false
+            titreHTML: '<span class="color-good-place">S</span><span class="wordle color-good-place">O</span><span class="color-good-place">L</span><br><span class="color-grid">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-good-place"">A</span><br><span class="color-bad-place">M</span><span class="wordle color-good-place">I</span><span class="color-grid">&nbsp;</span>',
+            soundActive: false,
+            heightToScrollOnce: 0
         }
     },
     methods: {
         soundAction() {
             this.soundActive = !this.soundActive;
-            EventBus.$emit('soundAction', this.soundActive);
+            setSoundEnabled(this.soundActive);
         },
         emitScroll(){
-            //console.log("emitScroll header");
-            console.log('emtit scroll header');
-            this.heightToScrollOnce =  document.getElementsByClassName('intro').item(0).clientHeight;
-            //console.log("this.heightToScrollOnce",this.heightToScrollOnce);
+            console.log('emit scroll header'); 
+            this.heightToScrollOnce = document.getElementsByClassName('intro').item(0)?.clientHeight;
             window.scrollBy({
                 top: this.heightToScrollOnce,
                 behavior: 'smooth'
             });
         },
         emitScrollButton(){
-            //console.log("emitScroll header button");
-            console.log('emtit scroll button header');
-            this.heightToScrollOnce =  document.getElementsByClassName('intro').item(0).clientHeight + document.getElementsByClassName('fieldset-container-component').item(0).clientHeight;
-            //console.log("this.heightToScrollOnce",this.heightToScrollOnce);
+            console.log("emitScroll header button");
+            this.heightToScrollOnce = document.getElementsByTagName('h1').item(0).clientHeight + document.getElementsByClassName('intro').item(0)?.clientHeight + document.getElementsByClassName('fieldset-container-component').item(0)?.clientHeight || 0 + document.getElementsByClassName('game-selector').item(0)?.clientHeight ;   
+            console.log("this.heightToScrollOnce",this.heightToScrollOnce);
             window.scrollBy({
                 top: this.heightToScrollOnce,
                 behavior: 'smooth'
             });
+        },
+        created() {
+            
         }
     }
 }
 </script>
 <style scoped>
+@import '../../css/_vars.css';
 @import './Header.css';
 </style>

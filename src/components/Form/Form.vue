@@ -30,20 +30,14 @@
             <ul class="special-keys">
 
                 <li v-on:click.prevent="getPossibleWords" class="validate">
-                    <a href="#">Chercher</a>
+                    <a class="fw-bold" href="#">Chercher</a>
                 </li>
             </ul>
-          <!--   <ul>
-                <li v-on:click.prevent="getPossibleWords" class="validate">
-                    <a href="#">Chercher</a>
-                </li>
-            </ul> -->
         </div>
     </div>
 </template>
 <script>
-    import {EventBus} from '../../event-bus.js'
-    import {resetGame, setInputLetters} from '../../store/actions';
+    import {resetGame, setInputLetters, suppress, setSoundEnabled} from '../../store/actions';
     import {searchWords} from '../../store/actions';
     import {gameState} from '../../store/gameState';
     export default{
@@ -64,13 +58,13 @@
                 isUppercase: false,
                 isExcludeActive: false,
                 textKeyboardExcludeInclude: "Mode lettres à exclure",
-                isWordle: false,
+                /* isWordle: false, */
                 heightToScrollOnce: 0,
                 nothingToSearch: "",
                 firstLetterLowerCase: "",
                 letterIsIncluded: false,
                 letterIsExcluded: false,
-                soundActive: false,
+                //soundActive: false,
                 letterTwoStates: [],
                 gameState
             }
@@ -119,8 +113,7 @@
                     this.toggleBadPlaced.splice(pos,1,false);
                     this.inputLetters = this.inputLetters.substring(0,this.inputLetters.length - 1);
                     this.tabInputLetters.pop();
-
-                    EventBus.$emit('suppress');
+                    setInputLetters(this.inputLetters);
                 }
             },
             inputLetter($event){
@@ -178,8 +171,6 @@
                             audioObj.play();
                         }
                     }
-                    //console.log("inputLetters : ", this.inputLetters);
-                    //EventBus.$emit('inputLetter',this.inputLetters);
                     gameState.inputLetters = this.inputLetters;
                 }
             },
@@ -258,13 +249,10 @@
                         search += splitInputLetters[i].toLowerCase(); 
                     }else if (splitInputLetters[i] === splitInputLetters[i].toLowerCase()){
                         include += '(?=.*' + splitInputLetters[i] + ')';
-                        //search += '(?!'+splitInputLetters[i]+').';
                         search += '(?!'+ splitInputLetters[i]+')' + letterTwoStates + '.';
                     }
                 }
                 wordlength = this.inputLetters.length;
-                //console.log("include : ", include);
-                //console.log("search : ", search);
                 if (wordlength){
                     exclude = '(?!.*['+this.inputWrongLetters+'])';
                     regExWord = new RegExp(`${exclude}${include}${search}${unknown}`);
@@ -280,7 +268,6 @@
                 
             },
             reset:function(){
-                //console.log("reset form");
                 this.firstLetterLowerCase = "",
                 this.nothingToSearch = "";
                 this.active = false;
@@ -298,8 +285,7 @@
                 this.letterIsExcluded = false;
                 this.textKeyboardExcludeInclude = "Mode lettres à exclure";
                 this.letterTwoStates = [];
-                EventBus.$emit('reset');
-                //resetGame();
+                resetGame();
             }
         },
         computed: {
@@ -317,21 +303,20 @@
                 return{
                     wordle: this.isWordle
                 }
+            },
+             soundActive() {
+
+                return gameState.soundEnabled;
+            },
+            isWordle() {
+                return this.$route.path === '/solvami/wordle';
             }
+
         },
         created(){
             //console.log("created and is wordle equal to : ", this.isWordle);
-            //let alphabet = "abcdefghijklmnopqrstuvwxyz";
             let alphabet = "azertyuiopqsdfghjklmwxcvbn";
             this.alphabeticallist = alphabet.split("");
-            EventBus.$on('getActiveLink',(rootPath) => {
-                rootPath == '/wordle' ? this.isWordle = true : this.isWordle = false ; 
-                this.firstLetterLowerCase = "";
-            });
-            EventBus.$on('soundAction',(soundActive) => {
-                this.soundActive = soundActive;
-            });
-
         }
     }
 </script>

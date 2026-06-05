@@ -39,11 +39,12 @@ export default {
     },
     methods: {
       emitScroll(){
-        this.heightToScrollOnce = document.getElementsByClassName('intro').item(0).clientHeight;
-        /* window.scrollBy({
+        this.heightToScrollOnce = document.getElementsByClassName('fieldset-container-component').item(0)?.clientHeight + document.getElementsByTagName('h1').item(0).clientHeight || 0;
+        console.log('emit scroll solver component');
+        window.scrollBy({
           top: this.heightToScrollOnce,
           behavior: 'smooth'
-        }); */
+        });
       }
     }
 }
@@ -64,7 +65,7 @@ export default {
     background-color: #e7002a;
   }
   .color-bad-place{
-    background-color: #0077c7;
+    background-color: #ffbd00;
   }
   .bad-place{
     background-color: #ffbd00;

@@ -1,10 +1,33 @@
 <template>
   <div class="wrapper-nav ">
-      <ul :class="myClass" class="nav">
-          <li @click.stop.prevent="getActiveLink($event)" id="sutom" class="sutom btn btn-primary btn-nav"><router-link to="/solvami/sutom" exact><span class="color-letter-good-place">S</span><span >u</span><span class="color-letter-bad-place">t</span><span>o</span><span>m</span></router-link></li>
-          <li @click.stop.prevent="getActiveLink($event)" id="tusmo" class="tusmo btn btn-primary btn-nav"><router-link to="/solvami/tusmo" exact><span class="color-letter-good-place">T</span><span >u</span><span class="color-letter-bad-place">s</span><span>m</span><span>o</span></router-link></li>
-          <li @click.stop.prevent="getActiveLink($event)" id="wordle" class="wordle btn btn-primary btn-nav"><router-link to="/solvami/wordle"><span class="color-letter-bad-place">W</span><span>o</span><span class="color-letter-good-place">r</span><span>d</span><span>l</span><span>e</span></router-link></li>
-      </ul>
+    <ul :class="myClass" class="nav">
+        <li>
+            <router-link
+                to="/solvami/sutom"
+                class="sutom btn btn-primary btn-nav"
+                @click="isActive = false">
+                <span class="color-grid">S</span><span>u</span><span class="color-letter-bad-place">t</span><span>o</span><span>m</span>
+            </router-link>
+        </li>
+
+        <li>
+            <router-link
+                to="/solvami/tusmo"
+                class="tusmo btn btn-primary btn    -nav"
+                @click="isActive = false">
+                <span class="color-good-place">T</span><span>u</span><span class="color-letter-bad-place">s</span><span>m</span><span>o</span>
+            </router-link>
+        </li>
+
+        <li>
+            <router-link
+                to="/solvami/wordle"
+                class="wordle btn btn-primary btn-nav"
+                @click="isActive = false">
+                <span class="color-wordle-ok">W</span><span>o</span><span class="color-letter-bad-place">r</span><span>d</span><span>l</span><span>e</span>
+            </router-link>
+        </li>
+     </ul>
       <div class="box">
             <div @click="isActive = !isActive" :class="myClass" class="contLigne btn1">
                 <div class="lignes"></div>
@@ -15,7 +38,6 @@
   </div>
 </template>
 <script>
-    import {EventBus} from '../../event-bus.js'
     export default {
         name: 'NavigationMenu',
         components: {
@@ -23,13 +45,6 @@
         data(){
             return{
                 isActive: false
-            }
-        },
-        methods:{
-            getActiveLink($event){
-                this.isActive = !this.isActive;
-                let rootPath = $event.target.parentNode.getAttribute("href");
-                EventBus.$emit('getActiveLink',rootPath);
             }
         },
         computed: {

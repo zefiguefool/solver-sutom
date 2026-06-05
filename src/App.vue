@@ -106,48 +106,60 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size:1rem;
+    background-color: var(--color-background);
+    color: var(--color-text);
   }
   .color-grid{
-     background-color: #0077c7;
+     background-color: var(--color-grid);
      border-radius: 4px;
   }
   .color-good-place{
-    background-color: #e7002a;
+    background-color: var(--color-good-place);
     border-radius: 4px;
   }
   .color-bad-place{
-    background-color: #0077c7;
+    background-color: var(--color-bad-place);
     border-radius: 4px;
   }
   .bad-place{
-    background-color: #ffbd00;
+    background-color: var(--color-bad-place);
     border-radius: 4px;
   }
+  .color-wordle-ok{
+    background-color: var(--color-wordle-ok);
+    border-radius: 4px;
+  }
+   .color-bad-place span{
+    background-color: var(--color-bad-place);
+    border-radius: 2rem;
+    width: 2.3rem;
+    display: inline-block
+  }
   .color-bad-place span{
-    background-color: #ffbd00;
+    background-color: var(--color-bad-place);
     border-radius: 2rem;
     width: 2.3rem;
     display: inline-block
   }
   .color-border{
-    background-color: #fff;
+    background-color: var(--color-border);
   }
 /* tusmo */
   .tusmo .input-letters li{
       border-radius: 0.5rem;
   }
   .tusmo .color-grid{
-     background-color: #3a3a3c;
+     background-color: var(--tusmo-color-grid);
   }
   .tusmo .color-good-place{
-    background-color: #e7002a;
+    background-color: var(--tusmo-color-good-place);
   }
   .tusmo .color-bad-place{
-    background-color: #ffbd00;
+    background-color: var(--tusmo-color-bad-place);
     
   }
    .tusmo .color-bad-place span{
-    background-color: #ffbd00;
+    background-color: var(--tusmo-color-bad-place);
     border-radius:0;
   }
 /*wordle*/
@@ -155,43 +167,43 @@ export default {
       border-radius: 0.5rem;
   }
   .wordle .color-grid{
-     background-color: #3a3a3c;
+     background-color: var(--wordle-color-grid);
   }
   .wordle .color-good-place, .wordle.color-good-place{
-    background-color: #3eaa42;
+    background-color: var(--wordle-color-good-place);
   }
   .wordle .color-bad-place{
-    background-color: #d3952a;
+    background-color: var(--wordle-color-bad-place);
     
   }
    .wordle .color-bad-place span{
-    background-color: #d3952a;
+    background-color: var(--wordle-color-bad-place);
     border-radius:0;
   }
 /**/
   .sutom .color-letter-nok{
-     color: #0077c7;
+     color: var(--sutom-color-letter-nok)
   }
   .sutom .color-letter-good-place{
-    color: #e7002a;
+    color: var(--sutom-color-letter-good-place);
   }
   .sutom.color-letter-bad-place{
-    color: #ffbd00;
+    color: var(--sutom-color-letter-bad-place);
     border-radius: 2rem;
   }
 
 /*wordle*/
   .wordle .color-letter-nok{
-     color: #3a3a3c;
+     color:var(--wordle-nok)
   }
   .wordle .color-letter-good-place{
-    color: #3eaa42;
+    color: var(--wordle-color-good-place);
   }
   .wordle.color-letter-good-place{
-    color: #3eaa42;
+    color: var(--wordle-color-good-place);
   }
   .wordle .color-letter-bad-place, .wordle.color-letter-bad-place{
-    color: #d3952a;
+    color: var(--wordle-color-bad-place);
     border-radius: none;
   }
 
@@ -214,7 +226,7 @@ header {
 
 .game-selector button {
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: var(--color-select-game);
   color: white;
   border: none;
   border-radius: 5px;
@@ -223,11 +235,11 @@ header {
 }
 
 .game-selector button:hover {
-  background-color: #45a049;
+  background-color: var(--color-select-game-hover);
 }
 
 .game-selector button.active {
-  background-color: #2E7D32;
+  background-color: var(--color-select-game-active);
   font-weight: bold;
 }
 

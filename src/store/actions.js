@@ -1,33 +1,34 @@
 import { gameState } from "./gameState";
-
+gameState;
 export function setInputLetters(letters) {
   gameState.inputLetters = letters;
 }
 
 export function searchWords(regExWord, wordlength) {
   gameState.regExWord = regExWord;
-
   gameState.wordlength = wordlength;
-
   gameState.searchVersion++;
 }
 
-/* export function resetGame() {
-  gameState.resetVersion++;
-}
- */
-export function suppress() {
+export function suppress(inputLetters) {
   gameState.suppress = true;
+  gameState.inputLetters = inputLetters;
 }
 
 export function resetGame() {
-  gameState.resetCounter++;
+  gameState.inputLetters = [];
+  gameState.list = [];
 
   gameState.regexWord = null;
 
+  gameState.possibleWords = [];
   gameState.wordLength = 0;
 
-  gameState.inputLetters = [];
+  gameState.doesExist = false;
+  gameState.suppress = false;
+  gameState.resetCounter = 0;
+}
 
-  gameState.possibleWords = [];
+export function setSoundEnabled(enabled) {
+  gameState.soundEnabled = enabled;
 }

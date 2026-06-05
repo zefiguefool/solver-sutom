@@ -1,11 +1,14 @@
 .wrapper-nav {
   height: 6rem;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 .nav {
   position: fixed;
   z-index: 3;
   top: 3.8rem;
-  left: -6rem;
+  left: -10rem;
   transition: all 0.5s ease-in-out;
 }
 .nav .btn-primary {
@@ -26,6 +29,7 @@
   align-items: center;
   position: relative;
   top: 1px;
+  z-index: 2;
 }
 .contLigne {
   width: 22.5px;

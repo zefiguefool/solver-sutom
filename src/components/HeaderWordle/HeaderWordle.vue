@@ -6,9 +6,9 @@
             <img loading="lazy" alt="sound active" aria-label="sound active" width="30" height="25" v-if="soundActive" src="../../assets/images/sound-on.jpg" />
         </a>
         <div role="presentation" class="intro col-md-7 mx-auto small">
-            <h2 class="text-center font-weight-bold font-size-lg">Comment utiliser le <span class="title">Solvami</span> ? 
+            <h2 class="text-center font-weight-bold font-size-lg">Comment utiliser <span class="title">Solvami</span> ? 
                 <span class="text-dark fs-6 font-weight-bold underline">
-                    <a href="#" title="Aller au Solver" @click="emitScroll" class="anchor link-dark" aria-label="Go to Solver">
+                    <a href="#" title="Aller au Solver" @click.prevent="emitScroll" class="anchor link-dark" aria-label="Go to Solver">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 </svg>
@@ -17,14 +17,14 @@
             </h2>
             <ul class="change-color">
                 <li class="first"><span class="color-good-place tile">A</span> = bien placée</li>
-                <li class="second"><span class="bad-place tile p-1">a</span> = présente mal placée</li>
+                <li class="second"><span class="bad-place tile fs-6">a</span> = présente mal placée</li>
                 <li class="third"><span class="color-grid tile">-</span> = inconnue</li>
                 <li class="fourth"><span class="color-grid tile">"Mode lettres à exclure"</span> = éliminer des lettres</li>
                 <li class="fifth"><span class="search-button">Chercher</span> = lancer la recherche</li>
                 <li class="sixth">
-                    <a href="#" aria-label="Go to Sutom" id="to-scroll" @click="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game">Sutom</span></a> - <a href="#"  aria-label="Go to tusmo"  @click="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game">Tusmo</span></a> - <a href="#" class="anchor" aria-label="Go to wordle"  @click="emitScrollButton"><span class="select-game active">Wordle</span></a> = Selectionner son jeu</li>
+                    <a href="#" aria-label="Go to Sutom" id="to-scroll" @click.prevent="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game">Sutom</span></a> - <a href="#"  aria-label="Go to tusmo"  @click.prevent="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game">Tusmo</span></a> - <a href="#" class="anchor" aria-label="Go to wordle"  @click.prevent="emitScrollButton"><span class="select-game active">Wordle</span></a> = Selectionner son jeu</li>
             </ul>
-  <details name="details-infos" class="details-infos">
+            <details name="details-infos" class="details-infos">
                 <summary class="relative">
                     <span class="px-2 py-1 font-weight-bold rounded">
                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle align-text-top" viewBox="0 0 16 16">
@@ -56,39 +56,45 @@
     </div>
 </template>
 <script>
-    import {EventBus} from '../../event-bus.js'
+    import {setSoundEnabled} from '../../store/actions';
     export default{
         name: 'HeaderWordle',
         data(){
             return{
                 isWordle: false,
-                titreHTML: '<span class="color-good-place">S</span><span class="wordle color-good-place">O</span><span class="color-good-place">L</span><br><span class="color-bad-place">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-good-place"">A</span><br><span class="wordle bad-place">M</span><span class="wordle color-good-place">I</span><span class="color-bad-place">&nbsp;</span>',
+                titreHTML: '<span class="color-good-place">S</span><span class="wordle color-bad-place">O</span><span class="color-good-place">L</span><br><span class="color-bad-place">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-bad-place"">A</span><br><span class="wordle bad-place">M</span><span class="wordle color-good-place">I</span><span class="color-bad-place">&nbsp;</span>',
                 soundActive : false
             }
         },
         methods: {
             soundAction(){
                 this.soundActive = !this.soundActive;
-                EventBus.$emit('soundAction',this.soundActive); 
+                setSoundEnabled(
+                    this.soundActive
+                ); 
             },
             emitScroll(){
-                this.heightToScrollOnce =  document.getElementsByClassName('intro').item(0).clientHeight;
-                //console.log("this.heightToScrollOnce",this.heightToScrollOnce);
+                console.log('emit scroll header');
+                this.heightToScrollOnce = document.getElementsByClassName('intro').item(0)?.clientHeight;
+                console.log("this.heightToScrollOnce",this.heightToScrollOnce);
                 window.scrollBy({
                     top: this.heightToScrollOnce,
                     behavior: 'smooth'
                 });
             },
             emitScrollButton(){
-                this.heightToScrollOnce =  document.getElementsByClassName('intro').item(0).clientHeight + document.getElementsByClassName('fieldset-container-component').item(0).clientHeight;
+                console.log("emitScroll header button");
+                this.heightToScrollOnce = document.getElementsByTagName('h1').item(0).clientHeight + document.getElementsByClassName('intro').item(0)?.clientHeight + document.getElementsByClassName('fieldset-container-component').item(0)?.clientHeight || 0 + document.getElementsByClassName('game-selector').item(0)?.clientHeight ;   
+                console.log("this.heightToScrollOnce",this.heightToScrollOnce);
                 window.scrollBy({
                     top: this.heightToScrollOnce,
                     behavior: 'smooth'
                 });
-            }
+            },
         }
     }
 </script>
 <style>
+    @import '../../css/_vars.css';
     @import './HeaderWordle.css';
 </style>

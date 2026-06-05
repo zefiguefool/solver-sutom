@@ -1,15 +1,12 @@
 .header-top {
-  background: #fff;
+  background: var(--color-background);
   margin: 0 auto;
   width: 100%;
-  /*  &.sutom {
-    margin-top: 7.5rem;
-  } */
 }
 
 h1,
 .h1 {
-  position: absolute;
+  position: fixed;
   top: 0;
   text-align: center;
   text-transform: uppercase;
@@ -24,13 +21,14 @@ h1,
   font-size: 1.5rem !important;
   font-family: "Fredoka Bold", sans-serif;
   width: 100%;
+  z-index: 1;
 }
 
 h1 > span {
   display: inline-block;
   width: 2rem;
   border: 1px solid #fff;
-  background-color: #0077c7;
+  background-color: var(--color-grid);
 }
 .sound-element {
   position: fixed;
@@ -43,14 +41,12 @@ h1 > span {
   width: 36px;
 }
 
-.intro {
-  width: 90%;
+.sutom .intro {
+  margin-top: 7.5rem;
 }
 
-.sutom .intro {
-  margin-top: 1.5rem;
-  width: 90%;
-  display: grid;
+.intro {
+  padding: 0;
 }
 
 .intro h2 {
@@ -75,33 +71,33 @@ h1 > span {
 }
 
 .intro ul li {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
 }
 :is(.change-color, .with-color-transition) {
   list-style-type: circle;
 }
 
 .change-color li.first::marker {
-  color: rgb(255, 0, 0);
+  color: var(--color-good-place);
 }
 .change-color li.second::marker {
-  color: rgb(210, 188, 62);
+  color: var(--color-bad-place);
 }
 .change-color li.third::marker {
-  color: #0077c7;
+  color: var(--color-grid);
 }
 .change-color li.fourth::marker {
-  color: #0077c7;
+  color: var(--color-grid);
 }
 .change-color li.fifth::marker {
-  color: rgb(255, 0, 0);
+  color: var(--color-good-place);
 }
 .change-color li.sixth::marker {
-  color: #277d32;
+  color: var(--color-bad-place);
 }
 
 .intro a {
-  padding: 0;
+  padding: 0.3rem;
   color: white;
   border-radius: 4px;
   font-weight: bold;
@@ -121,15 +117,15 @@ h1 > span {
 
 .intro a.sutom-color {
   color: white;
-  background-color: #0077c7;
+  background-color: var(--sutom-color-grid);
 }
-.intro a.tuzmo-color {
+.intro a.tusmo-color {
   color: white;
-  background-color: #0a5566;
+  background-color: var(--tusmo-color-grid);
 }
 .intro a.wordle-color {
   color: white;
-  background-color: #277d32;
+  background-color: var(--wordle-color-grid);
 }
 
 .intro span.tile {
@@ -151,20 +147,21 @@ span.search-button {
   border-radius: 4px;
   text-decoration: none;
   font-weight: bold;
+  background-color: white;
 }
 
 span.select-game {
   display: inline-block;
   padding: 0.3rem 0.5rem;
-  background-color: limegreen;
-  color: #fff;
+  background-color: var(--color-select-game);
+  color: white;
   padding: 0.5rem 1rem;
-  border: 1px solid limegreen;
+  border: 1px solid var(--color-select-game);
   border-radius: 4px;
   text-decoration: none;
-  font-weight: normal;
+  font-weight: bold;
   &.active {
-    background-color: #2e7d32;
+    background-color: var(--color-select-game-active);
     color: white;
     font-weight: bold;
   }
@@ -178,55 +175,60 @@ details.details-infos {
   /* The marker */
   margin: 0 auto;
   max-width: 744px;
-
   summary {
     cursor: pointer;
     list-style: none;
   }
-
-  summary::marker {
-    content: "\23F5";
-    font-size: 1rem;
-    color: maroon;
-  }
-
-  /* The marker when <details> is open */
-  &[open] summary::marker {
-    /* content: "\23F6"; */
-    content: "\23F7";
-    color: maroon;
-  }
-
-  /* Because ::marker doesn’t support many properties */
-  summary span {
-    display: inline-block;
-    border-radius: 25px 25px 25px 0;
-    font-size: 0.9rem;
-    background-color: maroon;
-    color: white;
-    padding: 0.1rem 0.5rem;
-  }
 }
-
-/* more-infos-container.expendable {
-  background: #fff;
+details .more-infos-container {
+  max-height: 0;
+  opacity: 0;
   overflow: hidden;
-  transition: all 0.5s ease-in-out;
-  height: 0;
+  transform: translateY(-8px);
+  transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
 }
 
+details[open] .more-infos-container {
+  max-height: 600px;
+  opacity: 1;
+  transform: translateY(0);
+}
+summary::marker {
+  content: "\23F5";
+  font-size: 1rem;
+  color: maroon;
+}
+
+/* The marker when <details> is open */
+[open] summary::marker {
+  /* content: "\23F6"; */
+  content: "\23F7";
+  color: #800000;
+}
+
+/* Because ::marker doesn’t support many properties */
+summary span {
+  display: inline-block;
+  border-radius: 25px 25px 25px 0;
+  font-size: 0.9rem;
+  background-color: maroon;
+  color: white;
+  padding: 0.1rem 0.5rem;
+}
+
+/*
 .expandable:target {
   height: 200px; 
   ]} */
 
 .more-infos li {
   &.first::marker {
-    color: limegreen;
+    color: var(--color-select-game);
   }
   &.second::marker {
     color: red;
   }
   &.third::marker {
-    color: #0077c7;
+    color: var(--color-grid);
   }
 }

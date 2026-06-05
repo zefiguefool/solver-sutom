@@ -46,7 +46,7 @@
   border: 1px solid #fff;
   color: #fff;
   font-size: 1.5em;
-  background-color: #555;
+  background-color: var(--color-grid);
   border-radius: 0.3rem;
   display: flex;
   justify-content: center;
@@ -98,7 +98,7 @@
 }
 
 .wordle .display-keyboard-letters li.isGoodPlaced {
-  background-color: #3eaa42;
+  background-color: var(--color-good-place);
 }
 .wordle .display-keyboard-letters li.isBadPlaced {
   background-color: #d3952a;
@@ -131,7 +131,7 @@
 .display-keyboard-letters li.special-keys {
   width: 6rem;
   font-size: 1.1em;
-  line-height: 1.3rem;
+  line-height: 1.2rem;
   font-size: 1rem;
   @media (max-width: 500px) {
     line-height: 1rem;

@@ -18,9 +18,9 @@
     </div>
 </template>
 <script>
-import {EventBus} from '../../event-bus.js'
+
 import {gameState} from '../../store/gameState';
-import {resetGame} from '../../store/gameState';
+import {resetGame, suppress} from '../../store/actions';
     export default{
         name: 'DisplayPossibleWords',
         data(){
@@ -35,25 +35,15 @@ import {resetGame} from '../../store/gameState';
                 gameState            
             }
         },
-       // Refactored to use fetch and improved performance by normalizing words during loading and simplifying the sorting logic by using localeCompare directly on the filtered list.
-        created() {
-            // 1. Define the correct absolute path to your dictionary file. This should point to the location where final-dictionary.txt is served from your web server.
-            //let fileUrl = './total-dictionary.txt' || '/solvami/total-dictionary.txt'; // Adjust this path as needed
-
-            EventBus.$on('suppress', () => {
-                this.doesExist = true;
-            });
-
-        },
         mounted() {
-            this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48;
+            /* this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48; */
              // longueurs fréquentes
                 this.loadDictionary(5);
                 this.loadDictionary(6);
                 this.loadDictionary(7);
         },
         beforeUpdate(){
-            this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight+48;
+            this.heightToScroll = document.getElementById('header-top').clientHeight + document.getElementById('display-keyboard-letters').clientHeight;
         },
         methods: {
 
@@ -61,13 +51,11 @@ import {resetGame} from '../../store/gameState';
 
             // déjà chargé
             if (this.dictionaryCache[length]) {
-            return this.dictionaryCache[length];
+                return this.dictionaryCache[length];
             }
-            
-           const response = await fetch(
-            `${process.env.BASE_URL}dict/${length}.txt`
-            );
 
+           //const response = await fetch(`${process.env.BASE_URL}dict/${length}.txt`);
+            const response = await fetch(`/dict/${length}.txt`);
             if (!response.ok) {
                 throw new Error(
                     `Impossible de charger ${length}.txt`
@@ -86,116 +74,69 @@ import {resetGame} from '../../store/gameState';
             }
         },
         watch: {
+            async 'gameState.searchVersion'() {
+                if (typeof window === 'undefined') return;
+                console.log('searchVersion changed, recalculating possible words...');
+                const regExWord = this.gameState.regExWord;
 
-        async 'gameState.searchVersion'() {
-            console.log('searchVersion changed, recalculating possible words...');
-            const regExWord =
-            this.gameState.regExWord;
+                const wordlength = this.gameState.wordlength;
 
-            const wordlength =
-            this.gameState.wordlength;
+                if ( !regExWord || !wordlength) {
+                    return;
+                }
 
-            if (
-            !regExWord ||
-            !wordlength
-            ) {
-            return;
-            }
+                this.doesExist = true;
+                this.counterWordsFound = 0;
+                this.objPossibleWords = [];
+                this.lengthWordToFind = wordlength;
 
-            // ==========================
-            // TON CODE ACTUEL
-            // ==========================
-
-            this.doesExist = true;
-
-            this.counterWordsFound = 0;
-
-            this.objPossibleWords = [];
-
-            this.lengthWordToFind = wordlength;
-
-            const words =
-            await this.loadDictionary(
-                wordlength
-            );
-
-            const possibleWords = [];
-
-            let firstLetter = null;
-
-            const regexSource =
-            regExWord.source;
-
-            if (
-            regexSource &&
-            regexSource[0] &&
-            /[a-z]/i.test(
-                regexSource[0]
-            )
-            ) {
-            firstLetter =
-                regexSource[0];
-            }
-
-            for (
-            const word
-            of words
-            ) {
-
-            if (
-                firstLetter &&
-                word[0] !== firstLetter
-            ) {
-                continue;
-            }
-
-            if (
-                regExWord.test(word)
-            ) {
-                possibleWords.push(
-                word
+                const words = await this.loadDictionary(
+                    wordlength
                 );
-            }
-            }
 
-            if (
-            possibleWords.length > 0
-            ) {
+                const possibleWords = [];
+                let firstLetter = null;
 
-            this.uniqueWords =
-                [...new Set(
-                possibleWords
-                )];
+                const regexSource = regExWord.source;
+                if (regexSource && regexSource[0] && /[a-z]/i.test(regexSource[0])) {
+                    firstLetter = regexSource[0];
+                }
+                console.time("search");
+                for (const word of words) {
+                    if (firstLetter && word[0] !== firstLetter) {
+                        continue;
+                    }
 
-            this.objPossibleWords = [{
-                lengthWords:
-                wordlength,
+                    if (regExWord.test(word)) {
+                        possibleWords.push(word);
+                    }
+                }
+                console.timeEnd("search");
+                if (possibleWords.length > 0) {
+                    this.uniqueWords =
+                        [...new Set(
+                        possibleWords
+                        )];
 
-                wordsWithThisLength:
-                this.uniqueWords
-            }];
+                    this.objPossibleWords = [{
+                        lengthWords:
+                        wordlength,
 
-            } else {
+                        wordsWithThisLength:
+                        this.uniqueWords
+                    }];
 
-            this.doesExist = false;
+                    } else {
 
-            this.uniqueWords = [];
-            }
-        }
+                        this.doesExist = false;
+                        this.uniqueWords = [];
+                    }
+                }
+            
         },
         updated(){
-            EventBus.$on('reset',() => {
-                this.counterWordsFound = 375194;
-                this.objPossibleWords = [];
-                this.doesExist = true;
-                }
-            );
-           
             console.log("updated DisplayPossibleWords");
-            window.scrollBy({
-                top: this.heightToScroll,
-                behavior: 'smooth'
-            });
+
         }   
     }
 </script>

@@ -1,4 +1,27 @@
-/*$color-grid: #0077c7;
-$color-good-place: #e7002a;
-$color-bad-place: #ffbd00;
-$color-border: #fff;*/
+:root {
+  --color-background: #fffafa;
+  --color-grid: #0077c7;
+  --color-good-place: #e7002a;
+  --color-bad-place: #ffbd00;
+  --color-border: #fff;
+  --color-wordle-ok: #2a8439;
+
+  --color-contrast: contrast-color(var(--color-grid));
+
+  --sutom-color-grid: #0077c7;
+  --sutom-color-good-place: #e7002a;
+  --sutom-color-bad-place: #ffbd00;
+
+  --tusmo-color-grid: #3a3a3c;
+  --tusmo-color-good-place: #e7002a;
+  --tusmo-color-bad-place: #ffbd00;
+
+  --wordle-color-grid: #3a3a3c;
+  --wordle-color-good-place: #2a8439;
+  --wordle-color-bad-place: #d3952a;
+  --wordle-nok: #3a3a3c;
+
+  --color-select-game: #3f5214;
+  --color-select-game-hover: #2a8439;
+  --color-select-game-active: #2e7d32;
+}

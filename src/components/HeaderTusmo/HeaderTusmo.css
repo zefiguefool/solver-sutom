@@ -40,29 +40,23 @@ h1 > span {
 .sound-element img {
   width: 36px;
 }
-.intro {
-  margin-top: 1.5rem;
-}
-.tusmo .intro {
-  margin-top: 1.5rem;
-}
 
-.tusmo .intro a {
-  color: #0a5566;
+.tusmo .intro {
+  margin-top: 7.5rem;
 }
 
 .intro a.sutom-color {
   color: white;
-  background-color: #0077c7;
+  background-color: var(--color-grid);
 }
-.intro a.tuzmo-color,
+.intro a.tusmo-color,
 .tuzmo-color {
   color: white;
-  background-color: #0a5566;
+  background-color: var(--tusmo-color-grid);
 }
 .intro a.wordle-color {
   color: white;
-  background-color: #277d32;
+  background-color: var(--wordle-color-grid);
 }
 
 .intro img {
@@ -77,4 +71,158 @@ summary span {
   background-color: maroon;
   color: white;
   border-radius: 25px 25px 25px 0;
+}
+
+/********* à foactoriser */
+.intro ul {
+  margin-top: 0.5rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-self: center;
+  width: fit-content;
+}
+
+.intro ul li {
+  margin-bottom: 0.3rem;
+}
+:is(.change-color, .with-color-transition) {
+  list-style-type: circle;
+}
+
+.change-color li.first::marker {
+  color: var(--color-good-place);
+}
+.change-color li.second::marker {
+  color: var(--color-bad-place);
+}
+.change-color li.third::marker {
+  color: var(--color-grid);
+}
+.change-color li.fourth::marker {
+  color: var(--color-grid);
+}
+.change-color li.fifth::marker {
+  color: var(--color-good-place);
+}
+.change-color li.sixth::marker {
+  color: var(--color-bad-place);
+}
+
+.intro a {
+  padding: 0;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-top: 0.1rem;
+  margin-bottom: 0;
+  &.anchor {
+    color: inherit;
+    font-weight: normal;
+    padding: inherit;
+    margin-top: inherit;
+    color: maroon;
+    font-weight: bold;
+    padding: 0;
+    margin-top: 0;
+  }
+}
+
+.intro a.sutom-color {
+  color: white;
+  background-color: var(--tusmo-color-grid);
+}
+.intro a.tuzmo-color {
+  color: white;
+  background-color: var(--tusmo-color-grid);
+}
+.intro a.wordle-color {
+  color: white;
+  background-color: var(--tusmo-color-grid);
+}
+
+.intro span.tile {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 0.1rem;
+}
+
+span.search-button {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  color: crimson;
+  padding: 0.5rem 1rem;
+  border: 1px solid crimson;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  background-color: white;
+}
+
+span.select-game {
+  display: inline-block;
+  padding: 0.3rem 0.5rem;
+  background-color: var(--color-select-game);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-select-game);
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: normal;
+  &.active {
+    background-color: var(--color-select-game-active);
+    color: white;
+    font-weight: bold;
+  }
+}
+
+.font-smaller {
+  font-size: 0.9rem;
+}
+
+details.details-infos {
+  /* The marker */
+  margin: 0 auto;
+  max-width: 744px;
+
+  summary {
+    cursor: pointer;
+    list-style: none;
+  }
+}
+details .more-infos-container {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-8px);
+  transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+
+details[open] .more-infos-container {
+  max-height: 600px;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+summary::marker {
+  content: "\23F5";
+  font-size: 1rem;
+  color: maroon;
+}
+
+.more-infos li {
+  &.first::marker {
+    color: var(--color-select-game);
+  }
+  &.second::marker {
+    color: red;
+  }
+  &.third::marker {
+    color: var(--color-grid);
+  }
 }
