@@ -1,5 +1,13 @@
 <template>
   <div id="app">
+    <span @click.once="emitScroll" data-v-741978ef="" class="sticky-btn text-maroon fs-6 font-weight-bold underline position-sticky absolute-bottom">
+      top
+      <a data-v-741978ef="" href="#" title="Aller au Solver" aria-label="Go to Solver" class="anchor link-dark">
+        <svg width="7%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 12L12 8M12 8L8 12M12 8V16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </span>
     <navigation></navigation>
     <router-view></router-view>
     <div id="to-scroll" class="to-scroll mx-auto">
@@ -95,6 +103,14 @@ export default {
       // Ici, tu peux aussi appeler une API ou une fonction pour résoudre
       this.solverResults = `Résultats pour : ${attempts}`;
     },
+    emitScroll(){
+        this.heightToScrollOnce = document.getElementsByClassName('fieldset-container-component').item(0)?.clientHeight + document.getElementsByTagName('h1').item(0).clientHeight || 0;
+        console.log('emit scroll solver component');
+        window.scrollBy({
+          top: this.heightToScrollOnce,
+          behavior: 'smooth'
+        });
+      }
   }
 }
 </script>
@@ -139,7 +155,8 @@ export default {
     background-color: var(--color-bad-place);
     border-radius: 2rem;
     width: 2.3rem;
-    display: inline-block
+    display: inline-block;
+    text-align: center;
   }
   .color-border{
     background-color: var(--color-border);
@@ -149,7 +166,7 @@ export default {
       border-radius: 0.5rem;
   }
   .tusmo .color-grid{
-     background-color: var(--tusmo-color-grid);
+     background-color: var(--tusmo-color-background);
   }
   .tusmo .color-good-place{
     background-color: var(--tusmo-color-good-place);
@@ -168,6 +185,9 @@ export default {
   }
   .wordle .color-grid{
      background-color: var(--wordle-color-grid);
+  }
+  .wordle-color-keyboard-tile{
+    background-color: var(--wordle-color-keyboard-tile);
   }
   .wordle .color-good-place, .wordle.color-good-place{
     background-color: var(--wordle-color-good-place);
@@ -276,5 +296,11 @@ header {
   .game-container {
     flex-direction: row;
   }
+}
+
+.sticky-btn {
+  z-index:3;
+  top:50vh;
+  left:90%;
 }
 </style>

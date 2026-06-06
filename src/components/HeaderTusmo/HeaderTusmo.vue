@@ -1,12 +1,12 @@
 <template>
-    <div id="header-top" class="header-top tusmo">
+     <div id="header-top" class="tusmo header-top">
         <h1 v-html="titreHTML" class="py-2 ps-0 pe-4"></h1>
         <a class="sound-element" @click="soundAction()" href="#">
             <img loading="lazy" alt="sound inactive" aria-label="sound inactive" width="36" height="30" v-if="!soundActive" src="../../assets/images/sound-off.jpg" />
             <img loading="lazy" alt="sound active" aria-label="sound active" width="30" height="25" v-if="soundActive" src="../../assets/images/sound-on.jpg" />
         </a>
         <div role="presentation" class="intro col-md-7 mx-auto small">
-            <h2 class="text-center font-weight-bold font-size-lg">Comment utiliser <span class="title">Solvami </span> ? 
+            <h2 class="text-center font-weight-bold font-size-lg">Comment utiliser <span class="title pe-1">Solvami ?</span> 
                 <span class="text-dark fs-6 font-weight-bold underline">
                     <a href="#" title="Aller au Solver" @click.prevent="emitScroll" class="anchor link-dark" aria-label="Go to Solver">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
@@ -15,14 +15,16 @@
                     </a>
                 </span>
             </h2>
-            <ul class="change-color">
-                <li class="first"><span class="color-good-place tile">A</span> = bien placée</li>
-                <li class="second"><span class="bad-place tile fs-6">a</span> = présente mal placée</li>
-                <li class="third"><span class="color-grid tile">-</span> = inconnue</li>
-                <li class="fourth"><span class="color-grid tile">"Mode lettres à exclure"</span> = éliminer des lettres</li>
-                <li class="fifth"><span class="search-button">Chercher</span> = lancer la recherche</li>
-                <li class="sixth">
-                    <a href="#" aria-label="Go to Sutom" id="to-scroll" @click.prevent="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game active">Sutom</span></a> - <a href="#"  aria-label="Go to tusmo"  @click.prevent="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game">Tusmo</span></a> - <a href="#" class="anchor" aria-label="Go to wordle"  @click.prevent="emitScrollButton"><span class="select-game">Wordle</span></a> = Selectionner son jeu</li>
+            <ul class="first-list-actions change-color">
+                <li class="first"><span class="color-good-place tile fs-6">A</span> bien placée</li>
+                <li class="second"><span class="bad-place tile fs-6">a</span> mal placée</li>
+                <li class="third"><span class="color-grid tile fs-6">-</span> inconnue</li>
+            </ul>
+            <ul class="second-list-actions change-color">
+                <li class="fourth"><span class="color-grid tile">"Mode lettres à exclure"</span> éliminer des lettres</li>
+                <li class="fifth"><span class="search-button fw-bold">Chercher</span> lancer la recherche</li>
+                <li class="sixth text-center my-2">
+                    <a href="#" aria-label="Go to Sutom" id="to-scroll" @click.prevent="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game active">Sutom</span></a><a href="#"  aria-label="Go to tusmo"  @click.prevent="emitScrollButton" class="to-scroll col-md-6 mx-auto"><span class="select-game">Tusmo</span></a><a href="#" class="anchor" aria-label="Go to wordle"  @click.prevent="emitScrollButton"><span class="select-game">Wordle</span></a> <span class="d-block text-center">Choisir son jeu</span></li>
             </ul>
             <details name="details-infos" class="details-infos">
                 <summary class="relative">
@@ -39,10 +41,8 @@
                         <li class="first text-left pb-2">
                             <i class="em em-white_check_mark" aria-role="presentation" aria-label="WHITE HEAVY CHECK MARK"></i>
                             Fonctionne pour les jeux <a href="https://sutom.nocle.fr/" target="_blank" title="Aller sur le site de Sutom"
-                            class="sutom-color underline p-1">Sutom<i class="fi fi-sc-up-right-from-square"></i></a>,
-                            <a
-                            href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Tusmo" class="tusmo-color underline p-1">Tusmo<i class="fi fi-sc-up-right-from-square"></i></a> et 
-                            <a href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Wordle" class="wordle-color underline p-1">Wordle<i class="fi fi-sc-up-right-from-square"></i></a>
+                            class="sutom-color underline p-1">Sutom<i class="fi fi-sc-up-right-from-square"></i></a>, <a
+                            href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Tusmo" class="tusmo-color underline p-1">Tusmo<i class="fi fi-sc-up-right-from-square"></i></a> et <a href="https://www.tusmo.xyz/" target="_blank" title="Aller sur le site de Wordle" class="wordle-color underline p-1">Wordle<i class="fi fi-sc-up-right-from-square"></i></a>
                         </li>
                         <li class="second">
                             <strong><i class="em em-abacus" aria-role="presentation" aria-label="ABACUS"></i> Le solveur</strong> est affiché en premier. Les jeux Sutom, Tuzmo et Wordle sont affichés en dessous afin de vous permettre de jouer tout en vous aidant du solveur pour résoudre les grilles. Vous pouvez passer à la grille suivante à tout moment. Vous pouvez passer également d'un jeu à l'autre sans perdre votre progression.
@@ -65,7 +65,7 @@
         data(){
             return{
                 istusmo: false,
-                titreHTML: '<span class="color-good-place">S</span><span class="tusmo color-bad-place">O</span><span class="color-good-place">L</span><br><span class="color-grid">&nbsp;</span><span class="color-good-place">V</span><span class="tusmo color-bad-place"">A</span><br><span class="sutom color-bad-place">M</span><span class="tusmo color-good-place">I</span><span class="color-grid">&nbsp;</span>',
+                titreHTML: '<span class="color-good-place">S</span><span class="wordle color-good-place">O</span><span class="color-good-place">L</span><br><span class="color-grid">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-good-place"">A</span><br><span class="color-grid"><span>M</span></span><span class="wordle color-good-place">I</span><span class="color-grid">&nbsp;</span>',
                 soundActive : false
             }
         },

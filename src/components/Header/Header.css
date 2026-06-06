@@ -30,6 +30,15 @@ h1 > span {
   border: 1px solid #fff;
   background-color: var(--color-grid);
 }
+
+h1 > span.color-grid {
+  > span {
+    display: inline-block;
+    background-color: var(--color-bad-place);
+    border-radius: 50%;
+    width: 100%;
+  }
+}
 .sound-element {
   position: fixed;
   top: 26px;
@@ -43,10 +52,13 @@ h1 > span {
 
 .sutom .intro {
   margin-top: 7.5rem;
+  border: 2px solid maroon;
+  border-radius: 5px;
+  padding: 0.5rem;
 }
 
 .intro {
-  padding: 0;
+  padding: 0 1rem;
 }
 
 .intro h2 {
@@ -62,12 +74,29 @@ h1 > span {
 
 .intro ul {
   margin-top: 0.5rem;
-  padding: 0;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-self: center;
   width: fit-content;
+  width: 100%;
+  &.first-list-actions {
+    margin: 0.5rem 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 1rem;
+  }
+  &.second-list-actions {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 100%;
+    align-items: center;
+  }
 }
 
 .intro ul li {
@@ -178,6 +207,7 @@ details.details-infos {
   summary {
     cursor: pointer;
     list-style: none;
+    margin: 1rem;
   }
 }
 details .more-infos-container {
@@ -215,11 +245,6 @@ summary span {
   color: white;
   padding: 0.1rem 0.5rem;
 }
-
-/*
-.expandable:target {
-  height: 200px; 
-  ]} */
 
 .more-infos li {
   &.first::marker {

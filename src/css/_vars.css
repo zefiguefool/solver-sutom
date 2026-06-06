@@ -13,10 +13,12 @@
   --sutom-color-bad-place: #ffbd00;
 
   --tusmo-color-grid: #3a3a3c;
+  --tusmo-color-background: #0a5a6e;
   --tusmo-color-good-place: #e7002a;
   --tusmo-color-bad-place: #ffbd00;
 
   --wordle-color-grid: #3a3a3c;
+  --wordle-color-keyboard-tile: #636363;
   --wordle-color-good-place: #2a8439;
   --wordle-color-bad-place: #d3952a;
   --wordle-nok: #3a3a3c;

@@ -1,3 +1,8 @@
+img,
+svg {
+  color: maroon;
+}
+
 .form {
   margin: 0 auto;
 }
@@ -26,9 +31,10 @@
   justify-content: center;
   width: 100%;
   gap: 2px;
-  @media (max-width: 376px) {
-    gap: 3px;
+  @media (max-width: 463px) {
+    gap: 1px;
   }
+
   &.alphabeticallist {
     margin-bottom: 0.5rem;
   }
@@ -53,28 +59,48 @@
   align-items: center;
 
   @media (max-width: 491px) {
-    width: 41px;
-    height: 41px;
+    width: 43px;
+    height: 43px;
     font-size: 1.2em;
   }
-  @media (max-width: 430px) {
-    width: 37px;
-    height: 387x;
+  @media (max-width: 474px) {
+    width: 42px;
+    height: 42px;
+    font-size: 1.2em;
+  }
+  @media (max-width: 463px) {
+    width: 41px;
+    height: 40px;
+    font-size: 1.2em;
+  }
+  @media (max-width: 431px) {
+    width: 38px;
+    height: 38px;
     font-size: 1.2em;
   }
   @media (max-width: 422px) {
-    width: 38px;
-    height: 38 px;
-    font-size: 1.2em;
+    width: 36px;
+    height: 36px;
+    font-size: 1.3em;
   }
   @media (max-width: 376px) {
-    width: 32px;
-    height: 32px;
+    width: 33px;
+    height: 33px;
     font-size: 1.2em;
   }
   @media (max-width: 344px) {
     width: 31px;
     height: 31px;
+    font-size: 1.2em;
+  }
+  @media (max-width: 338px) {
+    width: 30px;
+    height: 30px;
+    font-size: 1.2em;
+  }
+  @media (max-width: 328px) {
+    width: 29px;
+    height: 29px;
     font-size: 1.2em;
   }
 }

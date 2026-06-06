@@ -7,6 +7,7 @@
         <display-input-letters></display-input-letters>
         <display-possible-words></display-possible-words>
       </fieldset>
+      
     </div>
   </div>
 </template>
@@ -60,6 +61,9 @@ export default {
   }
   .color-grid{
      background-color: #0077c7;
+    /*  > span{
+      border-radius: 5px;
+     } */
   }
   .color-good-place{
     background-color: #e7002a;
