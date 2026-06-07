@@ -6,10 +6,10 @@ const HeaderWordle = () =>
 const HeaderTusmo = () => import("../components/HeaderTusmo/HeaderTusmo.vue");
 
 const routes = [
-  { path: "/solvami", component: Header },
-  { path: "/solvami/sutom", component: Header },
-  { path: "/solvami/tusmo", component: HeaderTusmo },
-  { path: "/solvami/wordle", component: HeaderWordle },
+  { path: "/solvami", name: "/", component: Header },
+  { path: "/solvami/sutom", name: "sutom", component: Header },
+  { path: "/solvami/tusmo", name: "tusmo", component: HeaderTusmo },
+  { path: "/solvami/wordle", name: "wordle", component: HeaderWordle },
 ];
 
 export default createRouter({
