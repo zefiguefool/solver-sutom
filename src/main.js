@@ -1,21 +1,8 @@
-import Vue from "vue";
+import { createApp } from "vue";
 import App from "./App.vue";
+import router from "./router/index";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 //import VueRouter from 'https://unpkg.com/vue-router/dist/vue-router.js'
-import VueRouter from "vue-router";
-import Routes from "./Routes";
-
-Vue.config.productionTip = false;
-
-Vue.use(VueRouter);
-
-const router = new VueRouter({
-  routes: Routes,
-  mode: "history",
-});
-
-new Vue({
-  render: (h) => h(App),
-  router: router,
-}).$mount("#app");
+createApp(App).use(router).mount("#app");

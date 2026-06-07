@@ -58,7 +58,6 @@
                 isUppercase: false,
                 isExcludeActive: false,
                 textKeyboardExcludeInclude: "Mode lettres à exclure",
-                /* isWordle: false, */
                 heightToScrollOnce: 0,
                 nothingToSearch: "",
                 firstLetterLowerCase: "",

@@ -64,7 +64,7 @@
         name: 'HeaderTusmo',
         data(){
             return{
-                istusmo: false,
+                /*istusmo: false,*/
                 titreHTML: '<span class="color-good-place">S</span><span class="wordle color-good-place">O</span><span class="color-good-place">L</span><br><span class="color-grid">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-good-place"">A</span><br><span class="color-grid"><span>M</span></span><span class="wordle color-good-place">I</span><span class="color-grid">&nbsp;</span>',
                 soundActive : false
             }

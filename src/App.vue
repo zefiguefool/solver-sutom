@@ -47,14 +47,16 @@
   </div>
 </template>
 <script>
-const Navigation = () =>
+/* const Navigation = () =>
   import(
     './components/Navigation/Navigation.vue'
 );
 const SolverComponent = () =>
   import(
     './components/SolverComponent/SolverComponent.vue'
-);
+); */
+import Navigation from './components/Navigation/Navigation.vue'
+import SolverComponent from './components/SolverComponent/SolverComponent.vue';
 export default {
   name: 'App',
   data(){

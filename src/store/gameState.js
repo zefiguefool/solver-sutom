@@ -1,6 +1,7 @@
-import Vue from "vue";
+/* import Vue from "vue"; */
+import { reactive } from "vue";
 
-export const gameState = Vue.observable({
+export const gameState = reactive({
   inputLetters: "",
   list: [],
 
