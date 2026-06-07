@@ -54,7 +54,6 @@ import {resetGame, suppress} from '../../store/actions';
                 return this.dictionaryCache[length];
             }
 
-           //const response = await fetch(`${process.env.BASE_URL}dict/${length}.txt`);
             const response = await fetch(`/dict/${length}.txt`);
             if (!response.ok) {
                 throw new Error(
