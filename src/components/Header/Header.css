@@ -24,11 +24,15 @@ h1,
   z-index: 1;
 }
 
-h1 > span {
-  display: inline-block;
-  width: 2rem;
+h1 > span,
+.h1 > span {
   border: 1px solid #fff;
-  background-color: var(--color-grid);
+  padding: 0 1rem;
+  /*background-color: var(--color-grid);*/
+  display: inline-block;
+  > span {
+    display: inline-block;
+  }
 }
 
 h1 > span.color-grid {
@@ -50,6 +54,7 @@ h1 > span.color-grid {
   width: 36px;
 }
 
+.intro,
 .sutom .intro {
   margin-top: 7.5rem;
   border: 2px solid maroon;

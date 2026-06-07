@@ -40,6 +40,10 @@
     import {resetGame, setInputLetters, suppress, setSoundEnabled} from '../../store/actions';
     import {searchWords} from '../../store/actions';
     import {gameState} from '../../store/gameState';
+    const SOUND_GOOD = new URL("../../assets/sounds/lettre-bien-place.wav",import.meta.url).href;
+    const SOUND_BAD = new URL("../../assets/sounds/lettre-mal-place.wav",import.meta.url).href;
+    const SOUND_MISS = new URL("../../assets/sounds/lettre-non-trouve.wav",import.meta.url).href;
+
     export default{
         name: 'SearchForm',
         data(){
@@ -136,7 +140,7 @@
                         if(this.soundActive){
                             let audioObj = "";
                             let src = "";
-                            src = require("../../assets/sounds/lettre-non-trouve.wav");
+                            src = SOUND_MISS;
                             audioObj = new Audio(src);
                             audioObj.play();
                         }
@@ -148,7 +152,7 @@
                         if(this.soundActive){
                             let audioObj = "";
                             let src = "";
-                            src = require("../../assets/sounds/lettre-bien-place.wav");
+                            src = SOUND_GOOD;
                             audioObj = new Audio(src);
                             audioObj.play();
                         }
@@ -165,7 +169,7 @@
                         if(this.soundActive){
                             let audioObj = "";
                             let src = "";
-                            src = require("../../assets/sounds/lettre-mal-place.wav"); 
+                            src = SOUND_BAD;
                             audioObj = new Audio(src);
                             audioObj.play();
                         }

@@ -12,9 +12,9 @@
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 </svg> -->
-<svg width="5%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="8%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
  <path d="M8 12L12 16M12 16L16 12M12 16V8M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
- </svg>
+ </svg><span>Solveur</span>
                     </a>
                 </span>
             </h2>
@@ -67,7 +67,7 @@ export default {
     name: 'AppHeader',
     data() {
         return {
-            titreHTML: '<span class="color-good-place">S</span><span class="wordle color-good-place">O</span><span class="color-good-place">L</span><br><span class="color-grid">&nbsp;</span><span class="color-good-place">V</span><span class="wordle color-good-place"">A</span><br><span class="color-grid"><span>M</span></span><span class="wordle color-good-place">I</span><span class="color-grid">&nbsp;</span>',
+            titreHTML: '<span class="color-good-place d-inline-block px-2">S</span><span class="wordle color-good-place d-inline-block px-2"">O</span><span class="color-good-place d-inline-block px-2">L</span><br><span class="color-grid d-inline-block px-2 text-uppercase">&nbsp;</span><span class="color-good-place d-inline-block px-2">V</span><span class="wordle color-good-place d-inline-Sblock px-2">A</span><br><span class="color-grid d-inline-block px-2 text-uppercase">&nbsp;</span><span>M</span></span><span class="wordle color-good-placed-inline-block px-2">I</span><span class="color-grid d-inline-block px-2 text-uppercase">&nbsp;</span>',
             soundActive: false,
             heightToScrollOnce: 0
         }
