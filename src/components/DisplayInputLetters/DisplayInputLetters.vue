@@ -19,7 +19,13 @@ import {gameState} from "../../store/gameState";
             }
         },
         computed:{
+            game() {
+                return this.$route.path.split('/').pop()
+            },
 
+            isWordle() {
+                return this.game === 'wordle'
+            },
 
             universe:function(){
                 return{

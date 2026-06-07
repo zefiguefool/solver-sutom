@@ -67,7 +67,7 @@ export default {
     name: 'AppHeader',
     data() {
         return {
-            titreHTML: '<span class="color-good-place d-inline-block px-2">S</span><span class="wordle color-good-place d-inline-block px-2"">O</span><span class="color-good-place d-inline-block px-2">L</span><br><span class="color-grid d-inline-block px-2 text-uppercase">&nbsp;</span><span class="color-good-place d-inline-block px-2">V</span><span class="wordle color-good-place d-inline-Sblock px-2">A</span><br><span class="color-grid d-inline-block px-2 text-uppercase">&nbsp;</span><span>M</span></span><span class="wordle color-good-placed-inline-block px-2">I</span><span class="color-grid d-inline-block px-2 text-uppercase">&nbsp;</span>',
+            titreHTML: '<span class="color-good-place d-inline-block px-2">S</span><span class="wordle color-good-place d-inline-block px-2"">O</span><span class="color-good-place d-inline-block px-2">L</span><br><span class="color-grid d-inline-block px-2 text-uppercase">-</span><span class="color-good-place d-inline-block px-2">V</span><span class="wordle color-good-place d-inline-block px-2">A</span><br><span class="color-grid px-2 d-inline-block"><span class="color-bad-place text-uppercase">M</span></span><span class="wordle color-good-place d-inline-block px-2 text-uppercase">I</span><span class="color-grid d-inline-block px-2 text-uppercase">-</span>',
             soundActive: false,
             heightToScrollOnce: 0
         }

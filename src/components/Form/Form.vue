@@ -312,7 +312,7 @@
                 return gameState.soundEnabled;
             },
             isWordle() {
-                return this.$route.path === '/solvami/wordle';
+                return this.$route.name === 'wordle'
             }
 
         },
