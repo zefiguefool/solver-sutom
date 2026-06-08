@@ -24,15 +24,11 @@ h1,
   z-index: 1;
 }
 
-h1 > span,
-.h1 > span {
-  border: 1px solid #fff;
-  padding: 0 1rem;
-  /*background-color: var(--color-grid);*/
+:is(h1) > span {
   display: inline-block;
-  > span {
-    display: inline-block;
-  }
+  width: 2rem;
+  border: 1px solid #fff;
+  background-color: #0a5566;
 }
 
 h1 > span.color-grid {
@@ -104,8 +100,23 @@ h1 > span.color-grid {
   }
 }
 
+.intro ul.first-list-actions {
+  li {
+    margin-left: -0.4rem;
+  }
+}
+
+.intro ul.second-list-actions {
+  li {
+    margin-left: -0.4rem;
+  }
+}
+
 .intro ul li {
   margin-bottom: 0.2rem;
+  &:not(:last-child) {
+    margin-right: 0.5rem;
+  }
 }
 :is(.change-color, .with-color-transition) {
   list-style-type: circle;
@@ -170,6 +181,7 @@ h1 > span.color-grid {
   text-decoration: none;
   font-weight: bold;
   margin-top: 0.1rem;
+  margin-left: -0.4rem;
 }
 
 span.search-button {

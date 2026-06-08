@@ -1,8 +1,8 @@
 <template>
     <div id="input-letters" :class="universe" class="input-letters mx-auto px-2 text-center">
         <ul>
-            <li :class="item.state" v-for="(item, $index) in list" :key="$index">
-                <span>{{ item.letter }}</span>
+            <li :class="item.state" v-for="(item, $index) in list" :key="$index" data-testid="letter-input" >
+                <span data-testid="letter-displayed">{{ item.letter }}</span>
             </li>
         </ul>
     </div>

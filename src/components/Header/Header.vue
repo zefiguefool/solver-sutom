@@ -8,7 +8,7 @@
         <div role="presentation" class="intro col-md-7 mx-auto small">
             <h2 class="text-center font-weight-bold font-size-lg">Comment utiliser <span class="title pe-1">Solvami ?</span> 
                 <span class="text-dark fs-6 font-weight-bold underline">
-                    <a href="#" title="Aller au Solver" @click.prevent="emitScroll" class="anchor link-dark" aria-label="Go to Solver">
+                    <a href="#" title="Aller au Solver" @click.prevent="emitScroll" class="anchor maroon" aria-label="Go to Solver">
                         <!-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-square" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 2.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
 </svg> -->
@@ -67,7 +67,7 @@ export default {
     name: 'AppHeader',
     data() {
         return {
-            titreHTML: '<span class="color-good-place d-inline-block px-2">S</span><span class="wordle color-good-place d-inline-block px-2"">O</span><span class="color-good-place d-inline-block px-2">L</span><br><span class="color-grid d-inline-block px-2 text-uppercase">-</span><span class="color-good-place d-inline-block px-2">V</span><span class="wordle color-good-place d-inline-block px-2">A</span><br><span class="color-grid px-2 d-inline-block"><span class="color-bad-place text-uppercase">M</span></span><span class="wordle color-good-place d-inline-block px-2 text-uppercase">I</span><span class="color-grid d-inline-block px-2 text-uppercase">-</span>',
+            titreHTML: '<span class="color-good-place">S</span><span class="wordle-color-keyboard-tile">O</span><span class="color-good-place">L</span><br><span class="color-grid">&nbsp;</span><span class="color-good-place">V</span><span class="wordle-color-keyboard-tile">A</span><br><span class="color-grid"><span>M</span></span><span class="wordle-color-keyboard-tile">I</span><span class="color-grid">&nbsp;</span>',
             soundActive: false,
             heightToScrollOnce: 0
         }

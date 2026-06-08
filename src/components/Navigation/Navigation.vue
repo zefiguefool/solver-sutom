@@ -1,29 +1,32 @@
 <template>
   <div class="wrapper-nav ">
     <ul :class="myClass" class="nav">
-        <li>
+        <li id="sutom" data-testid="nav-sutom">
             <router-link
                 to="/solvami/sutom"
                 class="sutom btn btn-primary btn-nav"
-                @click="isActive = false">
+                @click="isActive = false"
+                id="sutom">
                 <span class="color-grid">S</span><span>u</span><span class="color-letter-bad-place">t</span><span>o</span><span>m</span>
             </router-link>
         </li>
 
-        <li>
+        <li id="sutom" data-testid="nav-sutom">
             <router-link
                 to="/solvami/tusmo"
-                class="tusmo btn btn-primary btn    -nav"
-                @click="isActive = false">
+                class="tusmo btn btn-primary btn-nav"
+                @click="isActive = false"
+                >
                 <span class="color-good-place">T</span><span>u</span><span class="color-letter-bad-place">s</span><span>m</span><span>o</span>
             </router-link>
         </li>
 
-        <li>
+        <li id="wordle" data-testid="nav-wordle">
             <router-link
                 to="/solvami/wordle"
                 class="wordle btn btn-primary btn-nav"
-                @click="isActive = false">
+                @click="isActive = false"
+                >
                 <span class="color-wordle-ok">W</span><span>o</span><span class="color-letter-bad-place">r</span><span>d</span><span>l</span><span>e</span>
             </router-link>
         </li>
