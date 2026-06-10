@@ -1,20 +1,20 @@
 <template>
     <div id="input-letters" :class="universe" class="input-letters mx-auto px-2 text-center">
         <ul>
-            <li :class="item.state" v-for="(item, $index) in list" :key="$index">
-                <span>{{ item.letter }}</span>
+            <li :class="item.state" v-for="(item, $index) in list" :key="$index" data-testid="letter-input" >
+                <span data-testid="letter-displayed">{{ item.letter }}</span>
             </li>
         </ul>
     </div>
 </template>
 <script>
-import {resetGame, suppress} from '../../store/actions';
+//import {resetGame, suppress} from '../../store/actions';
 import {gameState} from "../../store/gameState";
     export default{
         name: 'DisplayInputLetters',
         data(){
             return{
-                isWordle: false,
+                //isWordle: false,
                 gameState
             }
         },
@@ -61,14 +61,17 @@ import {gameState} from "../../store/gameState";
                 return result;
             }  
         },
-        methods: {
+        /* methods: {
             suppress: function(){
 
                 this.inputLetters = this.inputLetters.slice(0, -1);
                 console.log("SUPPRESS : inputLetters : ", this.inputLetters);
                 suppress(this.inputLetters);
+            },
+            reset: function(){
+                resetGame();
             }
-        },
+        }, */
         
     }
 </script>

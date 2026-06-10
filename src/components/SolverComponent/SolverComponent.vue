@@ -28,12 +28,14 @@ const DisplayPossibleWords = () =>
 import Form from '../Form/Form.vue'
 import DisplayInputLetters from '../DisplayInputLetters/DisplayInputLetters.vue'
 import DisplayPossibleWords from '../DisplayPossibleWords/DisplayPossibleWords.vue'
+import { gameState } from '../../store/gameState'
 
 export default {
   name: 'App',
   data(){
     return{
-      heightToScrollOnce: 0
+      heightToScrollOnce: 0,
+      gameState
     }
   },
   components: {
@@ -45,6 +47,7 @@ export default {
       emitScroll(){
         this.heightToScrollOnce = document.getElementsByClassName('fieldset-container-component').item(0)?.clientHeight + document.getElementsByTagName('h1').item(0).clientHeight || 0;
         console.log('emit scroll solver component');
+        console.log("gameState :", gameState)
         window.scrollBy({
           top: this.heightToScrollOnce,
           behavior: 'smooth'

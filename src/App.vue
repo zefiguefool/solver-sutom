@@ -4,7 +4,7 @@
       top
       <a data-v-741978ef="" href="#" title="Aller au Solver" aria-label="Go to Solver" class="anchor link-dark">
         <svg width="7%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 12L12 8M12 8L8 12M12 8V16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 12L12 8M12 8L8 12M12 8V16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="maroon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
     </span>
@@ -124,8 +124,8 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size:1rem;
-    background-color: var(--color-background);
     color: var(--color-text);
+    background-color: var(--body-background-color)
   }
   .color-grid{
      background-color: var(--color-grid);
@@ -138,6 +138,11 @@ export default {
   .color-bad-place{
     background-color: var(--color-bad-place);
     border-radius: 4px;
+  }
+  .color-grid .color-bad-place{
+    border-radius: 2rem;
+    display: inline-block;
+    width:2rem;
   }
   .bad-place{
     background-color: var(--color-bad-place);
@@ -230,6 +235,12 @@ export default {
   }
 
 /* Styles globaux */
+:is(h1) > span {
+  display: inline-block;
+  width: 2rem;
+  border: 1px solid #fff;
+  background-color: #0a5566;
+}
 
 /* Sélecteur de jeu */
 header {

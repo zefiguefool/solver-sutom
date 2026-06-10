@@ -7,7 +7,7 @@
         <div id="display-keyboard-letters" class="display-keyboard-letters mx-auto text-center">
             <ul class="alphabeticallist">
                 <li v-for="(item, $index) in alphabeticallist" :class="[{isActive : toggleKeyPressed[$index]}, {isGoodPlaced : toggleGoodPlaced[$index]}, {isBadPlaced : toggleBadPlaced[$index]}, keyboardExclude, {notinword : toggleIsNotInWord[$index]} ]"  :key="$index">
-                    <a href="#" @click.prevent="activeLetter($event);inputLetter($event);inputLetterExclude($event)"  :class="keyboardCase">{{ item }}</a>
+                    <a href="#" @click.prevent="activeLetter($event);inputLetter($event);inputLetterExclude($event)"  :class="keyboardCase" data-testid="letter-input">{{ item }}</a>
                     <div class="display-control-letter">{{ item }}</div>
                 </li>
                 <li :class="{isActive: thisKeyPressed}">
