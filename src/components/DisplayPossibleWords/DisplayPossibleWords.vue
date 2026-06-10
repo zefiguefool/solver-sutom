@@ -20,7 +20,11 @@
 <script>
 
 import {gameState} from '../../store/gameState';
-import {resetGame, suppress} from '../../store/actions';
+import { resetGame} from '../../store/actions'
+import { findPossibleWords } from '../../services/solver.js'
+import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOptimized'
+
+
     export default{
         name: 'DisplayPossibleWords',
         data(){
@@ -78,8 +82,8 @@ import {resetGame, suppress} from '../../store/actions';
                 console.log('searchVersion changed, recalculating possible words...');
                 const regExWord = this.gameState.regExWord;
 
+                console.log("regExWord :",regExWord)
                 const wordlength = this.gameState.wordlength;
-
                 if ( !regExWord || !wordlength) {
                     return;
                 }
@@ -93,23 +97,18 @@ import {resetGame, suppress} from '../../store/actions';
                     wordlength
                 );
 
-                const possibleWords = [];
-                let firstLetter = null;
-
+                let possibleWords = [];
+                /*let firstLetter = null;
+                console.log(regExWord)
                 const regexSource = regExWord.source;
-                if (regexSource && regexSource[0] && /[a-z]/i.test(regexSource[0])) {
-                    firstLetter = regexSource[0];
-                }
-                console.time("search");
-                for (const word of words) {
-                    if (firstLetter && word[0] !== firstLetter) {
-                        continue;
-                    }
+                console.log(regexSource);
+                const cleaned = regexSource.replace(/^(\(\?!.*?\)|\(\?=.*?\))+/g, "");
+                console.log("cleaned :", cleaned)
+                const match = cleaned.match(/[a-z]/i);
+                console.log("match :",match)*/
 
-                    if (regExWord.test(word)) {
-                        possibleWords.push(word);
-                    }
-                }
+                console.time("search");
+                possibleWords = findPossibleWordsOptimized(words, regExWord)
                 console.timeEnd("search");
                 if (possibleWords.length > 0) {
                     this.uniqueWords =

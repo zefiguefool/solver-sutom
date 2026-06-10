@@ -124,9 +124,8 @@ export default {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-size:1rem;
-    background-color: var(--color-background);
     color: var(--color-text);
-    background-color: var(--color-background)
+    background-color: var(--body-background-color)
   }
   .color-grid{
      background-color: var(--color-grid);
@@ -139,6 +138,11 @@ export default {
   .color-bad-place{
     background-color: var(--color-bad-place);
     border-radius: 4px;
+  }
+  .color-grid .color-bad-place{
+    border-radius: 2rem;
+    display: inline-block;
+    width:2rem;
   }
   .bad-place{
     background-color: var(--color-bad-place);

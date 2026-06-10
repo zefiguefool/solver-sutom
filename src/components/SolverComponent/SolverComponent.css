@@ -5,6 +5,7 @@
   padding: 1rem 0 0;
   border-radius: 4px;
   position: relative;
+  background-color: white;
 }
 .legend {
   position: absolute;
@@ -13,7 +14,9 @@
   top: -20px;
   background-color: white;
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   color: #800000;
+  padding: 0.3rem;
+  border-radius: 5px;
 }

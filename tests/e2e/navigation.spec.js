@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-/* test("navigation entre jeux", async ({ page }) => {
+test("navigation entre jeux", async ({ page }) => {
   await page.goto("/");
 
   await page.getByTestId("nav-sutom").click();
@@ -11,11 +11,13 @@ import { test, expect } from "@playwright/test";
 
   await page.getByTestId("nav-wordle").click();
   await expect(page).toHaveURL(/wordle/);
-}); */
+});
 
-test("la lettre est affichée dans un a, async ({ page }) => {
+test("la lettre est affichée dans un a", async ({ page }) => {
   await page.goto("/solvami/wordle");
 
   await page.keyboard.press("A");
-  await expect(page.locator('[data-testid="letter-input"]')).toContainText("a");
+  await expect(
+    page.locator('li:first-child [data-testid="letter-input"]'),
+  ).toContainText("a");
 });

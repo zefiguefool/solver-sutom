@@ -8,13 +8,13 @@
     </div>
 </template>
 <script>
-import {resetGame, suppress} from '../../store/actions';
+//import {resetGame, suppress} from '../../store/actions';
 import {gameState} from "../../store/gameState";
     export default{
         name: 'DisplayInputLetters',
         data(){
             return{
-                isWordle: false,
+                //isWordle: false,
                 gameState
             }
         },
@@ -61,14 +61,17 @@ import {gameState} from "../../store/gameState";
                 return result;
             }  
         },
-        methods: {
+        /* methods: {
             suppress: function(){
 
                 this.inputLetters = this.inputLetters.slice(0, -1);
                 console.log("SUPPRESS : inputLetters : ", this.inputLetters);
                 suppress(this.inputLetters);
+            },
+            reset: function(){
+                resetGame();
             }
-        },
+        }, */
         
     }
 </script>

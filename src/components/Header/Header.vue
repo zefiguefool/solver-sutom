@@ -67,7 +67,7 @@ export default {
     name: 'AppHeader',
     data() {
         return {
-            titreHTML: '<span class="color-good-place">S</span><span class="wordle-color-keyboard-tile">O</span><span class="color-good-place">L</span><br><span class="color-grid">&nbsp;</span><span class="color-good-place">V</span><span class="wordle-color-keyboard-tile">A</span><br><span class="color-grid"><span>M</span></span><span class="wordle-color-keyboard-tile">I</span><span class="color-grid">&nbsp;</span>',
+            titreHTML: '<span class="color-good-place">S</span><span class="wordle-color-keyboard-tile">O</span><span class="color-good-place">L</span><br><span class="color-grid">&nbsp;</span><span class="color-good-place">V</span><span class="wordle-color-keyboard-tile">A</span><br><span class="color-grid"><span class="color-bad-place">M</span></span><span class="wordle-color-keyboard-tile">I</span><span class="color-grid">&nbsp;</span>',
             soundActive: false,
             heightToScrollOnce: 0
         }

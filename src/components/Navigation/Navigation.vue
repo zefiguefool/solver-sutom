@@ -11,7 +11,7 @@
             </router-link>
         </li>
 
-        <li id="sutom" data-testid="nav-sutom">
+        <li id="tusmo" data-testid="nav-tusmo">
             <router-link
                 to="/solvami/tusmo"
                 class="tusmo btn btn-primary btn-nav"
