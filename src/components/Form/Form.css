@@ -47,8 +47,8 @@ svg {
   position: relative;
   display: inline-block;
   width: 2.5rem;
-  width: 45px;
-  height: 45px;
+  width: var(--variable-width-1);
+  height: var(--variable-width-1);
   border: 1px solid #fff;
   color: #fff;
   font-size: 1.5em;
@@ -57,6 +57,10 @@ svg {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all ease-in 0.2s;
+  &:hover {
+    opacity: 0.8;
+  }
 
   @media (max-width: 491px) {
     width: 43px;
@@ -69,13 +73,13 @@ svg {
     font-size: 1.2em;
   }
   @media (max-width: 463px) {
-    width: 41px;
-    height: 40px;
+    width: var(--variable-width-5);
+    height: var(--variable-width-5);
     font-size: 1.2em;
   }
   @media (max-width: 431px) {
-    width: 38px;
-    height: 38px;
+    width: var(--variable-width-8);
+    height: var(--variable-width-8);
     font-size: 1.2em;
   }
   @media (max-width: 422px) {
@@ -103,6 +107,10 @@ svg {
     height: 29px;
     font-size: 1.2em;
   }
+}
+
+.display-keyboard-letters li:hover a {
+  font-size: larger;
 }
 
 .display-keyboard-letters li.isActive {
@@ -163,7 +171,7 @@ svg {
     line-height: 1rem;
     font-size: 0.9em;
     padding: 1rem 0.5rem;
-    width: 7rem;
+    width: 7.5rem;
   }
   &.exclude {
     background-color: #0077c7;
@@ -174,6 +182,10 @@ svg {
       color: #555;
     }
   }
+}
+
+.display-keyboard-letters li.special-keys a:hover {
+  font-size: large;
 }
 
 .display-keyboard-letters li.validate {

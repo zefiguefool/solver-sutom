@@ -1,5 +1,4 @@
 .header-top {
-  background: var(--color-background);
   margin: 0 auto;
   width: 100%;
 }
@@ -52,14 +51,11 @@ h1 > span.color-grid {
 
 .intro,
 .sutom .intro {
+  background-color: white;
   margin-top: 7.5rem;
   border: 2px solid maroon;
   border-radius: 5px;
   padding: 0.5rem;
-}
-
-.intro {
-  padding: 0 1rem;
 }
 
 .intro h2 {
@@ -272,5 +268,9 @@ summary span {
   }
   &.third::marker {
     color: var(--color-grid);
+  }
+  > i.em,
+  > i.em-svg {
+    margin-bottom: 0.3rem;
   }
 }

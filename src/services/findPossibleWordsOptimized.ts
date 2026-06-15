@@ -1,6 +1,9 @@
 import { extractFirstLetter } from "./extractFirstLetter";
 
-export function findPossibleWordsOptimized(words, regex) {
+export function findPossibleWordsOptimized(
+  words: string[],
+  regex: RegExp
+): string[] {
   let firstLetter = extractFirstLetter(regex);
 
   return words.filter((word) => {

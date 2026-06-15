@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <span @click.once="emitScroll" data-v-741978ef="" class="sticky-btn text-maroon fs-6 font-weight-bold underline position-sticky absolute-bottom">
-      top
-      <a data-v-741978ef="" href="#" title="Aller au Solver" aria-label="Go to Solver" class="anchor link-dark">
-        <svg width="7%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      
+      <a data-v-741978ef="" href="#" title="Aller au Solver" aria-label="haut" class="anchor link-dark position-relative">
+        <svg width="7%" height="100%" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
           <path d="M16 12L12 8M12 8L8 12M12 8V16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="maroon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
+        <span class="align-middle position-absolute marron">top</span>
       </a>
     </span>
     <navigation></navigation>
@@ -125,8 +126,22 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     font-size:1rem;
     color: var(--color-text);
-    background-color: var(--body-background-color)
+    background-color: var(--body-background-color);
+    background-position: top center;
+    background-size:contain;
+    background-attachment: fixed;
+    @media (min-width: 1025px) {
+      background-image: url(../solvami-background-fullsize.jpg);
+    }
+    @media (min-width: 481px) and (max-width: 1024px){
+      background-image: url(../solvami-background-tablet.jpg);
+    }
+    @media (max-width: 480px) {
+      background-image: url(../solvami-background-mobile.jpg);
+    }
+
   }
+
   .color-grid{
      background-color: var(--color-grid);
      border-radius: 4px;
@@ -312,8 +327,18 @@ header {
 }
 
 .sticky-btn {
-  z-index:3;
-  top:50vh;
-  left:90%;
+  z-index: 3;
+  top: 50vh;
+  left: 86%;
+}
+.sticky-btn .anchor span {
+  background-color: white;;
+    color: maroon;
+    bottom: 0;
+    right: -1.5rem;
+    z-index: 0;
+    border-radius: 1rem;
+    padding: 0.2rem;
+    font-size: 0.8rem;
 }
 </style>

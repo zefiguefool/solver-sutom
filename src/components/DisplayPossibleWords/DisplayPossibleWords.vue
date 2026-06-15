@@ -17,11 +17,9 @@
         </div>
     </div>
 </template>
-<script>
+<script lang="ts">
 
 import {gameState} from '../../store/gameState';
-import { resetGame} from '../../store/actions'
-import { findPossibleWords } from '../../services/solver.js'
 import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOptimized'
 
 
@@ -31,11 +29,15 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
             return{
                 heightToScroll: 0,
                 counterWordsFound: 375194,
-                objPossibleWords:[],
+                objPossibleWords: [] as {
+                    lengthWords: number;
+                    wordsWithThisLength: string[];
+                }[],
                 lengthWordToFind: 0,
                 doesExist: true,
-                uniqueWords: [],
-                dictionaryCache: {},
+
+                uniqueWords: [] as string[],
+                dictionaryCache: {} as Record<number, string[]>,
                 gameState            
             }
         },
@@ -74,17 +76,23 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
             this.dictionaryCache[length] = words;
 
             return words;
+            },
+            clearResults() {
+                console.log('clearResults')
+                this.uniqueWords = [];
+                this.objPossibleWords = [];
+                this.doesExist = true;
             }
         },
         watch: {
             async 'gameState.searchVersion'() {
                 if (typeof window === 'undefined') return;
                 console.log('searchVersion changed, recalculating possible words...');
-                const regExWord = this.gameState.regExWord;
-
+                const regExWord = this.gameState.regExWord as RegExp | null;
                 console.log("regExWord :",regExWord)
-                const wordlength = this.gameState.wordlength;
-                if ( !regExWord || !wordlength) {
+                const wordlength = this.gameState.wordlength as number;
+                if ( !regExWord || wordlength <=0) {
+                    this.clearResults();
                     return;
                 }
 
@@ -97,15 +105,8 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
                     wordlength
                 );
 
-                let possibleWords = [];
-                /*let firstLetter = null;
-                console.log(regExWord)
-                const regexSource = regExWord.source;
-                console.log(regexSource);
-                const cleaned = regexSource.replace(/^(\(\?!.*?\)|\(\?=.*?\))+/g, "");
-                console.log("cleaned :", cleaned)
-                const match = cleaned.match(/[a-z]/i);
-                console.log("match :",match)*/
+                let possibleWords: string[] = [];
+
 
                 console.time("search");
                 possibleWords = findPossibleWordsOptimized(words, regExWord)
@@ -134,7 +135,6 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
         },
         updated(){
             console.log("updated DisplayPossibleWords");
-
         }   
     }
 </script>
