@@ -13,7 +13,6 @@ import {gameState} from "../../store/gameState";
         name: 'DisplayInputLetters',
         data(){
             return{
-                //isWordle: false,
                 gameState
             }
         },

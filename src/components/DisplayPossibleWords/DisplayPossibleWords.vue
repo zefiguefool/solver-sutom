@@ -1,19 +1,18 @@
 <template>
     <div id="possible-letters" class="possible-letters mx-auto text-center">
-        <div class="oneLengthWord" v-for="(objPossibleWord, $index) in objPossibleWords" :key="$index">   
-            <div v-if="objPossibleWord.lengthWords == lengthWordToFind">
-                <div v-if="uniqueWords.length > 1">
-                    <p>{{uniqueWords.length}} mots possibles de {{ objPossibleWord.lengthWords }} lettres</p>
-                    <span v-for="(item, $index) in uniqueWords" :key="$index" v-html="item"></span>
-                </div>
-                <div v-else-if="uniqueWords.length == 1">
-                    <p>{{uniqueWords.length}} mot possible de {{ objPossibleWord.lengthWords }} lettre</p>
-                    <span v-for="(item, $index) in uniqueWords" :key="$index" v-html="item"></span>
-                </div>
-            </div>
-        </div>  
-        <div v-if="!doesExist">
-            <p>Aucun mot trouvé</p>
+        <div v-if="hasResults" class="oneLengthWord">
+            <p>
+                {{ uniqueWords.length }}
+                {{ wordCountLabel }}
+                de
+                {{ lengthWordToFind }}
+                {{ letterCountLabel }}
+            </p>
+            <span
+                v-for="(item, index) in uniqueWords"
+                :key="index"
+                v-html="item"
+            ></span>
         </div>
     </div>
 </template>
@@ -29,10 +28,6 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
             return{
                 heightToScroll: 0,
                 counterWordsFound: 375194,
-                objPossibleWords: [] as {
-                    lengthWords: number;
-                    wordsWithThisLength: string[];
-                }[],
                 lengthWordToFind: 0,
                 doesExist: true,
 
@@ -80,8 +75,24 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
             clearResults() {
                 console.log('clearResults')
                 this.uniqueWords = [];
-                this.objPossibleWords = [];
                 this.doesExist = true;
+            }
+        },
+        computed: {
+            hasResults() {
+                return this.uniqueWords.length > 0;
+            },
+
+            wordCountLabel() {
+                return this.uniqueWords.length > 1
+                ? 'mots possibles'
+                : 'mot possible';
+            },
+
+            letterCountLabel() {
+                return this.lengthWordToFind > 1
+                ? 'lettres'
+                : 'lettre';
             }
         },
         watch: {
@@ -98,7 +109,6 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
 
                 this.doesExist = true;
                 this.counterWordsFound = 0;
-                this.objPossibleWords = [];
                 this.lengthWordToFind = wordlength;
 
                 const words = await this.loadDictionary(
@@ -117,16 +127,7 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
                         possibleWords
                         )];
 
-                    this.objPossibleWords = [{
-                        lengthWords:
-                        wordlength,
-
-                        wordsWithThisLength:
-                        this.uniqueWords
-                    }];
-
                     } else {
-
                         this.doesExist = false;
                         this.uniqueWords = [];
                     }
