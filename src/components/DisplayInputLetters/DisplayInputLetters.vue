@@ -8,19 +8,20 @@
     </div>
 </template>
 <script>
-//import {resetGame, suppress} from '../../store/actions';
 import {gameState} from "../../store/gameState";
     export default{
         name: 'DisplayInputLetters',
         data(){
             return{
-                //isWordle: false,
                 gameState
             }
         },
         computed:{
+            currentPath() {
+                return this.$route.path;
+            },
             game() {
-                return this.$route.path.split('/').pop()
+                return this.currentPath.split('/').pop()
             },
 
             isWordle() {
@@ -29,9 +30,9 @@ import {gameState} from "../../store/gameState";
 
             universe:function(){
                 return{
-                    sutom:this.$route.path === '/solvami/sutom',
-                    tusmo:this.$route.path === '/solvami/tusmo',
-                    wordle:this.$route.path === '/solvami/wordle',
+                    sutom:this.currentPath === '/solvami/sutom',
+                    tusmo:this.currentPath=== '/solvami/tusmo',
+                    wordle:this.currentPath=== '/solvami/wordle',
                     
                 }
             },
@@ -61,17 +62,6 @@ import {gameState} from "../../store/gameState";
                 return result;
             }  
         },
-        /* methods: {
-            suppress: function(){
-
-                this.inputLetters = this.inputLetters.slice(0, -1);
-                console.log("SUPPRESS : inputLetters : ", this.inputLetters);
-                suppress(this.inputLetters);
-            },
-            reset: function(){
-                resetGame();
-            }
-        }, */
         
     }
 </script>

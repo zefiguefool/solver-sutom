@@ -1,11 +1,12 @@
 <template>
   <div class="wrapper-nav ">
-    <ul :class="myClass" class="nav">
+    <ul :class="{ active: isActive }" class="nav">
         <li id="sutom" data-testid="nav-sutom">
             <router-link
                 to="/solvami/sutom"
-                class="sutom btn btn-primary btn-nav"
-                @click="isActive = false"
+                @click="isActive = !isActive"
+                :class="{ active: isActive }"
+                class="sutom btn btn-nav"
                 id="sutom">
                 <span class="color-grid">S</span><span>u</span><span class="color-letter-bad-place">t</span><span>o</span><span>m</span>
             </router-link>
@@ -14,8 +15,9 @@
         <li id="tusmo" data-testid="nav-tusmo">
             <router-link
                 to="/solvami/tusmo"
-                class="tusmo btn btn-primary btn-nav"
-                @click="isActive = false"
+                @click="isActive = !isActive"
+                :class="{ active: isActive }"
+                class="tusmo btn btn-nav"
                 >
                 <span class="color-good-place">T</span><span>u</span><span class="color-letter-bad-place">s</span><span>m</span><span>o</span>
             </router-link>
@@ -24,8 +26,9 @@
         <li id="wordle" data-testid="nav-wordle">
             <router-link
                 to="/solvami/wordle"
-                class="wordle btn btn-primary btn-nav"
-                @click="isActive = false"
+                @click="isActive = !isActive"
+                :class="{ active: isActive }"
+                class="sutom btn btn-nav"
                 >
                 <span class="color-wordle-ok">W</span><span>o</span><span class="color-letter-bad-place">r</span><span>d</span><span>l</span><span>e</span>
             </router-link>
@@ -50,23 +53,16 @@
                 isActive: false
             }
         },
-        computed: {
-            myClass: function(){
-                return{
-                    active: this.isActive,
-                }
-            }
-        }
     }
 </script>
 <style>
 @import './Navigation.css';
-    .btnnav{
-        margin:5px
-    }
+
+
 
     .btn-nav a, .btn-nav a:hover{
         color:#fff;
         text-decoration:none;
     }
+
 </style>

@@ -5,20 +5,44 @@
   z-index: 2;
 }
 .nav {
+  background-color: transparent;
   position: fixed;
   z-index: 3;
   top: 3.8rem;
   left: -10rem;
   transition: all 0.5s ease-in-out;
 }
-.nav .btn-primary {
-  background-color: #3a3a3c;
+
+.nav li {
   border-color: #3a3a3c;
+  color: white;
   &:hover {
-    background-color: #5b5b6e;
+    background-color: none;
     border-color: #3a3a3c;
   }
+  &.router-link-exact-active.sutom {
+    background-color: var(--sutom-color-grid);
+  }
+  &.router-link-exact-active.tusmo {
+    background-color: var(--tusmo-color-background);
+  }
+  &.router-link-exact-active.wordle {
+    background-color: var(--wordle-color-keyboard-tile);
+  }
 }
+
+.nav li a.btn {
+  color: white;
+  background-color: #3a3a3c;
+  &:hover {
+    background-color: #636363;
+  }
+  &:active {
+    background-color: #3a3a3c;
+  }
+}
+
+.nav li
 
 /* menu burger */
 .box {
@@ -74,7 +98,12 @@
   top: 4.5px;
   transform: rotate(-135deg);
 }
-
+.nav,
+.nav.active,
+.nav,
+.nav.li {
+  background-color: transparent;
+}
 /* Animation 2 */
 .nav.active {
   transform: translateX(173px);

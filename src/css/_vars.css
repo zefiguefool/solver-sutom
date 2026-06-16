@@ -1,6 +1,12 @@
 :root {
   --body-background-color: #d0eafc;
 
+  /* surchage bootstrap */
+  --bs-primary: #3a3a3c;
+  --bs-link-color: #3a3a3c;
+  --bs-link-hover-color: #3a3a3c;
+  --bs-secondary-color: #3a3a3c;
+
   --color-background: #fffafa;
   --color-grid: #0077c7;
   --color-good-place: #e7002a;
@@ -28,4 +34,22 @@
   --color-select-game: #3f5214;
   --color-select-game-hover: #2a8439;
   --color-select-game-active: #2e7d32;
+
+  --variable-width-1: 45px;
+  --variable-width-2: 44px;
+  --variable-width-3: 43px;
+  --variable-width-4: 42px;
+  --variable-width-5: 41px;
+  --variable-width-6: 40px;
+  --variable-width-7: 39px;
+  --variable-width-8: 38px;
+  --variable-width-9: 37px;
+  --variable-width-10: 36px;
+  --variable-width-11: 35px;
+  --variable-width-12: 34px;
+  --variable-width-13: 33px;
+  --variable-width-14: 32px;
+  --variable-width-15: 31px;
+  --variable-width-16: 30px;
+  --variable-width-17: 29px;
 }

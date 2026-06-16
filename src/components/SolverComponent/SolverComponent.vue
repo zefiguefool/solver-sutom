@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="container-solver-component">
+  <div id="containerSolverComponent" class="container-solver-component">
     <div id="to-scroll" @click.once="emitScroll" class="to-scroll">
       <fieldset class="fieldset-container-component">
         <legend class="legend">Solver</legend>

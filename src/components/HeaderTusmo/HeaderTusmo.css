@@ -42,6 +42,7 @@ h1 > span {
 }
 
 .tusmo .intro {
+  background-color: white;
   margin-top: 7.5rem;
   border: 2px solid maroon;
   border-radius: 5px;

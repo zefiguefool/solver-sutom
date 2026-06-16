@@ -36,39 +36,43 @@
         </div>
     </div>
 </template>
-<script>
-    import {resetGame, setInputLetters, suppress, setSoundEnabled} from '../../store/actions';
+<script lang="ts">
+    import {resetGame, setInputLetters} from '../../store/actions';
     import {searchWords} from '../../store/actions';
     import {gameState} from '../../store/gameState';
     const SOUND_GOOD = new URL("../../assets/sounds/lettre-bien-place.wav",import.meta.url).href;
     const SOUND_BAD = new URL("../../assets/sounds/lettre-mal-place.wav",import.meta.url).href;
     const SOUND_MISS = new URL("../../assets/sounds/lettre-non-trouve.wav",import.meta.url).href;
-
+    type ToggleArray = boolean[];
+    type LetterState = {
+        letter: string;
+        state?: string;
+    };
+    type Letter = string
     export default{
         name: 'SearchForm',
         data(){
             return{
-                active: false,
-                tabInputLetters : [],
-                inputLetters: "",
-                tabInputWrongLetters: [],
-                inputWrongLetters: "",
-                toggleKeyPressed: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-                toggleIsNotInWord: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-                toggleGoodPlaced: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-                toggleBadPlaced: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false],
-                thisKeyPressed: false,
-                alphabeticallist : [],
-                isUppercase: false,
-                isExcludeActive: false,
-                textKeyboardExcludeInclude: "Mode lettres à exclure",
-                heightToScrollOnce: 0,
-                nothingToSearch: "",
-                firstLetterLowerCase: "",
-                letterIsIncluded: false,
-                letterIsExcluded: false,
-                //soundActive: false,
-                letterTwoStates: [],
+                active: false as boolean,
+                tabInputLetters : [] as string[],
+                inputLetters: "" as string,
+                tabInputWrongLetters: [] as unknown as string,
+                inputWrongLetters: "" as string,
+                toggleKeyPressed: Array(26).fill(false) as ToggleArray,
+                toggleIsNotInWord: Array(26).fill(false) as ToggleArray,
+                toggleGoodPlaced: Array(26).fill(false) as ToggleArray,
+                toggleBadPlaced: Array(26).fill(false) as ToggleArray,
+                thisKeyPressed: false as boolean,
+                alphabeticallist: [] as string[],
+                isUppercase: false as boolean,
+                isExcludeActive: false as boolean,
+                textKeyboardExcludeInclude: "Mode lettres à exclure" as string,
+                heightToScrollOnce: 0 as number,
+                nothingToSearch: "" as string,
+                firstLetterLowerCase: "" as string,
+                letterIsIncluded: false as boolean,
+                letterIsExcluded: false as boolean,
+                letterTwoStates: [] as string[],
                 gameState
             }
         },
@@ -119,14 +123,21 @@
                     setInputLetters(this.inputLetters);
                 }
             },
-            inputLetter($event){
+            playSound(sound: string): void {
+                if (this.soundActive) {
+                    new Audio(sound).play();
+                }
+            },
+            inputLetter($event: MouseEvent): void{
                 this.firstLetterLowerCase = false;
                 this.letterIsIncluded = false;
                 this.letterIsExcluded = false;
                 if(!this.isExcludeActive){
-                    let inputLetter = $event.target.innerText;
-                    let alphabet = "azertyuiopqsdfghjklmwxcvbn-";
-                    let pos = 0;
+                    const target = $event.target as HTMLElement;
+                    const inputLetter: string = target.innerText;
+
+                    const alphabet: string = "azertyuiopqsdfghjklmwxcvbn-";
+                    let pos: number = 0;
                    
                     if(this.inputWrongLetters.includes(inputLetter) || this.inputWrongLetters.includes(inputLetter.toLowerCase()) ){
                          this.letterIsExcluded = true;
@@ -134,45 +145,36 @@
                     }
 
                     pos = alphabet.indexOf(inputLetter.toLowerCase());
+                     // -------------------------
+                     // CASE "-"
+                     // -------------------------
                     if(inputLetter =="-"){
                         this.tabInputLetters.push(inputLetter);
                         this.inputLetters = this.tabInputLetters.join('');
-                        if(this.soundActive){
-                            let audioObj = "";
-                            let src = "";
-                            src = SOUND_MISS;
-                            audioObj = new Audio(src);
-                            audioObj.play();
-                        }
+                        this.playSound(SOUND_MISS);
                     }
+                    // -------------------------
+                    // MAJUSCULE = GOOD PLACE
+                    // -------------------------
                     else if(inputLetter != inputLetter.toLowerCase()){
                         this.tabInputLetters.push(inputLetter);
                         this.inputLetters = this.tabInputLetters.join('');
                         this.toggleGoodPlaced.splice(pos,1,true);
-                        if(this.soundActive){
-                            let audioObj = "";
-                            let src = "";
-                            src = SOUND_GOOD;
-                            audioObj = new Audio(src);
-                            audioObj.play();
-                        }
+                        this.playSound(SOUND_GOOD);
                     }
+                    // -------------------------
+                    // MINUSCULE = BAD PLACE
+                    // -------------------------
                     else if (inputLetter == inputLetter.toLowerCase()){ 
                         this.tabInputLetters.push(inputLetter);
                         this.inputLetters = this.tabInputLetters.join('');
                         this.veriFyFirstLetterMaj();
                         if (this.firstLetterLowerCase == true){
-                            this.tabInputLetters.pop(inputLetter);
+                            this.tabInputLetters.pop();
                             return;
                         } 
                         this.toggleBadPlaced.splice(pos,1,true);
-                        if(this.soundActive){
-                            let audioObj = "";
-                            let src = "";
-                            src = SOUND_BAD;
-                            audioObj = new Audio(src);
-                            audioObj.play();
-                        }
+                        this.playSound(SOUND_BAD);
                     }
                     gameState.inputLetters = this.inputLetters;
                 }
@@ -276,7 +278,7 @@
                 this.active = false;
                 this.tabInputLetters  = [];
                 this.inputLetters = "";
-                this.tabInputWrongLetters =[];
+                this.tabInputWrongLetters = [];
                 this.inputWrongLetters ="";
                 this.toggleIsNotInWord = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
                 this.toggleKeyPressed = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
@@ -288,7 +290,14 @@
                 this.letterIsExcluded = false;
                 this.textKeyboardExcludeInclude = "Mode lettres à exclure";
                 this.letterTwoStates = [];
+                console.log("resetGame in Form Vue")
                 resetGame();
+                console.log(
+                    gameState.regExWord,
+                    gameState.wordlength,
+                    gameState.searchVersion
+                );
+
             }
         },
         computed: {
