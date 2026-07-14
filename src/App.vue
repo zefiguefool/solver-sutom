@@ -1,47 +1,53 @@
 <template>
-  <div id="app">
-    <span @click.once="emitScroll" data-v-741978ef="" class="sticky-btn text-maroon fs-6 font-weight-bold underline position-sticky absolute-bottom">
+  <div>
+    <LandingLoader @animation-complete="showContent = true" class="absolute z-0" />
+    <div v-if="showContent" class="absolute z-1">
+      <div id="app">
+        <span @click.once="emitScroll" data-v-741978ef="" class="sticky-btn text-maroon fs-6 font-weight-bold underline position-sticky absolute-bottom">
       
-      <a data-v-741978ef="" href="#" title="Aller au Solver" aria-label="haut" class="anchor link-dark position-relative">
-        <svg width="7%" height="100%" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 12L12 8M12 8L8 12M12 8V16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="maroon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        <span class="align-middle position-absolute marron">top</span>
-      </a>
-    </span>
-    <navigation></navigation>
-    <router-view></router-view>
-    <div id="to-scroll" class="to-scroll mx-auto">
-       <div class="solver-container">
-        <solver-component></solver-component>
-       </div>
-       <!-- Conteneur principal -->
-       <!-- Sélecteur de jeu -->
+          <a data-v-741978ef="" href="#" title="Aller au Solver" aria-label="haut" class="anchor link-dark position-relative">
+            <svg width="7%" height="100%" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 12L12 8M12 8L8 12M12 8V16M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z" stroke="maroon" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="align-middle position-absolute marron">top</span>
+          </a>
+        </span>
+      
+        <Navigation />
+        <router-view />
+        <div id="to-scroll" class="to-scroll mx-auto">
+          <div class="solver-container">
+            <SolverComponent />
+          </div>
+          <!-- Conteneur principal -->
+          <!-- Sélecteur de jeu -->
 
-    <div class="game-selector">
-      <button
-        v-for="game in games"
-        :key="game.id"
-        :id="game.id"
-        @click="selectGame(game.id)"
-        :class="{ active: currentGame === game.id }"
-      >
-        {{ game.name }}
-      </button>
-    </div>
-       <div class="game-container">
-       <!-- Iframe pour le jeu -->
-        <div class="game-iframe-container">
-          <iframe
-            aria-label="Game Iframe"
-            title="Games Iframe"
-            name="game-iframe"
-            loading="lazy"
-            :src="currentGameUrl"
-            frameborder="0"
-            allowfullscreen
-            sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-          ></iframe>
+          <div class="game-selector">
+            <button
+              v-for="game in games"
+              :key="game.id"
+              :id="game.id"
+              @click="selectGame(game.id)"
+              :class="{ active: currentGame === game.id }"
+            >
+              {{ game.name }}
+            </button>
+          </div>
+          <div class="game-container">
+          <!-- Iframe pour le jeu -->
+            <div class="game-iframe-container">
+              <iframe
+                aria-label="Game Iframe"
+                title="Games Iframe"
+                name="game-iframe"
+                loading="lazy"
+                :src="currentGameUrl"
+                frameborder="0"
+                allowfullscreen
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+              ></iframe>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -56,8 +62,10 @@ const SolverComponent = () =>
   import(
     './components/SolverComponent/SolverComponent.vue'
 ); */
-import Navigation from './components/Navigation/Navigation.vue'
-import SolverComponent from './components/SolverComponent/SolverComponent.vue';
+
+import Navigation from "@/components/Navigation/Navigation.vue";
+import SolverComponent from "@/components/SolverComponent/SolverComponent.vue";
+import LandingLoader from '@/components/LandingLoader/LandingLoader.vue';
 export default {
   name: 'App',
   data(){
@@ -75,7 +83,8 @@ export default {
       currentGame: "sutom", // Jeu sélectionné par défaut
       attempts: '',
       solverResults: '',
-      heightToScrollOnce: 0
+      heightToScrollOnce: 0,
+      showContent: false 
     }
   },
   mounted() {
@@ -83,6 +92,7 @@ export default {
     this.attempts = localStorage.getItem(`attempts_${this.currentGame}`) || '';
   },
   components: {
+        LandingLoader,
         Navigation,
         SolverComponent
     },
@@ -107,19 +117,22 @@ export default {
       this.solverResults = `Résultats pour : ${attempts}`;
     },
     emitScroll(){
-        this.heightToScrollOnce = document.getElementsByClassName('fieldset-container-component').item(0)?.clientHeight + document.getElementsByTagName('h1').item(0).clientHeight || 0;
-        console.log('emit scroll solver component');
-        window.scrollBy({
-          top: this.heightToScrollOnce,
-          behavior: 'smooth'
-        });
-      }
+      this.heightToScrollOnce = document.getElementsByClassName('fieldset-container-component').item(0)?.clientHeight + document.getElementsByTagName('h1').item(0).clientHeight || 0;
+      console.log('emit scroll solver component');
+      window.scrollBy({
+        top: this.heightToScrollOnce,
+        behavior: 'smooth'
+      });
+    },
+    loaderFinished() {
+        console.log('Animation terminée !');
+        // Ici, tu peux ajouter la logique que tu veux exécuter après la fin de l'animation}
+    }
   }
 }
 </script>
 <style>
-  @import './css/_vars.css';
-  @import './css/_fonts.css';
+  @import '@/css/globals.css';
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -131,13 +144,13 @@ export default {
     background-size:contain;
     background-attachment: fixed;
     @media (min-width: 1025px) {
-      background-image: url(../solvami-background-fullsize.jpg);
+      background-image: url(./solvami-background-fullsize.jpg);
     }
     @media (min-width: 481px) and (max-width: 1024px){
-      background-image: url(../solvami-background-tablet.jpg);
+      background-image: url(./solvami-background-tablet.jpg);
     }
     @media (max-width: 480px) {
-      background-image: url(../solvami-background-mobile.jpg);
+      background-image: url(./solvami-background-mobile.jpg);
     }
 
   }

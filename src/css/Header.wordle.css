@@ -1,12 +1,9 @@
-.header-top {
-  margin: 0 auto;
+.header-top.wordle {
   width: 100%;
 }
 
 h1,
 .h1 {
-  position: fixed;
-  top: 0;
   text-align: center;
   text-transform: uppercase;
   margin: 0;
@@ -16,27 +13,20 @@ h1,
   -webkit-box-shadow: 0 2px 5px #ddd;
   box-shadow: 0 2px 5px #ddd;
   text-shadow: 0px 2px 4px #000;
-  color: #fff !important;
+  color: #fff;
   font-size: 1.5rem !important;
   font-family: "Fredoka Bold", sans-serif;
   width: 100%;
+  position: fixed;
+  top: 0;
   z-index: 1;
 }
 
-:is(h1) > span {
+h1 > span {
   display: inline-block;
   width: 2rem;
   border: 1px solid #fff;
-  background-color: #0a5566;
-}
-
-h1 > span.color-grid {
-  > span {
-    display: inline-block;
-    background-color: var(--color-bad-place);
-    border-radius: 50%;
-    width: 100%;
-  }
+  background-color: #0077c7;
 }
 .sound-element {
   position: fixed;
@@ -49,25 +39,33 @@ h1 > span.color-grid {
   width: 36px;
 }
 
-.intro,
-.sutom .intro {
-  background-color: white;
+.wordle .intro {
   margin-top: 7.5rem;
+  background-color: white;
   border: 2px solid maroon;
   border-radius: 5px;
   padding: 0.5rem;
 }
 
-.intro h2 {
-  padding: 0 0.8rem;
-  margin: 0;
-  white-space: inherit;
-  color: maroon;
+.intro a.sutom-color {
+  color: white;
+  background-color: var(--color-grid);
+}
+.intro a.tuzmo-color {
+  color: white;
+  background-color: var(--wordle-color-grid);
+}
+.intro a.wordle-color {
+  color: white;
+  background-color: var(--wordle-color-grid);
 }
 
-.title {
-  font-family: "Fredoka Regular", sans-serif;
+.intro img {
+  width: 20%;
+  display: inline-block;
 }
+
+/**/
 
 .intro ul {
   margin-top: 0.5rem;
@@ -96,23 +94,8 @@ h1 > span.color-grid {
   }
 }
 
-.intro ul.first-list-actions {
-  li {
-    margin-left: -0.4rem;
-  }
-}
-
-.intro ul.second-list-actions {
-  li {
-    margin-left: -0.4rem;
-  }
-}
-
 .intro ul li {
-  margin-bottom: 0.2rem;
-  &:not(:last-child) {
-    margin-right: 0.5rem;
-  }
+  margin-bottom: 0.3rem;
 }
 :is(.change-color, .with-color-transition) {
   list-style-type: circle;
@@ -144,6 +127,7 @@ h1 > span.color-grid {
   font-weight: bold;
   margin-top: 0.1rem;
   margin-bottom: 0;
+  display: inline-block;
   &.anchor {
     color: inherit;
     font-weight: normal;
@@ -158,11 +142,11 @@ h1 > span.color-grid {
 
 .intro a.sutom-color {
   color: white;
-  background-color: var(--sutom-color-grid);
+  background-color: var(--wordle-color-grid);
 }
-.intro a.tusmo-color {
+.intro a.tuzmo-color {
   color: white;
-  background-color: var(--tusmo-color-grid);
+  background-color: var(--wordle-color-grid);
 }
 .intro a.wordle-color {
   color: white;
@@ -177,7 +161,6 @@ h1 > span.color-grid {
   text-decoration: none;
   font-weight: bold;
   margin-top: 0.1rem;
-  margin-left: -0.4rem;
 }
 
 span.search-button {
@@ -196,12 +179,12 @@ span.select-game {
   display: inline-block;
   padding: 0.3rem 0.5rem;
   background-color: var(--color-select-game);
-  color: white;
+  color: #fff;
   padding: 0.5rem 1rem;
   border: 1px solid var(--color-select-game);
   border-radius: 4px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: normal;
   &.active {
     background-color: var(--color-select-game-active);
     color: white;
@@ -268,9 +251,5 @@ summary span {
   }
   &.third::marker {
     color: var(--color-grid);
-  }
-  > i.em,
-  > i.em-svg {
-    margin-bottom: 0.3rem;
   }
 }

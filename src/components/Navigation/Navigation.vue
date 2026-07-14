@@ -3,9 +3,9 @@
     <ul :class="{ active: isActive }" class="nav">
         <li id="sutom" data-testid="nav-sutom">
             <router-link
-                to="/solvami/sutom"
-                @click="isActive = !isActive"
-                :class="{ active: isActive }"
+                to="/sutom"
+                active-class="active"
+                @click="isActive = false"
                 class="sutom btn btn-nav"
                 id="sutom">
                 <span class="color-grid">S</span><span>u</span><span class="color-letter-bad-place">t</span><span>o</span><span>m</span>
@@ -14,9 +14,9 @@
 
         <li id="tusmo" data-testid="nav-tusmo">
             <router-link
-                to="/solvami/tusmo"
-                @click="isActive = !isActive"
-                :class="{ active: isActive }"
+                to="/tusmo"
+                active-class="active"
+                @click="isActive = false"
                 class="tusmo btn btn-nav"
                 >
                 <span class="color-good-place">T</span><span>u</span><span class="color-letter-bad-place">s</span><span>m</span><span>o</span>
@@ -25,9 +25,9 @@
 
         <li id="wordle" data-testid="nav-wordle">
             <router-link
-                to="/solvami/wordle"
-                @click="isActive = !isActive"
-                :class="{ active: isActive }"
+                to="/wordle"
+                active-class="active"
+                @click="isActive = false"
                 class="sutom btn btn-nav"
                 >
                 <span class="color-wordle-ok">W</span><span>o</span><span class="color-letter-bad-place">r</span><span>d</span><span>l</span><span>e</span>
@@ -35,7 +35,7 @@
         </li>
      </ul>
       <div class="box">
-            <div @click="isActive = !isActive" :class="myClass" class="contLigne btn1">
+            <div @click="isActive = !isActive" :class="{ active: isActive }" class="contLigne btn1">
                 <div class="lignes"></div>
                 <div class="lignes"></div>
                 <div class="lignes"></div>
@@ -48,6 +48,7 @@
         name: 'NavigationMenu',
         components: {
         },
+        computed: { myClass: function(){ return{ active: this.isActive, } } },
         data(){
             return{
                 isActive: false
