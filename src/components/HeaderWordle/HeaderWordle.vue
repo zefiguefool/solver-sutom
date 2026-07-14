@@ -1,6 +1,6 @@
 <template>
     <div id="header-top" class="wordle header-top">
-        <h1 v-html="titreHTML" class="py-2 ps-0 pe-4"></h1>
+        <h1 v-html="titreHTML" class="h1 py-2 ps-0 pe-4"></h1>
         <a class="sound-element" @click="soundAction()" href="#">
             <img loading="lazy" alt="sound inactive" aria-label="sound inactive" width="36" height="30" v-if="!soundActive" src="../../assets/images/sound-off.jpg" />
             <img loading="lazy" alt="sound active" aria-label="sound active" width="30" height="25" v-if="soundActive" src="../../assets/images/sound-on.jpg" />

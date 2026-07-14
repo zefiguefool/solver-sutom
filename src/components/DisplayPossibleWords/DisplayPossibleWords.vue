@@ -55,7 +55,7 @@ import { findPossibleWordsOptimized } from '../../services/findPossibleWordsOpti
                 return this.dictionaryCache[length];
             }
 
-            const response = await fetch(`/dict/${length}.txt`);
+            const response = await fetch(`${import.meta.env.BASE_URL}/dict/${length}.txt`);
             if (!response.ok) {
                 throw new Error(
                     `Impossible de charger ${length}.txt`
